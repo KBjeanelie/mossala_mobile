@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
+import 'package:mossala_mobile/screen/main/chats_screen.dart';
+import 'package:mossala_mobile/screen/main/main_screen.dart';
+import 'package:mossala_mobile/screen/main/menu_screen.dart';
+import 'package:mossala_mobile/screen/main/user_projet_screen.dart';
+import 'package:mossala_mobile/screen/main/worker_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,25 +18,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int _currentIndex = 0;
   final List<Widget> screens = [
-    Center(child: Text('Accueil')),
-    Center(child: Text('Rechercher')),
-    Center(child: Text('Profil')),
-    Center(child: Text('Profil')),
-    Center(child: Text('Profil')),
+    MainScreen(),
+    WorkerScreen(),
+    UserProjetScreen(),
+    ChatsScreen(),
+    MenuScreen()
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.textDark,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
-        ),
-        title:Image(
-          image: AssetImage('assets/logo.png'),
-          width: 90,
-        ),
-      ),
       body: screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         elevation: 2,
