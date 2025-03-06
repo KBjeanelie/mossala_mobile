@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mossala_mobile/features/auth/presentation/pages/forgetpassword_screen.dart';
+import 'package:mossala_mobile/features/auth/presentation/pages/otp_screen.dart';
 import 'core/theme/app_theme.dart';
-import 'screen/on_boarding/screen_1.dart';
+import 'features/auth/presentation/pages/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,11 +15,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: Screen1(),
+      home: LoginScreen(),
     );
   }
 }
