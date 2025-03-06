@@ -21,7 +21,11 @@ class _ConfrimOtpScreenState extends State<ConfrimOtpScreen> {
     //   // Form is valid, proceed with submission
     //   print("Formulaire valide !");
     // }
-    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
+      (route) => false,
+    );
   }
 
   @override

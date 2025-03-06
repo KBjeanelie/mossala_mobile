@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
+import 'package:mossala_mobile/features/auth/presentation/pages/register1.dart';
 
 class LastScreen extends StatelessWidget {
   const LastScreen({super.key});
@@ -35,51 +36,56 @@ class LastScreen extends StatelessWidget {
                   ),
               ),
             ),
-            Card(
-              margin: EdgeInsets.symmetric(vertical: 30),
-              color: Colors.white,
-              elevation: 3,
-              shadowColor: AppColors.greyLight,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Row(
-                  spacing: 10,
-                  children: [
-                    Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: AppColors.primary,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Register1()));
+              },
+              child: Card(
+                margin: EdgeInsets.symmetric(vertical: 30),
+                color: Colors.white,
+                elevation: 3,
+                shadowColor: AppColors.greyLight,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Row(
+                    spacing: 10,
+                    children: [
+                      Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: AppColors.primary,
+                        ),
+                        child: Icon(Icons.person, color: Colors.white, size: 40,),
                       ),
-                      child: Icon(Icons.person, color: Colors.white, size: 40,),
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Client',
-                            style: GoogleFonts.poppins(
-                                fontSize: 18,
-                                color: AppColors.textLight,
-                                fontWeight: FontWeight.w600
-                              ),
-                          ),
-                          SizedBox(height: 5),
-                          Text("J'ai un projet ou service à réalisé",
-                            style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                color: AppColors.textLight,
-                              ),
-                          ),
-                        ],
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Client',
+                              style: GoogleFonts.poppins(
+                                  fontSize: 18,
+                                  color: AppColors.textLight,
+                                  fontWeight: FontWeight.w600
+                                ),
+                            ),
+                            SizedBox(height: 5),
+                            Text("J'ai un projet ou service à réalisé",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 15,
+                                  color: AppColors.textLight,
+                                ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Icon(Icons.arrow_forward_ios, color: const Color(0xFF5B5959), size: 30,),
-                  ],
+                      Icon(Icons.arrow_forward_ios, color: const Color(0xFF5B5959), size: 30,),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -94,51 +100,56 @@ class LastScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Card(
-              margin: EdgeInsets.symmetric(vertical: 30),
-              color: Colors.white,
-              elevation: 3,
-              shadowColor: AppColors.greyLight,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Row(
-                  spacing: 10,
-                  children: [
-                    Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: AppColors.primary,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Register1()));
+              },
+              child: Card(
+                margin: EdgeInsets.symmetric(vertical: 30),
+                color: Colors.white,
+                elevation: 3,
+                shadowColor: AppColors.greyLight,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Row(
+                    spacing: 10,
+                    children: [
+                      Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: AppColors.primary,
+                        ),
+                        child: Icon(Icons.work, color: Colors.white, size: 40,),
                       ),
-                      child: Icon(Icons.work, color: Colors.white, size: 40,),
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Travailleur indépendant',
-                            style: GoogleFonts.poppins(
-                                fontSize: 18,
-                                color: AppColors.textLight,
-                                fontWeight: FontWeight.w600
-                              ),
-                          ),
-                          SizedBox(height: 5),
-                          Text("Je cherche des projets ou des marchés",
-                            style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                color: AppColors.textLight,
-                              ),
-                          ),
-                        ],
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Travailleur indépendant',
+                              style: GoogleFonts.poppins(
+                                  fontSize: 18,
+                                  color: AppColors.textLight,
+                                  fontWeight: FontWeight.w600
+                                ),
+                            ),
+                            SizedBox(height: 5),
+                            Text("Je cherche des projets ou des marchés",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 15,
+                                  color: AppColors.textLight,
+                                ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Icon(Icons.arrow_forward_ios, color: const Color(0xFF5B5959), size: 30,),
-                  ],
+                      Icon(Icons.arrow_forward_ios, color: const Color(0xFF5B5959), size: 30,),
+                    ],
+                  ),
                 ),
               ),
             )
