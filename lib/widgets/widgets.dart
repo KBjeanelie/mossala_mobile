@@ -100,3 +100,25 @@ ElevatedButton buttonApp(BuildContext context, VoidCallback onPress, String text
     child: mediumTextApp(text, font: FontWeight.bold),
   );
 }
+
+ElevatedButton mainButtonApp(BuildContext context, VoidCallback onPress, String text, {size = 1}) {
+  return ElevatedButton(
+    style: ButtonStyle(
+      backgroundColor: WidgetStateProperty.all(AppColors.backgroundLight),
+      elevation: WidgetStateProperty.all(3),
+      minimumSize: WidgetStateProperty.all(
+        Size(
+          MediaQuery.of(context).size.width * size,
+          45
+        )
+      ),
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+      ),
+    ),
+    onPressed: onPress,
+    child: mediumTextApp(text, font: FontWeight.bold, color: AppColors.textDark),
+  );
+}
