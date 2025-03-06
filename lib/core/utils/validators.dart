@@ -23,6 +23,7 @@ class Validators {
 
   static String? validateName(String? value) {
     if (value == null || value.isEmpty) return "Le nom est requis";
+    // ignore: valid_regexps
     if (!RegExp(r'^[A-Za-z��-Ö��-öø-�� ]+$').hasMatch(value)) return "Nom invalide";
     return null;
   }
