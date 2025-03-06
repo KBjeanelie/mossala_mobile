@@ -72,3 +72,75 @@ class _WorkerCardViewState extends State<WorkerCardView> {
     );
   }
 }
+
+
+
+class CardOfferView extends StatefulWidget {
+  const CardOfferView({super.key});
+
+  @override
+  State<CardOfferView> createState() => _CardOfferViewState();
+}
+
+class _CardOfferViewState extends State<CardOfferView> {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      elevation: 2,
+      color: AppColors.textDark,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            mediumTextApp("Besoin d’artisant pour renovation de toiture", color: AppColors.backgroundLight, font: FontWeight.w700),
+            SizedBox(height: 10),
+            Row(
+              spacing: 15,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.money, size: 25, color: AppColors.backgroundLight,),
+                    normalTextApp("10 000F CFA")
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.location_on, size: 25, color: AppColors.backgroundLight,),
+                    normalTextApp("Moungali")
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.circle, size: 15, color: AppColors.secondary,),
+                    normalTextApp("Ouvert")
+                  ],
+                )
+              ],
+            ),
+            SizedBox(height: 10),
+            normalTextApp("6 dévis envoyés"),
+            SizedBox(height: 20),
+            normalTextApp("Details: Nous recherchons des artisans pour la renovation d’une toiture...", font: FontWeight.w500),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.arrow_forward_ios, size: 25, color: AppColors.backgroundLight,),
+                    mediumTextApp("Charpentier, Plafonier", font: FontWeight.w700)
+                  ],
+                ),
+                normalTextApp("Il y a 2 min")
+              ],
+            ),
+            SizedBox(height: 20),
+            mainButtonApp(context, (){}, 'Envoyer un dévis')
+          ],
+        ),
+      ),
+    );
+  }
+}

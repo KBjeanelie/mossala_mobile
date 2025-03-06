@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const Color primary = Color(0xFF335CD6);
   static const Color primaryLight = Color(0xFFEBEFFA);
-  static const Color secondary = Color(0xFF42B72A); // Vert Messenger
+  static const Color secondary = Color(0xFF34FF0C);
   static const Color backgroundLight = Color(0xFF73ADEF);
   static const Color backgroundDark = Color(0xFF121212);
   static const Color backgroundLogin = Color(0xFF2C51C3);
