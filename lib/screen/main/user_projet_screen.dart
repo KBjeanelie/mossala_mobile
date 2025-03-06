@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/theme/app_colors.dart';
+import '../../widgets/cards.dart';
 import '../../widgets/widgets.dart';
 
 class UserProjetScreen extends StatelessWidget {
@@ -62,7 +63,19 @@ class TabViewOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: normalTextApp("Aucun projet remporté trouvé"));
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          CardOfferView(),
+          CardOfferView(),
+          CardOfferView(),
+          CardOfferView(),
+          CardOfferView(),
+          CardOfferView(),
+          CardOfferView(),
+        ],
+      ),
+    );
   }
 }
 
@@ -71,6 +84,15 @@ class TabViewTwo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: normalTextApp("Aucun projet créé trouvé"));
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          CardOfferView(),
+          CardOfferView(),
+          CardOfferView(),
+          CardOfferView(),
+        ],
+      ),
+    );
   }
 }
