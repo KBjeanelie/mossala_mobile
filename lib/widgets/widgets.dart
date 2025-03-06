@@ -4,7 +4,7 @@ import 'package:mossala_mobile/core/theme/app_colors.dart';
 
 Text normalTextApp(
     String text, {
-      size = 14.0, 
+      size = 15.0, 
       color = AppColors.textLight, 
       font = FontWeight.normal,
       align = TextAlign.left,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mossala_mobile/widgets/app_bar.dart';
-
 import '../../core/theme/app_colors.dart';
 import '../../widgets/widgets.dart';
 
@@ -64,7 +62,7 @@ class TabViewOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: normalTextApp("Aucun projet remportés trouvé"));
+    return Center(child: normalTextApp("Aucun projet remporté trouvé"));
   }
 }
 
@@ -73,6 +71,6 @@ class TabViewTwo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: normalTextApp("Aucun projet créés trouvé"));
+    return Center(child: normalTextApp("Aucun projet créé trouvé"));
   }
 }
