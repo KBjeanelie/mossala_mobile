@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mossala_mobile/widgets/app_bar.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 import '../../core/theme/app_colors.dart';
@@ -14,13 +15,7 @@ class _WorkerScreenState extends State<WorkerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.textDark,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
-        ),
-        title: headingTextApp("Prestataires"),
-      ),
+      appBar: appBarWidget("Prestataire"),
       body: Center(child: normalTextApp("Accueil")),
     );
   }

@@ -31,7 +31,7 @@ Text mediumTextApp(String text, {size = 18.0, color = AppColors.textLight, font 
   );
 }
 
-Text headingTextApp(String text, {size = 20.0, color = AppColors.textLight, font = FontWeight.bold}) {
+Text headingTextApp(String text, {size = 24.0, color = AppColors.textLight, font = FontWeight.bold}) {
   return Text(text, 
     style: GoogleFonts.poppins(
       fontSize: size,
