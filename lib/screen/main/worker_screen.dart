@@ -19,7 +19,7 @@ class _WorkerScreenState extends State<WorkerScreen> {
         child: Column(
           spacing: 10,
           children: List.generate(
-            25,
+            2,
             (index) => WorkerCardView(),
           ),
         ),

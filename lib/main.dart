@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mossala_mobile/screen/home_screen.dart';
+import 'package:mossala_mobile/screen/main/worker_screen.dart';
 import 'package:mossala_mobile/screen/on_boarding/screen_1.dart';
 import 'core/theme/app_theme.dart';
 
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: Screen1(),
+      home: WorkerScreen(),
     );
   }
 }

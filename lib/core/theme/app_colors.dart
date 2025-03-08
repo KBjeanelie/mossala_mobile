@@ -4,7 +4,7 @@ class AppColors {
   // Couleurs communes
   static const Color primary = Color(0xFF184C7F);
   static const Color secondary = Color(0xFF1D71B8);
-  static const Color open = Color.fromARGB(255, 87, 255, 72);
+  static const Color open = Color.fromARGB(255, 27, 232, 8);
   static const Color closed = Color.fromARGB(255, 255, 0, 0);
   static const Color working = Color(0xFF1D71B8);
   static const Color done = Color.fromARGB(255, 67, 67, 67);
