@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
+import 'package:mossala_mobile/screen/main/detail/single_offer_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 class WorkerCardView extends StatefulWidget {
@@ -48,14 +49,7 @@ class _WorkerCardViewState extends State<WorkerCardView> {
                   runSpacing: 5,
                   children: [
                     for (int i = 0; i < 5; i++)
-                      Badge(
-                        backgroundColor: AppColors.lightBorder,
-                        padding: EdgeInsets.all(5),
-                        label: Text("Metier ${i+1}", style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          color: AppColors.lightText,
-                        ),),
-                      ),
+                      BadgeApp(i: i),
                   ],
                 ),
                 Row(
@@ -84,6 +78,27 @@ class _WorkerCardViewState extends State<WorkerCardView> {
           )
         ],
       ),
+    );
+  }
+}
+
+class BadgeApp extends StatelessWidget {
+  const BadgeApp({
+    super.key,
+    required this.i,
+  });
+
+  final int i;
+
+  @override
+  Widget build(BuildContext context) {
+    return Badge(
+      backgroundColor: AppColors.lightBorder,
+      padding: EdgeInsets.all(5),
+      label: Text("Metier ${i+1}", style: GoogleFonts.poppins(
+        fontSize: 12,
+        color: AppColors.lightText,
+      ),),
     );
   }
 }
@@ -156,7 +171,10 @@ class _CardOfferViewState extends State<CardOfferView> {
               ],
             ),
             SizedBox(height: 20),
-            mainButtonApp(context, (){}, 'Envoyer un dévis')
+            mainButtonApp(context, (){
+              // Navigate to the chat screen here
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SingleOfferScreen()));
+            }, 'Envoyer un dévis')
           ],
         ),
       ),

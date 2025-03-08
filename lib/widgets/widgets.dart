@@ -116,8 +116,41 @@ ElevatedButton mainButtonApp(BuildContext context, VoidCallback onPress, String 
       ),
     ),
     onPressed: onPress,
-    child: Text(text, style: GoogleFonts.poppins(
-      color: AppColors.darkText,
+    child: Text(
+      text, 
+      style: GoogleFonts.poppins(
+        color: AppColors.darkText,
+        fontSize: 18,
+        fontWeight: FontWeight.w600
+      ),
+      textAlign: TextAlign.center,
+    ),
+  );
+}
+
+OutlinedButton mainOutlinedButtonApp(BuildContext context, VoidCallback onPress, String text, {size = 1}) {
+  return OutlinedButton(
+    style: ButtonStyle(
+      side: WidgetStateProperty.all(
+        BorderSide(color: AppColors.secondary)
+      ),
+      backgroundColor: WidgetStateProperty.all(const Color.fromARGB(25, 29, 114, 184)),
+      elevation: WidgetStateProperty.all(3),
+      minimumSize: WidgetStateProperty.all(
+        Size(
+          MediaQuery.of(context).size.width * size,
+          45
+        )
+      ),
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+        ),
+      ),
+    ),
+    onPressed: onPress,
+    child: Text(text,textAlign: TextAlign.center, style: GoogleFonts.poppins(
+      color: AppColors.secondary,
       fontSize: 18,
       fontWeight: FontWeight.w600
     ),),
