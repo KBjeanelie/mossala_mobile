@@ -15,11 +15,10 @@ class _WorkerScreenState extends State<WorkerScreen> {
     return Scaffold(
       appBar: appBarWidget("Prestataire", context),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.symmetric(horizontal: 5),
         child: Column(
-          spacing: 10,
           children: List.generate(
-            2,
+            25,
             (index) => WorkerCardView(),
           ),
         ),

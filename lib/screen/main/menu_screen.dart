@@ -99,7 +99,7 @@ class CardMenu extends StatelessWidget {
     return Card(
       child: Container(
         width: MediaQuery.of(context).size.width * 0.5,
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 3),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -124,7 +124,7 @@ class CardMenu2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.only(left: 15, right: 15, top: 3),
+      margin: EdgeInsets.only(left: 5, right: 5, top: 3),
       child: ListTile(
         onTap: () {},
         leading: Icon(icon, color: AppColors.secondary,),

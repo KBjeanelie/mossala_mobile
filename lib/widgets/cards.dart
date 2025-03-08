@@ -101,7 +101,7 @@ class _CardOfferViewState extends State<CardOfferView> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       elevation: 2,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),

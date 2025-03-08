@@ -23,7 +23,7 @@ class AppTheme {
     cardTheme: CardThemeData(
       color: AppColors.lightCard,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(7),
       ),
     ),
     iconTheme: IconThemeData(color: AppColors.darkBorder, size: 25),

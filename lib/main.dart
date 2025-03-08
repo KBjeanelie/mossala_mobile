@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mossala_mobile/screen/home_screen.dart';
-import 'package:mossala_mobile/screen/main/worker_screen.dart';
-import 'package:mossala_mobile/screen/on_boarding/screen_1.dart';
 import 'core/theme/app_theme.dart';
 
 void main() {
@@ -22,11 +20,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Mosala',
+      scrollBehavior: ScrollBehavior(),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: WorkerScreen(),
+      home: HomeScreen(),
     );
   }
 }
