@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'app_colors.dart';
 import 'app_texte_style.dart';
 

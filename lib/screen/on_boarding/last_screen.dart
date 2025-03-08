@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
-import 'package:mossala_mobile/features/auth/presentation/pages/register1.dart';
 import 'package:mossala_mobile/screen/home_screen.dart';
 
 class LastScreen extends StatelessWidget {
