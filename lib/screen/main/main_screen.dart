@@ -21,13 +21,15 @@ class _MainScreenState extends State<MainScreen> {
           width: 90,
         ),
         actions: [
-          CircleAvatar(
-            radius: 15,
-            child: Icon(Icons.add, color: AppColors.secondary),
+          Center(
+            child: CircleAvatar(
+              radius: 15,
+              child: Icon(Icons.add, color: AppColors.secondary),
+            ),
           ),
-          SizedBox(width: 8,),
-          Icon(EvaIcons.paperPlane, color: AppColors.secondary),
-          SizedBox(width: 15,)
+          IconButton(
+            onPressed: () {},
+            icon: Icon(EvaIcons.paperPlane, color: AppColors.secondary)),
         ],
       ),
       body: SingleChildScrollView(

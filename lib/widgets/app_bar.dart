@@ -11,9 +11,9 @@ AppBar appBarWidget(String title, BuildContext context, {showAction = true}){
         radius: 15,
         child: Icon(Icons.add, color: AppColors.secondary),
       ),
-      SizedBox(width: 8,),
-      Icon(EvaIcons.paperPlane, color: AppColors.secondary),
-      SizedBox(width: 15,)
+      IconButton(
+        onPressed: () {},
+        icon: Icon(EvaIcons.paperPlane, color: AppColors.secondary)),
     ],
   );
 }
