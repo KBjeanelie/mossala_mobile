@@ -1,5 +1,7 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
+import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/widgets/app_bar.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
@@ -10,123 +12,73 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarSimple("Menu"),
+      appBar: appBarSimple("Menu", context),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            AppSizes.spaceH,
             Card(
-              color: AppColors.textDark,
-              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.textDark,
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            spacing: 15,
-                            children: [
-                              CircleAvatar(
-                                backgroundImage: AssetImage('assets/user.jpg'),
-                                radius: 20,
-                              ),
-                              mediumTextApp("KUBEMBULA Jean Élie", font: FontWeight.w700),
-                            ],
-                          ),
-                          Icon(Icons.arrow_forward_ios, size: 25, color: AppColors.grey,)
-                        ],
-                      ),
+              margin: AppSizes.spaceHorizontal,
+              child: Column(
+                children: [
+                  ListTile(
+                    onTap: (){},
+                    leading: CircleAvatar(
+                      backgroundImage: AssetImage("assets/user.jpg"),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 3),
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                      width: double.infinity,
-                      height: 80,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFE2EEFC),
-                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10))
-                      ),
-                      child: Row(
-                        spacing: 15,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: AppColors.textDark,
-                            radius: 15,
-                            child: Center(
-                              child: Icon(Icons.add, size: 30, color: AppColors.backgroundLight,),
-                            ),
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                normalTextApp("Créer un nouveau projet", size: 14.0, font: FontWeight.bold),
-                                normalTextApp("Créer un nouveau projet ou demander un service en toute simplicité", size: 12.0)
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                spacing: 10,
-                children: [
-                  Flexible(child: cardMenu(icon: Icons.stars, title: "Évaluations",)),
-                  Flexible(child: cardMenu(icon: Icons.check_box, title: "Réalisations",)),
+                    title: mediumTextApp("KUBEMBULA Jean Elie", context),
+                    trailing: Icon(EvaIcons.arrowIosForward),
+                  ),
+                  Divider(),
+                  ListTile(
+                    onTap: (){},
+                    leading: CircleAvatar(
+                      child: Icon(EvaIcons.plus),
+                    ),
+                    title: normalTextApp("Créer un nouveau projet", context),
+                    subtitle: smallTextApp("Créer un nouveau projet ou demander un service en toute simplicité", context),
+                  ),
                 ],
               ),
             ),
-            SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                spacing: 10,
-                children: [
-                  Flexible(child: cardMenu(icon: Icons.school, title: "Formations",)),
-                  Flexible(child: cardMenu(icon: Icons.fact_check, title: "Projets remportés",)),
-                ],
-              ),
-            ),
-            SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                spacing: 10,
-                children: [
-                  Flexible(child: cardMenu(icon: Icons.library_add_check, title: "Projet créés",)),
-                ],
-              ),
-            ),
-            SizedBox(height: 5),
-            cardMenu2(icon: Icons.settings, title: "Paramètres",),
-            cardMenu2(icon: Icons.balance, title: "Conditions et réglèments",),
-            cardMenu2(icon: Icons.security, title: "Centre de confidentialité",),
-            cardMenu2(icon: Icons.warning, title: "Signaler un problème",),
-            SizedBox(height: 5),
+            SizedBox(height: 15),
             Container(
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 10),
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              decoration: BoxDecoration(
-                color: const Color(0xFFABCEF5),
-                borderRadius: BorderRadius.circular(10)
+              margin: AppSizes.spaceHorizontal,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(child: CardMenu(icon: EvaIcons.checkmarkSquare, title: "Réalisations",)),
+                      Expanded(child: CardMenu(icon: EvaIcons.edit2, title: "Projets créés",)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      CardMenu(icon: EvaIcons.award, title: "Projets remportés",),
+                    ],
+                  ),
+                ],
               ),
-              child: Center(child: normalTextApp("Déconnexion", font: FontWeight.w500, color: AppColors.textDark)),
+            ),
+            SizedBox(height: 20),
+            CardMenu2(icon: EvaIcons.bell, title: "Notifications",),
+            CardMenu2(icon: EvaIcons.settings, title: "Paramètres",),
+            CardMenu2(icon: EvaIcons.alertTriangle, title: "Signaler un problème",),
+            CardMenu2(icon: EvaIcons.externalLink, title: "Envoyer un feedback"),
+            CardMenu2(icon: EvaIcons.info, title: "À propos de nous",),
+
+            Container(
+              margin: EdgeInsets.only(left: 15, right: 15, top: 30),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+                color: const Color.fromARGB(33, 29, 114, 184)
+              ),
+              child: ListTile(
+                leading: Icon(EvaIcons.logOut, color: AppColors.secondary),
+                title: normalTextApp("Déconnexion", context),
+                onTap: () {},
+              ),
             )
           ],
         ),
@@ -135,28 +87,26 @@ class MenuScreen extends StatelessWidget {
   }
 }
 
-class cardMenu extends StatelessWidget {
+class CardMenu extends StatelessWidget {
   final IconData icon;
   final String title;
-  const cardMenu({
+  const CardMenu({
     super.key, required this.icon, required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.5,
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      decoration: BoxDecoration(
-        color: AppColors.textDark,
-        borderRadius: BorderRadius.circular(10)
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(icon, size: 25, color: AppColors.backgroundLight,),
-          normalTextApp(title, font: FontWeight.w800)
-        ],
+    return Card(
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.5,
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, color: AppColors.secondary,),
+            normalTextApp(title, context)
+          ],
+        ),
       ),
     );
   }
@@ -164,30 +114,21 @@ class cardMenu extends StatelessWidget {
 
 
 
-class cardMenu2 extends StatelessWidget {
+class CardMenu2 extends StatelessWidget {
   final IconData icon;
   final String title;
-  const cardMenu2({
+  const CardMenu2({
     super.key, required this.icon, required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.only(left: 15, right: 15, top: 10),
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      decoration: BoxDecoration(
-        color: AppColors.textDark,
-        borderRadius: BorderRadius.circular(10)
-      ),
-      child: Row(
-        spacing: 10,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(icon, size: 25, color: AppColors.backgroundLight,),
-          normalTextApp(title, font: FontWeight.w800)
-        ],
+    return Card(
+      margin: EdgeInsets.only(left: 15, right: 15, top: 3),
+      child: ListTile(
+        onTap: () {},
+        leading: Icon(icon, color: AppColors.secondary,),
+        title: normalTextApp(title, context),
       ),
     );
   }

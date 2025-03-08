@@ -33,7 +33,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundLogin,
+      backgroundColor: AppColors.darkBackground,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: Form(
@@ -42,7 +42,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.35),
-              normalTextApp("Securisez votre compte avec un mot de passe", color: AppColors.textDark,),
+              normalTextApp("Securisez votre compte avec un mot de passe", context),
               SizedBox(height: 20),
               inputForm("Mot de passe", passwordControler, Validators.validatePassword,type: TextInputType.phone),
               SizedBox(height: 20),

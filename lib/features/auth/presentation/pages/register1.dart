@@ -27,7 +27,7 @@ class _Register1State extends State<Register1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundLogin,
+      backgroundColor: AppColors.primary,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: Form(
@@ -36,7 +36,7 @@ class _Register1State extends State<Register1> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.35),
-              mediumTextApp("Inscription", color: AppColors.textDark, font: FontWeight.w600),
+              mediumTextApp("Inscription", context),
               SizedBox(height: 20),
               inputForm("Numéro de téléphone", telControler, Validators.validatePhoneNumber,type: TextInputType.phone),
               SizedBox(height: 20),
@@ -49,20 +49,13 @@ class _Register1State extends State<Register1> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   normalTextApp(
-                    "Vous avez déjà un compte?", 
-                    size: 12.0,
-                    color: AppColors.textDark,
-                  ),
+                    "Vous avez déjà un compte?",context),
                   InkWell(
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                     },
                     child: normalTextApp(
-                      "Se conecter", 
-                      size: 12.0,
-                      color: AppColors.textDark,
-                      underline: TextDecoration.underline,
-                    ),
+                      "Se conecter", context),
                   ),
                 ],
               ),

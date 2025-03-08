@@ -27,7 +27,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundLogin,
+      backgroundColor: AppColors.primary,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: Form(
@@ -36,7 +36,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.35),
-              normalTextApp("Entrez votre numero pour pouvoir changer votre mot de passe", color: AppColors.textDark,),
+              normalTextApp("Entrez votre numero pour pouvoir changer votre mot de passe", context),
               SizedBox(height: 20),
               inputForm("Numéro de téléphone", telControler, Validators.validatePhoneNumber,type: TextInputType.phone),
               SizedBox(height: 20),

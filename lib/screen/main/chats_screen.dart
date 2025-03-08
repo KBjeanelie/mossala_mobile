@@ -13,9 +13,9 @@ class _ChatsScreenState extends State<ChatsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarSimple("Discussions"),
+      appBar: appBarSimple("Discussions", context),
       body: Center(child: normalTextApp(
-        "Aucun message trouvé\nCréer une offre pour commencer à recevoir de message",
+        "Aucun message trouvé\nCréer une offre pour commencer à recevoir de message", context,
         align: TextAlign.center)),
     );
   }

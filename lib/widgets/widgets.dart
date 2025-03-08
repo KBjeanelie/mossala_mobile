@@ -1,43 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
+import 'package:mossala_mobile/core/theme/app_sizes.dart';
 
-Text normalTextApp(
-    String text, {
-      size = 15.0, 
-      color = AppColors.textLight, 
-      font = FontWeight.normal,
-      align = TextAlign.left,
-      underline = TextDecoration.none
-  }) {
+Text normalTextApp(String text, BuildContext context, {align = TextAlign.left}) {
   return Text(text, 
     textAlign: align,
-    style: GoogleFonts.poppins(
-      fontSize: size,
-      color: color,
-      fontWeight: font,
-      decoration: underline
-    ),
+    style: Theme.of(context).textTheme.bodyLarge,
   );
 }
 
-Text mediumTextApp(String text, {size = 18.0, color = AppColors.textLight, font = FontWeight.normal}) {
+Text mediumTextApp(String text, BuildContext context, {align = TextAlign.left}) {
   return Text(text, 
-    style: GoogleFonts.poppins(
-      fontSize: size,
-      color: color,
-      fontWeight: font
-    ),
+    textAlign: align,
+    style: Theme.of(context).textTheme.titleMedium,
   );
 }
 
-Text headingTextApp(String text, {size = 24.0, color = AppColors.textLight, font = FontWeight.bold}) {
+Text headingTextApp(String text, BuildContext context, {align = TextAlign.left}) {
   return Text(text, 
-    style: GoogleFonts.poppins(
-      fontSize: size,
-      color: color,
-      fontWeight: font
-    ),
+    textAlign: align,
+    style: Theme.of(context).textTheme.titleLarge,
+  );
+}
+
+Text secondaryTextApp(String text, BuildContext context, {align = TextAlign.left}) {
+  return Text(text, 
+    textAlign: align,
+    style: Theme.of(context).textTheme.bodyMedium,
+  );
+}
+
+Text smallTextApp(String text, BuildContext context, {align = TextAlign.left}) {
+  return Text(text, 
+    textAlign: align,
+    style: Theme.of(context).textTheme.bodySmall,
+  );
+}
+Text tinyTextApp(String text, BuildContext context, {align = TextAlign.left}) {
+  return Text(text, 
+    textAlign: align,
+    style: Theme.of(context).textTheme.labelSmall,
   );
 }
 
@@ -52,20 +55,14 @@ TextFormField inputForm(
     controller: controler,
     obscureText: obscureText,
     keyboardType: type,
-    cursorColor: AppColors.textDark,
     cursorWidth: 1,
     validator: onValid,
-    style: GoogleFonts.poppins(
-      color: AppColors.textDark,
-      fontSize: 14,
-    ),
     decoration: InputDecoration(
-      label: normalTextApp(textLabel, color: AppColors.textDark),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.textDark, width: 2)
+        borderSide: BorderSide(color: AppColors.secondary, width: 2)
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.backgroundLight, width: 2)
+        borderSide: BorderSide(color: AppColors.secondary, width: 2)
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderSide: BorderSide(color: const Color.fromARGB(255, 192, 27, 27), width: 2)
@@ -82,7 +79,7 @@ TextFormField inputForm(
 ElevatedButton buttonApp(BuildContext context, VoidCallback onPress, String text, {size = 1}) {
   return ElevatedButton(
     style: ButtonStyle(
-      backgroundColor: WidgetStateProperty.all(AppColors.textDark),
+      backgroundColor: WidgetStateProperty.all(AppColors.secondary),
       elevation: WidgetStateProperty.all(3),
       minimumSize: WidgetStateProperty.all(
         Size(
@@ -97,14 +94,14 @@ ElevatedButton buttonApp(BuildContext context, VoidCallback onPress, String text
       ),
     ),
     onPressed: onPress,
-    child: mediumTextApp(text, font: FontWeight.bold),
+    child: Text(text),
   );
 }
 
 ElevatedButton mainButtonApp(BuildContext context, VoidCallback onPress, String text, {size = 1}) {
   return ElevatedButton(
     style: ButtonStyle(
-      backgroundColor: WidgetStateProperty.all(AppColors.backgroundLight),
+      backgroundColor: WidgetStateProperty.all(AppColors.secondary),
       elevation: WidgetStateProperty.all(3),
       minimumSize: WidgetStateProperty.all(
         Size(
@@ -114,11 +111,15 @@ ElevatedButton mainButtonApp(BuildContext context, VoidCallback onPress, String 
       ),
       shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(AppSizes.borderRadius),
         ),
       ),
     ),
     onPressed: onPress,
-    child: mediumTextApp(text, font: FontWeight.bold, color: AppColors.textDark),
+    child: Text(text, style: GoogleFonts.poppins(
+      color: AppColors.darkText,
+      fontSize: 18,
+      fontWeight: FontWeight.w600
+    ),),
   );
 }

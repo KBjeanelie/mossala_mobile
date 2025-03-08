@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/features/auth/presentation/pages/register1.dart';
+import 'package:mossala_mobile/screen/home_screen.dart';
 
 class LastScreen extends StatelessWidget {
   const LastScreen({super.key});
@@ -19,9 +20,9 @@ class LastScreen extends StatelessWidget {
             Center(
               child: Text("Inscrivez-vous gratuitement",
                 style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: AppColors.secondary,
+                  fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.center,
               )
@@ -32,19 +33,18 @@ class LastScreen extends StatelessWidget {
               child: Text('Choisissez votre profil : ',
                 style: GoogleFonts.poppins(
                     fontSize: 16,
-                    color: AppColors.textLight,
+                    color: AppColors.lightText,
                   ),
               ),
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Register1()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
               },
               child: Card(
                 margin: EdgeInsets.symmetric(vertical: 30),
-                color: Colors.white,
                 elevation: 3,
-                shadowColor: AppColors.greyLight,
+                shadowColor: AppColors.darkCard,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -58,7 +58,7 @@ class LastScreen extends StatelessWidget {
                         height: 60,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
-                          color: AppColors.primary,
+                          color: AppColors.secondary,
                         ),
                         child: Icon(Icons.person, color: Colors.white, size: 40,),
                       ),
@@ -69,7 +69,7 @@ class LastScreen extends StatelessWidget {
                             Text('Client',
                               style: GoogleFonts.poppins(
                                   fontSize: 18,
-                                  color: AppColors.textLight,
+                                  color: AppColors.lightText,
                                   fontWeight: FontWeight.w600
                                 ),
                             ),
@@ -77,7 +77,7 @@ class LastScreen extends StatelessWidget {
                             Text("J'ai un projet ou service à réalisé",
                               style: GoogleFonts.poppins(
                                   fontSize: 15,
-                                  color: AppColors.textLight,
+                                  color: AppColors.lightText,
                                 ),
                             ),
                           ],
@@ -95,20 +95,19 @@ class LastScreen extends StatelessWidget {
                 child: Text('Ou ',
                   style: GoogleFonts.poppins(
                     fontSize: 16,
-                    color: AppColors.textLight,
+                    color: AppColors.lightText,
                   ),
                 ),
               ),
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Register1()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
               },
               child: Card(
                 margin: EdgeInsets.symmetric(vertical: 30),
-                color: Colors.white,
                 elevation: 3,
-                shadowColor: AppColors.greyLight,
+                shadowColor: AppColors.darkBorder,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -122,7 +121,7 @@ class LastScreen extends StatelessWidget {
                         height: 60,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
-                          color: AppColors.primary,
+                          color: AppColors.secondary,
                         ),
                         child: Icon(Icons.work, color: Colors.white, size: 40,),
                       ),
@@ -133,7 +132,7 @@ class LastScreen extends StatelessWidget {
                             Text('Travailleur indépendant',
                               style: GoogleFonts.poppins(
                                   fontSize: 18,
-                                  color: AppColors.textLight,
+                                  color: AppColors.lightText,
                                   fontWeight: FontWeight.w600
                                 ),
                             ),
@@ -141,7 +140,7 @@ class LastScreen extends StatelessWidget {
                             Text("Je cherche des projets ou des marchés",
                               style: GoogleFonts.poppins(
                                   fontSize: 15,
-                                  color: AppColors.textLight,
+                                  color: AppColors.lightText,
                                 ),
                             ),
                           ],

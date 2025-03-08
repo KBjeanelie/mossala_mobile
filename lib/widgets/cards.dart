@@ -1,5 +1,7 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
+import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 class WorkerCardView extends StatefulWidget {
@@ -13,61 +15,61 @@ class _WorkerCardViewState extends State<WorkerCardView> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Container(
-        margin: EdgeInsets.all(0),
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          spacing: 5,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.4,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/user.jpg')
-                )
-              ),
+      child: Column(
+        spacing: 5,
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.4,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(AppSizes.borderRadius), topRight: Radius.circular(AppSizes.borderRadius)),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/user.jpg')
+              )
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  mediumTextApp("KUBEMBULA Jean Elie", size: 20.0, font: FontWeight.bold),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+          ),
+          Padding(
+            padding: AppSizes.spaceHV,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                mediumTextApp("KUBEMBULA Jean Elie", context),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Row(
                         children: [
-                          Icon(Icons.home_repair_service, size: 25, color: AppColors.backgroundLight,),
-                          normalTextApp("63 projets réalisés")
+                          Icon(EvaIcons.briefcase, size: 20, color: AppColors.secondary,),
+                          normalTextApp("63 projets réalisé", context)
                         ],
                       ),
-                      Row(
+                    ),
+                    Flexible(
+                      child: Row(
                         children: [
-                          Icon(Icons.location_on, size: 25, color: AppColors.backgroundLight,),
-                          normalTextApp("Moungali")
+                          Icon(EvaIcons.pin, size: 20, color: AppColors.secondary,),
+                          Expanded(child: normalTextApp("Moungali", context))
                         ],
-                      )
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Icon(Icons.arrow_forward_ios, size: 25, color: AppColors.backgroundLight,),
-                      Expanded(child: mediumTextApp("Aide Maçon, Developpeur Informatique", font: FontWeight.w700))
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  mainButtonApp(context, (){}, 'Voir profil')
-                ],
-              ),
-            )
-          ],
-        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    Icon(Icons.arrow_forward_ios, color: AppColors.secondary),
+                    Expanded(child: normalTextApp("Aide Maçon, Developpeur Informatique",context)),
+                  ],
+                ),
+                SizedBox(height: 30),
+                mainButtonApp(context, (){}, 'Voir profil')
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
@@ -88,52 +90,56 @@ class _CardOfferViewState extends State<CardOfferView> {
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       elevation: 2,
-      color: AppColors.textDark,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            mediumTextApp("Besoin d’artisant pour renovation de toiture", color: AppColors.backgroundLight, font: FontWeight.w700),
+            mediumTextApp("Besoin d’artisant pour renovation de toiture", context),
             SizedBox(height: 10),
             Row(
-              spacing: 15,
               children: [
-                Row(
-                  children: [
-                    Icon(Icons.money, size: 25, color: AppColors.backgroundLight,),
-                    normalTextApp("10 000F CFA")
-                  ],
+                Flexible(
+                  child: Row(
+                    children: [
+                      Icon(EvaIcons.creditCard, color: AppColors.secondary,),
+                      Expanded(child: normalTextApp("10 000F CFA", context))
+                    ],
+                  ),
+                ),
+                Flexible(
+                  child: Row(
+                    children: [
+                      Icon(EvaIcons.pin,color: AppColors.secondary,),
+                      Expanded(child: normalTextApp("Moungali", context))
+                    ],
+                  ),
                 ),
                 Row(
                   children: [
-                    Icon(Icons.location_on, size: 25, color: AppColors.backgroundLight,),
-                    normalTextApp("Moungali")
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.circle, size: 15, color: AppColors.secondary,),
-                    normalTextApp("Ouvert")
+                    Icon(Icons.circle, size: 15, color: AppColors.open,),
+                    normalTextApp("Ouvert", context)
                   ],
                 )
               ],
             ),
             SizedBox(height: 10),
-            normalTextApp("6 dévis envoyés"),
+            normalTextApp("6 dévis envoyés", context),
             SizedBox(height: 20),
-            normalTextApp("Details: Nous recherchons des artisans pour la renovation d’une toiture...", font: FontWeight.w500),
+            normalTextApp("Details: Nous recherchons des artisans pour la renovation d’une toiture...", context),
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Icon(Icons.arrow_forward_ios, size: 25, color: AppColors.backgroundLight,),
-                    mediumTextApp("Charpentier, Plafonier", font: FontWeight.w700)
-                  ],
+                Flexible(
+                  child: Row(
+                    children: [
+                      Icon(Icons.arrow_forward_ios,color: AppColors.secondary,),
+                      Expanded(child: mediumTextApp("Charpentier, Plafonier", context))
+                    ],
+                  ),
                 ),
-                normalTextApp("Il y a 2 min")
+                Flexible(child: normalTextApp("Il y a 2 min", context))
               ],
             ),
             SizedBox(height: 20),

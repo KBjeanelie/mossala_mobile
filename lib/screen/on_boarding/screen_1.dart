@@ -19,9 +19,9 @@ class Screen1 extends StatelessWidget {
             Center(
               child: Text("Trouvez les meilleurs travailleurs indépendants facilement.",
                 style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: AppColors.secondary,
+                  fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.center,
               )
@@ -30,7 +30,6 @@ class Screen1 extends StatelessWidget {
             Center(
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.7,
-                height: MediaQuery.of(context).size.height * 0.4,
                 margin: EdgeInsets.only(top: 20),
                 child: Image.asset(
                   'assets/onboarding_img.jpg',
@@ -44,7 +43,7 @@ class Screen1 extends StatelessWidget {
                 'Postez vos projets et connectez-vous aux experts en quelques clics.',
                 style: GoogleFonts.poppins(
                     fontSize: 16,
-                    color: AppColors.textLight,
+                    color: AppColors.lightText,
                   ),
                   textAlign: TextAlign.center,
               ),
@@ -59,7 +58,7 @@ class Screen1 extends StatelessWidget {
                 height: 60,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                color: AppColors.backgroundLogin,
+                color: AppColors.secondary,
                 ),
                 child: Icon(Icons.arrow_forward, color: Colors.white, size: 40,),
               ),
@@ -73,7 +72,7 @@ class Screen1 extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.008,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
-                  color: AppColors.backgroundLogin,
+                  color: AppColors.secondary,
                   ),
                 ),
                 SizedBox(width: 5),
@@ -82,7 +81,7 @@ class Screen1 extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.008,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                  color: AppColors.greyLight,
+                  color: AppColors.lightBorder,
                   ),
                 ),
                 SizedBox(width: 5),
@@ -91,7 +90,7 @@ class Screen1 extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.008,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                  color: AppColors.greyLight,
+                  color: AppColors.lightBorder,
                   ),
                 ),
               ],

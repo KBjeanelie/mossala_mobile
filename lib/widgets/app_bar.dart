@@ -1,38 +1,28 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-
 import '../core/theme/app_colors.dart';
 import 'widgets.dart';
 
-AppBar appBarWidget(String title, {showAction = true}){
+AppBar appBarWidget(String title, BuildContext context, {showAction = true}){
   return AppBar(
-    backgroundColor: AppColors.textDark,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
-    ),
-    title: headingTextApp(title, color: AppColors.backgroundLight),
+    title: headingTextApp(title, context),
     actions: [
-      Container(
-        margin: EdgeInsets.only(right: 15),
-        width: 30,
-        height: 30,
-        decoration: BoxDecoration(
-          color: AppColors.backgroundLight,
-          borderRadius: BorderRadius.circular(30)
-        ),
-        child: Center(
-          child: Icon(Icons.add, size: 30, color: AppColors.textDark,),
-        ),
-      )
+      CircleAvatar(
+        radius: 15,
+        child: Icon(Icons.add, color: AppColors.secondary),
+      ),
+      SizedBox(width: 8,),
+      Icon(EvaIcons.paperPlane, color: AppColors.secondary),
+      SizedBox(width: 15,)
     ],
   );
 }
 
-AppBar appBarSimple(String title, {showAction = true}){
+AppBar appBarSimple(String title,BuildContext context, {showAction = true}){
   return AppBar(
-    backgroundColor: AppColors.textDark,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
     ),
-    title: headingTextApp(title, color: AppColors.backgroundLight),
+    title: headingTextApp(title, context),
   );
 }

@@ -19,9 +19,9 @@ class Screen3 extends StatelessWidget {
             Center(
               child: Text("Inscrivez-vous en tant que Travailleur Indépendant",
                 style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: AppColors.secondary,
+                  fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.center,
               )
@@ -29,8 +29,7 @@ class Screen3 extends StatelessWidget {
             SizedBox(height: 30),
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.4,
-                height: MediaQuery.of(context).size.height * 0.2,
+                width: MediaQuery.of(context).size.width * 0.7,
                 margin: EdgeInsets.only(top: 20),
                 child: Image.asset(
                   'assets/freelance.png',
@@ -43,7 +42,7 @@ class Screen3 extends StatelessWidget {
               'En tant que Prestataire, proposez vos services, trouvez des missions pu marché et travaillez en toute liberté.',
               style: GoogleFonts.poppins(
                 fontSize: 16,
-                color: AppColors.textLight,
+                color: AppColors.lightText,
                 fontWeight: FontWeight.w500
               ),
               textAlign: TextAlign.center,
@@ -51,7 +50,7 @@ class Screen3 extends StatelessWidget {
             SizedBox(height: 30),
             Row(
               children: [
-                Icon(Icons.check, color: AppColors.backgroundLogin, size: 35,),
+                Icon(Icons.check, color: AppColors.secondary, size: 35,),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5, right: 5, top: 20),
@@ -61,7 +60,7 @@ class Screen3 extends StatelessWidget {
                         Text("Répondez aux appels d'offres",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
-                            color: AppColors.textLight,
+                            color: AppColors.lightText,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -69,7 +68,7 @@ class Screen3 extends StatelessWidget {
                         Text('Déposez vos devis sur les missions ou demande de service des porteurs de projets',
                           style: GoogleFonts.poppins(
                             fontSize: 12,
-                            color: AppColors.textLight,
+                            color: AppColors.lightText,
                           ),
                         ),
                       ],
@@ -81,7 +80,7 @@ class Screen3 extends StatelessWidget {
             SizedBox(height: 5),
             Row(
               children: [
-                Icon(Icons.check, color: AppColors.backgroundLogin, size: 35,),
+                Icon(Icons.check, color: AppColors.secondary, size: 35,),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5, right: 5, top: 20),
@@ -91,7 +90,7 @@ class Screen3 extends StatelessWidget {
                         Text("Trouvez de nouvaux clients facilement",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
-                            color: AppColors.textLight,
+                            color: AppColors.lightText,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -99,7 +98,7 @@ class Screen3 extends StatelessWidget {
                         Text("Vous pouvez contacter jusqu'à 400 clients par mois depuis votre téléphone grâce à Mosala",
                           style: GoogleFonts.poppins(
                             fontSize: 12,
-                            color: AppColors.textLight,
+                            color: AppColors.lightText,
                           ),
                         ),
                       ],
@@ -111,7 +110,7 @@ class Screen3 extends StatelessWidget {
             SizedBox(height: 5),
             Row(
               children: [
-                Icon(Icons.check, color: AppColors.backgroundLogin, size: 35,),
+                Icon(Icons.check, color: AppColors.secondary, size: 35,),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5, right: 5, top: 20),
@@ -121,7 +120,7 @@ class Screen3 extends StatelessWidget {
                         Text("Discutez avec vos clients",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
-                            color: AppColors.textLight,
+                            color: AppColors.lightText,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -129,7 +128,7 @@ class Screen3 extends StatelessWidget {
                         Text("Grâce à la messagerie de Mosala, vous pouvez regrouper toutes vos discusions et contacter même vos anciens clients",
                           style: GoogleFonts.poppins(
                             fontSize: 12,
-                            color: AppColors.textLight,
+                            color: AppColors.lightText,
                           ),
                         ),
                       ],
@@ -144,12 +143,12 @@ class Screen3 extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(AppColors.backgroundLogin),
+                  backgroundColor: WidgetStateProperty.all(AppColors.secondary),
                   elevation: WidgetStateProperty.all(3),
                   minimumSize: WidgetStateProperty.all(
                     Size(
-                      MediaQuery.of(context).size.width * 0.5,
-                      MediaQuery.of(context).size.width * 0.12
+                      MediaQuery.of(context).size.width * 0.7,
+                      55
                     )
                   ),
                   shape: WidgetStateProperty.all(
@@ -180,7 +179,7 @@ class Screen3 extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.008,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                  color: AppColors.greyLight,
+                  color: AppColors.lightBorder,
                   ),
                 ),
                 SizedBox(width: 5),
@@ -189,7 +188,7 @@ class Screen3 extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.008,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                  color: AppColors.greyLight,
+                  color: AppColors.lightBorder,
                   ),
                 ),
                 SizedBox(width: 5),
@@ -198,7 +197,7 @@ class Screen3 extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.008,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
-                  color: AppColors.backgroundLogin,
+                  color: AppColors.secondary,
                   ),
                 ),
               ],

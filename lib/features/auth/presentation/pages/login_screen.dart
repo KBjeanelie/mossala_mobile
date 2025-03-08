@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundLogin,
+      backgroundColor: AppColors.secondary,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: Form(
@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.35),
-              mediumTextApp("Connexion", color: AppColors.textDark, font: FontWeight.w600),
+              mediumTextApp("Connexion",context),
               SizedBox(height: 20),
               inputForm("Numéro de téléphone", telControler, Validators.validatePhoneNumber,type: TextInputType.phone),
               SizedBox(height: 20),
@@ -55,11 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetPasswordScreen()));
                     },
                     child: normalTextApp(
-                      "Mot de passe oublié?", 
-                      size: 12.0,
-                      color: AppColors.textDark,
-                      underline: TextDecoration.underline,
-                    ),
+                      "Mot de passe oublié?", context),
                   )
                 ],
               ),
@@ -69,20 +65,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   normalTextApp(
-                    "Vous n'avez pas de compte ?", 
-                    size: 12.0,
-                    color: AppColors.textDark,
-                  ),
+                    "Vous n'avez pas de compte ?",context),
                   InkWell(
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => Register1()));
                     },
                     child: normalTextApp(
-                      "S'inscrire", 
-                      size: 12.0,
-                      color: AppColors.textDark,
-                      underline: TextDecoration.underline,
-                    ),
+                      "S'inscrire", context),
                   ),
                 ],
               ),

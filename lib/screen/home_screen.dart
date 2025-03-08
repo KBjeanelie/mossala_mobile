@@ -1,3 +1,4 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
@@ -21,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
     MainScreen(),
     WorkerScreen(),
     UserProjetScreen(),
-    ChatsScreen(),
     MenuScreen()
   ];
   @override
@@ -29,23 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         elevation: 2,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        unselectedItemColor: AppColors.textLight,
-         selectedItemColor: AppColors.primary,
-        unselectedLabelStyle: GoogleFonts.poppins(
-          color: AppColors.backgroundDark,
-          fontSize: 14,
-          fontWeight: FontWeight.w600
-        ),
-        selectedLabelStyle: GoogleFonts.poppins(
-          color: AppColors.primary,
-          fontSize: 16,
-          fontWeight: FontWeight.w600
-        ),
-        iconSize: 35,
+        unselectedItemColor: AppColors.darkBackground,
+        selectedItemColor: AppColors.secondary,
         currentIndex: _currentIndex,
+        iconSize: 30,
         onTap: (index) {
           setState(() {
             _currentIndex = index;
@@ -53,24 +42,24 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_max),
-            label: 'Accueil'
+            activeIcon: Icon(EvaIcons.home),
+            icon: Icon(EvaIcons.homeOutline),
+            label: ''
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'Prestataires'
+            activeIcon: Icon(EvaIcons.people),
+            icon: Icon(EvaIcons.peopleOutline),
+            label: ''
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_repair_service),
-            label: 'Projets'
+            activeIcon: Icon(EvaIcons.briefcase),
+            icon: Icon(EvaIcons.briefcaseOutline),
+            label: ''
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.message_sharp),
-            label: 'Messages'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu),
-            label: 'Menu'
+            activeIcon: Icon(EvaIcons.menu2),
+            icon: Icon(EvaIcons.menu2Outline),
+            label: ''
           )
         ],
       )

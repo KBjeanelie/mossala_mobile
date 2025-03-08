@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'app_colors.dart';
 import 'app_texte_style.dart';
 
@@ -7,34 +7,48 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: AppColors.primary,
-    scaffoldBackgroundColor: AppColors.backgroundLight,
-    fontFamily: GoogleFonts.getFont('Poppins').fontFamily ?? 'Poppins',
-    textTheme: const TextTheme(
-      titleLarge: AppTextStyles.headline,
-      bodyLarge: AppTextStyles.body,
+    scaffoldBackgroundColor: AppColors.lightBackground,
+    fontFamily: 'Poppins',
+    textTheme: TextTheme(
+      titleLarge: AppTextStyles.title.copyWith(color: AppColors.lightText),
+      titleMedium: AppTextStyles.subtitle.copyWith(color: AppColors.lightText),
+      bodyLarge: AppTextStyles.body.copyWith(color: AppColors.lightText),
+      bodyMedium: AppTextStyles.secondary.copyWith(color: AppColors.lightTextSecondary),
+      bodySmall: AppTextStyles.small.copyWith(color: AppColors.lightTextSecondary),
+      labelSmall: AppTextStyles.tiny.copyWith(color: AppColors.lightTextDisabled),
     ),
+    dividerColor: AppColors.lightBorder,
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.backgroundLight,
-      elevation: 0,
-      iconTheme: IconThemeData(color: AppColors.textLight),
-      titleTextStyle: AppTextStyles.headline,
+      iconTheme: IconThemeData(color: AppColors.lightText)
     ),
+    cardTheme: CardThemeData(
+      color: AppColors.lightCard,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+    ),
+    iconTheme: IconThemeData(color: AppColors.darkBorder, size: 25),
+    
   );
 
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     primaryColor: AppColors.primary,
-    scaffoldBackgroundColor: AppColors.backgroundDark,
-    fontFamily: 'SFPro',
-    textTheme: const TextTheme(
-      titleLarge: AppTextStyles.headline,
-      bodyLarge: AppTextStyles.body,
+    scaffoldBackgroundColor: AppColors.darkBackground,
+    cardColor: AppColors.darkCard,
+    fontFamily: 'Poppins',
+    textTheme: TextTheme(
+      titleLarge: AppTextStyles.title.copyWith(color: AppColors.darkText),
+      titleMedium: AppTextStyles.subtitle.copyWith(color: AppColors.darkText),
+      bodyLarge: AppTextStyles.body.copyWith(color: AppColors.darkText),
+      bodyMedium: AppTextStyles.secondary.copyWith(color: AppColors.darkTextSecondary),
+      bodySmall: AppTextStyles.small.copyWith(color: AppColors.darkTextSecondary),
+      labelSmall: AppTextStyles.tiny.copyWith(color: AppColors.darkTextDisabled),
     ),
+    dividerColor: AppColors.darkBorder,
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.backgroundDark,
-      elevation: 0,
-      iconTheme: IconThemeData(color: AppColors.textDark),
-      titleTextStyle: AppTextStyles.headline,
+      backgroundColor: AppColors.darkBackground,
+      iconTheme: IconThemeData(color: AppColors.darkText),
     ),
   );
 }

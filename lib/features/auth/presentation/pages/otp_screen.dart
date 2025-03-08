@@ -31,7 +31,7 @@ class _ConfrimOtpScreenState extends State<ConfrimOtpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundLogin,
+      backgroundColor: AppColors.darkBorder,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: Form(
@@ -40,7 +40,7 @@ class _ConfrimOtpScreenState extends State<ConfrimOtpScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.35),
-              normalTextApp("Entrez le code que vous avez recu sur votre telephone", color: AppColors.textDark,),
+              normalTextApp("Entrez le code que vous avez recu sur votre telephone", context,),
               SizedBox(height: 20,),
               inputForm("Code", 
                 optControler,

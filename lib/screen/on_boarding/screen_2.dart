@@ -20,9 +20,9 @@ class Screen2 extends StatelessWidget {
             Center(
               child: Text("Inscrivez-vous en tant que Client",
                 style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: AppColors.secondary,
+                  fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.center,
               )
@@ -30,8 +30,7 @@ class Screen2 extends StatelessWidget {
             SizedBox(height: 30),
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.4,
-                height: MediaQuery.of(context).size.height * 0.2,
+                width: MediaQuery.of(context).size.width * 0.7,
                 margin: EdgeInsets.only(top: 20),
                 child: Image.asset(
                   'assets/client.jpg',
@@ -44,8 +43,8 @@ class Screen2 extends StatelessWidget {
               'Recevez des offres sur-mesure',
               style: GoogleFonts.poppins(
                 fontSize: 20,
-                color: AppColors.textLight,
-                fontWeight: FontWeight.w700
+                color: AppColors.lightText,
+                fontWeight: FontWeight.w600
               ),
             ),
             SizedBox(height: 30),
@@ -59,7 +58,7 @@ class Screen2 extends StatelessWidget {
                       height: 45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: AppColors.primary,
+                        color: AppColors.secondary,
                       ),
                       child: Center(
                         child: Text("1",
@@ -75,7 +74,7 @@ class Screen2 extends StatelessWidget {
                       width: 5,
                       height: 70,
                       decoration: BoxDecoration(
-                        color: AppColors.primary,
+                        color: AppColors.secondary,
                       ),
                     )
                   ],
@@ -89,7 +88,7 @@ class Screen2 extends StatelessWidget {
                         Text("Publiez gratuitement votre projet ou sevice en 2 min",
                           style: GoogleFonts.poppins(
                             fontSize: 16,
-                            color: AppColors.textLight,
+                            color: AppColors.lightText,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -97,7 +96,7 @@ class Screen2 extends StatelessWidget {
                         Text("Décrivez votre projet ou service rapidement, indiquez votre budget et publiez-le gratuitement.",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
-                            color: AppColors.textLight,
+                            color: AppColors.lightText,
                           ),
                         ),
                       ],
@@ -118,14 +117,14 @@ class Screen2 extends StatelessWidget {
                       height: 45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: AppColors.primaryLight,
+                        color: AppColors.secondary,
                       ),
                       child: Center(
                         child: Text("2",
                           style: GoogleFonts.poppins(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.backgroundLogin
+                            color: AppColors.darkText
                           ),
                         )
                       ),
@@ -134,7 +133,7 @@ class Screen2 extends StatelessWidget {
                       width: 5,
                       height: 70,
                       decoration: BoxDecoration(
-                        color: AppColors.primaryLight,
+                        color: AppColors.secondary,
                       ),
                     )
                   ],
@@ -148,7 +147,7 @@ class Screen2 extends StatelessWidget {
                         Text("Recevez des propositions immédiatement",
                           style: GoogleFonts.poppins(
                             fontSize: 16,
-                            color: AppColors.textLight,
+                            color: AppColors.lightText,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -156,7 +155,7 @@ class Screen2 extends StatelessWidget {
                         Text("En moins de 48 h, recevez jusqu'à 40 devis de travailleurs indépendants expérimentés.",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
-                            color: AppColors.textLight,
+                            color: AppColors.lightText,
                           ),
                         ),
                       ],
@@ -177,14 +176,14 @@ class Screen2 extends StatelessWidget {
                       height: 45,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: AppColors.primaryLight,
+                        color: AppColors.secondary,
                       ),
                       child: Center(
                         child: Text("3",
                           style: GoogleFonts.poppins(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.backgroundLogin
+                            color: AppColors.darkText
                           ),
                         )
                       ),
@@ -193,7 +192,7 @@ class Screen2 extends StatelessWidget {
                       width: 5,
                       height: 70,
                       decoration: BoxDecoration(
-                        color: AppColors.primaryLight,
+                        color: AppColors.secondary,
                       ),
                     )
                   ],
@@ -207,7 +206,7 @@ class Screen2 extends StatelessWidget {
                         Text("Choisissez votre travailleur indépendant",
                           style: GoogleFonts.poppins(
                             fontSize: 16,
-                            color: AppColors.textLight,
+                            color: AppColors.lightText,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -215,7 +214,7 @@ class Screen2 extends StatelessWidget {
                         Text("Échangez avec les travailleurs indépendants et choisissez celui qui correspond le plus à vos attentes.",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
-                            color: AppColors.textLight,
+                            color: AppColors.lightText,
                           ),
                         ),
                       ],
@@ -235,7 +234,7 @@ class Screen2 extends StatelessWidget {
                   height: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                  color: AppColors.backgroundLogin,
+                  color: AppColors.secondary,
                   ),
                   child: Icon(Icons.arrow_forward, color: Colors.white, size: 40,),
                 ),
@@ -250,7 +249,7 @@ class Screen2 extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.008,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                  color: AppColors.greyLight,
+                  color: AppColors.lightBorder,
                   ),
                 ),
                 SizedBox(width: 5),
@@ -259,7 +258,7 @@ class Screen2 extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.008,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
-                  color: AppColors.backgroundLogin,
+                  color: AppColors.secondary,
                   ),
                 ),
                 SizedBox(width: 5),
@@ -268,7 +267,7 @@ class Screen2 extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.008,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                  color: AppColors.greyLight,
+                  color: AppColors.lightBorder,
                   ),
                 ),
               ],
