@@ -49,7 +49,11 @@ TextFormField inputForm(
   String textLabel,
   TextEditingController controler, 
   String? Function(String?)? onValid,
-  {bool obscureText = false, String symb = '*', TextInputType type = TextInputType.text}
+  {
+    bool obscureText = false, 
+    String symb = '*', 
+    TextInputType type = TextInputType.text,
+  }
   ){
   return TextFormField(
     controller: controler,
@@ -94,7 +98,7 @@ ElevatedButton buttonApp(BuildContext context, VoidCallback onPress, String text
       ),
     ),
     onPressed: onPress,
-    child: Text(text),
+    child: Text(text, style: TextStyle(color: AppColors.darkText),),
   );
 }
 

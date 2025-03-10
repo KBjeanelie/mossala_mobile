@@ -5,7 +5,7 @@ import 'app_texte_style.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    primaryColor: AppColors.primary,
+    primaryColor: AppColors.secondary,
     scaffoldBackgroundColor: AppColors.lightBackground,
     fontFamily: 'Poppins',
     textTheme: TextTheme(
@@ -26,13 +26,16 @@ class AppTheme {
         borderRadius: BorderRadius.circular(7),
       ),
     ),
-    iconTheme: IconThemeData(color: AppColors.darkBorder, size: 25),
-    
+    iconTheme: IconThemeData(color: AppColors.darkBorder, size: 20),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      unselectedItemColor: AppColors.darkBackground,
+      selectedItemColor: AppColors.secondary,
+    )
   );
 
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: AppColors.primary,
+    primaryColor: AppColors.secondary,
     scaffoldBackgroundColor: AppColors.darkBackground,
     cardColor: AppColors.darkCard,
     fontFamily: 'Poppins',
@@ -49,5 +52,10 @@ class AppTheme {
       backgroundColor: AppColors.darkBackground,
       iconTheme: IconThemeData(color: AppColors.darkText),
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      unselectedItemColor: Colors.white,
+      selectedItemColor: AppColors.secondary,
+      backgroundColor: AppColors.darkBackground,
+    )
   );
 }

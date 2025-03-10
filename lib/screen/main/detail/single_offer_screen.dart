@@ -19,7 +19,7 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
+      body: ListView(
         children: [
           Card(
             margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -67,7 +67,7 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                     children: [
                       CircleAvatar(child: Icon(EvaIcons.calendar, color: AppColors.secondary,)),
                       normalTextApp("Publié le : ",context),
-                      Text("01 mars 2025 à 20h15",style: GoogleFonts.poppins(color: AppColors.darkTextDisabled, fontWeight: FontWeight.w500, fontSize: 16)),
+                      Expanded(child: Text("01 mars 2025 à 20h15",style: GoogleFonts.poppins(color: AppColors.darkTextDisabled, fontWeight: FontWeight.w500, fontSize: 15))),
                     ],
                   ),
                   SizedBox(height: 10,),
@@ -100,25 +100,17 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
               ),
             ),
           ),
-          Flexible(
-            child: SizedBox(
-              child: ListView(
-                children: [
-                  Card(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
-                    elevation: 2,
-                    child: Padding(
-                      padding: AppSizes.spaceHV,
-                      child: headingTextApp("Offres pour ce projet :", context),
-                    )
-                  ),
-                  for(int i = 0; i < 10; i++)
-                    CardWorkerOffer(),
-                  SizedBox(height: 10)
-                ],
-              ),
-            ),
-          )
+          Card(
+            margin: EdgeInsets.symmetric(horizontal: 5),
+            elevation: 2,
+            child: Padding(
+              padding: AppSizes.spaceHV,
+              child: headingTextApp("Offres pour ce projet :", context),
+            )
+          ),
+          for(int i = 0; i < 10; i++)
+            CardWorkerOffer(),
+          SizedBox(height: 10)
         ],
       ),
     );
@@ -135,7 +127,7 @@ class CardWorkerOffer extends StatelessWidget {
     return Card(
       margin: EdgeInsets.only(left: 5, right: 5, top: 3),
       child: Padding(
-        padding: const EdgeInsets.only(top: 10, bottom: 10),
+        padding: const EdgeInsets.only(top: 2, bottom: 2),
         child: ListTile(
           onTap: (){},
           leading: CircleAvatar(radius: 40, backgroundImage: AssetImage("assets/user.jpg"),),
@@ -143,16 +135,17 @@ class CardWorkerOffer extends StatelessWidget {
           subtitle: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(EvaIcons.clock, size: 20,),
+              Icon(EvaIcons.clock, size: 15,),
               SizedBox(width: 4,),
-              normalTextApp("2 Jours", context),
+              smallTextApp("2 Jours", context),
               SizedBox(width: 4,),
-              normalTextApp("10 000F CFA", context)
+              smallTextApp("10 000F CFA", context)
             ],
           ),
           trailing: CircleAvatar(
             backgroundColor: AppColors.working,
-            child: Text("1", style: GoogleFonts.poppins(color: AppColors.darkText, fontSize: 20, fontWeight: FontWeight.w600),),
+            radius: 15,
+            child: Text("1", style: GoogleFonts.poppins(color: AppColors.darkText, fontSize: 15, fontWeight: FontWeight.w600),),
           ),
         ),
       ),

@@ -7,12 +7,12 @@ class AppTextStyles {
   );
 
   static const TextStyle subtitle = TextStyle(
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: FontWeight.w600,
   );
 
   static const TextStyle body = TextStyle(
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: FontWeight.normal,
   );
 

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mossala_mobile/screen/home_screen.dart';
+import 'package:mossala_mobile/screen/main/detail/notifications_screen.dart';
+import 'package:mossala_mobile/screen/main/detail/realisation_screen.dart';
+import 'package:mossala_mobile/screen/warning_screen.dart';
 import 'core/theme/app_theme.dart';
+import 'screen/about_app_screen.dart';
+import 'screen/feedback_screen.dart';
+import 'screen/main/detail/projet_remporté.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
