@@ -8,6 +8,7 @@ import 'package:mossala_mobile/screen/main/detail/notifications_screen.dart';
 import 'package:mossala_mobile/screen/main/detail/projet_creer_screen.dart';
 import 'package:mossala_mobile/screen/main/detail/projet_remport%C3%A9.dart';
 import 'package:mossala_mobile/screen/main/detail/realisation_screen.dart';
+import 'package:mossala_mobile/screen/main/detail/user_profil_screen.dart';
 import 'package:mossala_mobile/screen/warning_screen.dart';
 import 'package:mossala_mobile/widgets/app_bar.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
@@ -30,7 +31,9 @@ class MenuScreen extends StatelessWidget {
               child: Column(
                 children: [
                   ListTile(
-                    onTap: (){},
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => UserProfilScreen()));
+                    },
                     leading: CircleAvatar(
                       backgroundImage: AssetImage("assets/user.jpg"),
                     ),

@@ -136,9 +136,9 @@ OutlinedButton mainOutlinedButtonApp(BuildContext context, VoidCallback onPress,
   return OutlinedButton(
     style: ButtonStyle(
       side: WidgetStateProperty.all(
-        BorderSide(color: AppColors.secondary)
+        BorderSide(color: AppColors.secondary, width: 3)
       ),
-      backgroundColor: WidgetStateProperty.all(const Color.fromARGB(25, 29, 114, 184)),
+      backgroundColor: WidgetStateProperty.all(const Color.fromARGB(0, 29, 114, 184)),
       elevation: WidgetStateProperty.all(3),
       minimumSize: WidgetStateProperty.all(
         Size(
