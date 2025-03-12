@@ -40,8 +40,11 @@ dependencies:
   image_picker: ^1.1.2
 
 flutter_native_splash:
-  color: "#335CD6"
-  #image: assets/splash.png
+  color: "#FFFFFF"
+  image: assets/logo2.png
+
+  color_dark: "#000000"
+  image_dark: assets/logo2.png
   android: true
   ios: true
   web: false
