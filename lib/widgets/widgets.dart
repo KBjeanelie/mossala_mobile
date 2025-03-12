@@ -46,13 +46,15 @@ Text tinyTextApp(String text, BuildContext context, {align = TextAlign.left}) {
 
 
 TextFormField inputForm(
-  String textLabel,
+  String? textLabel,
   TextEditingController controler, 
   String? Function(String?)? onValid,
   {
     bool obscureText = false, 
     String symb = '*', 
     TextInputType type = TextInputType.text,
+    int lines = 1,
+    int? length
   }
   ){
   return TextFormField(
@@ -61,6 +63,8 @@ TextFormField inputForm(
     keyboardType: type,
     cursorWidth: 1,
     validator: onValid,
+    maxLines: lines,
+    maxLength: length,
     decoration: InputDecoration(
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: AppColors.secondary, width: 2)

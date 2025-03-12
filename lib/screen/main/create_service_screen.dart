@@ -4,6 +4,8 @@ import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 class CreateServiceScreen extends StatefulWidget {
+  const CreateServiceScreen({super.key});
+
   @override
   _CreateServiceScreenState createState() => _CreateServiceScreenState();
 }

@@ -1,4 +1,10 @@
 class Validators {
+  static String? validateInput(String? value) {
+    if (value == null || value.isEmpty || value.length < 5) return "Le champs est requis";
+    // ignore: valid_regexps
+    if (!RegExp(r'^[A-Za-z��-Ö��-öø-�� ]+$').hasMatch(value)) return "Champs invalide";
+    return null;
+  }
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) return "L'email est requis";
     if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) return "Email invalide";

@@ -2,6 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
+import 'package:mossala_mobile/screen/main/detail/create_relisation_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 class RealisationScreen extends StatelessWidget {
@@ -15,6 +16,16 @@ class RealisationScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                child: mainButtonApp(context,(){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CreateRelisationScreen()));
+                }, "Ajouter", size: 0.1),
+              )
+            ],
+          ),
           CardRealisation(),
           CardRealisation(),
           CardRealisation(),

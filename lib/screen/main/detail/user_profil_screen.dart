@@ -2,6 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
+import 'package:mossala_mobile/screen/main/detail/edit_account_screen.dart';
 import 'package:mossala_mobile/screen/main/detail/realisation_screen.dart';
 import 'package:mossala_mobile/widgets/cards.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
@@ -66,7 +67,9 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => EditAccountScreen()));
+        },
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           backgroundColor: AppColors.secondary,
           mini: true,

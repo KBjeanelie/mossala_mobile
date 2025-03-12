@@ -2,6 +2,8 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
+import 'package:mossala_mobile/core/utils/validators.dart';
+import 'package:mossala_mobile/screen/main/detail/more_offer_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -15,6 +17,8 @@ class SingleOfferScreen extends StatefulWidget {
 }
 
 class _SingleOfferScreenState extends State<SingleOfferScreen> {
+
+  final TextEditingController controle = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,8 +96,12 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                   Row(
                     spacing: 5,
                     children: [
-                      Expanded(child: mainButtonApp(context, (){}, "Faire une offre", size: 0.5)),
-                      Expanded(child: mainOutlinedButtonApp(context, (){}, "Voir plus", size: 0.3))
+                      Expanded(child: mainButtonApp(context, (){
+                        _showCustomModal(context, controle);
+                      }, "Faire une offre", size: 0.5)),
+                      Expanded(child: mainOutlinedButtonApp(context, (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MoreOfferScreen()));
+                      }, "Voir plus", size: 0.3))
                     ],
                   )
                 ],
@@ -108,7 +116,7 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
               child: headingTextApp("Offres pour ce projet :", context),
             )
           ),
-          for(int i = 0; i < 10; i++)
+          for(int i = 0; i < 5; i++)
             CardWorkerOffer(),
           SizedBox(height: 10)
         ],
@@ -116,6 +124,60 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
     );
   }
 }
+
+void _showCustomModal(BuildContext context, controler) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: SingleChildScrollView(
+          padding: AppSizes.spaceHV,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(child: headingTextApp("Proposez votre offre", context)),
+              SizedBox(height: 5),
+              Divider(),
+              SizedBox(height: 20),
+              normalTextApp("Montant", context),
+              inputForm("", controler, Validators.validateInput, type: TextInputType.number),
+              SizedBox(height: 10),
+              normalTextApp("Durée de travail", context),
+              inputForm("",controler, Validators.validateInput, type: TextInputType.number),
+              SizedBox(height: 10),
+              normalTextApp("Laisser un petit commentaire", context),
+              inputForm("", controler, Validators.validateInput, lines: 5, length: 700),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text("Fermer"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Action à exécuter
+                      Navigator.pop(context);
+                    },
+                    child: Text("OK"),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+
 
 class CardWorkerOffer extends StatelessWidget {
   const CardWorkerOffer({
