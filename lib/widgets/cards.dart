@@ -158,7 +158,15 @@ class _CardOfferViewState extends State<CardOfferView> {
             normalTextApp("6 dévis envoyés", context),
             SizedBox(height: 20),
             normalTextApp("Details: Nous recherchons des artisans pour la renovation d’une toiture...", context),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
+            Wrap(
+              children: [
+                SizedBox(
+                  child: Image.asset("assets/offre3.jpg"),
+                )
+              ],
+            )
+            ,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -166,11 +174,11 @@ class _CardOfferViewState extends State<CardOfferView> {
                   child: Row(
                     children: [
                       Icon(Icons.arrow_forward_ios,color: AppColors.secondary,),
-                      Expanded(child: mediumTextApp("Charpentier, Plafonier", context))
+                      Expanded(child: normalTextApp("Charpentier, Plafonier", context))
                     ],
                   ),
                 ),
-                Flexible(child: normalTextApp("Il y a 2 min", context))
+                Flexible(child: smallTextApp("Il y a 2 min", context))
               ],
             ),
             SizedBox(height: 20),
