@@ -1,6 +1,7 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
+import 'package:mossala_mobile/widgets/app_bar.dart';
 
 import '../../widgets/cards.dart';
 
@@ -20,17 +21,7 @@ class _MainScreenState extends State<MainScreen> {
           image: AssetImage('assets/logo.png'),
           width: 90,
         ),
-        actions: [
-          Center(
-            child: CircleAvatar(
-              radius: 15,
-              child: Icon(Icons.add, color: AppColors.secondary),
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(EvaIcons.paperPlane, color: AppColors.secondary)),
-        ],
+        actions: customeAction(context),
       ),
       body: SingleChildScrollView(
         child: Column(

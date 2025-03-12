@@ -42,7 +42,9 @@ class MenuScreen extends StatelessWidget {
                   ),
                   Divider(),
                   ListTile(
-                    onTap: (){},
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => UserProfilScreen()));
+                    },
                     leading: CircleAvatar(
                       child: Icon(EvaIcons.plus),
                     ),

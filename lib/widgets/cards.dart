@@ -173,7 +173,7 @@ class _CardOfferViewState extends State<CardOfferView> {
                 Flexible(
                   child: Row(
                     children: [
-                      Icon(Icons.arrow_forward_ios,color: AppColors.secondary,),
+                      Icon(EvaIcons.briefcase,color: AppColors.secondary,),
                       Expanded(child: normalTextApp("Charpentier, Plafonier", context))
                     ],
                   ),
