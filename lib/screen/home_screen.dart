@@ -1,6 +1,5 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/screen/main/main_screen.dart';
 import 'package:mossala_mobile/screen/main/menu_screen.dart';
 import 'package:mossala_mobile/screen/main/user_projet_screen.dart';

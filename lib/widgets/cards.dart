@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
+import 'package:mossala_mobile/screen/main/detail/profil_worker_screen.dart';
 import 'package:mossala_mobile/screen/main/detail/single_offer_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
@@ -72,7 +73,9 @@ class _WorkerCardViewState extends State<WorkerCardView> {
                     ),
                   ],
                 ),
-                mainButtonApp(context, (){}, "Voir le profil")
+                mainButtonApp(context, (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilWorkerScreen()));
+                }, "Voir le profil")
               ],
             ),
           )
@@ -174,7 +177,7 @@ class _CardOfferViewState extends State<CardOfferView> {
             mainButtonApp(context, (){
               // Navigate to the chat screen here
               Navigator.push(context, MaterialPageRoute(builder: (context) => SingleOfferScreen()));
-            }, 'Envoyer un dévis')
+            }, "Voir l'offre")
           ],
         ),
       ),
