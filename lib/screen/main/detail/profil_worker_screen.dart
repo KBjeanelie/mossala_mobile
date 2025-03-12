@@ -207,18 +207,6 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen> with TickerProv
     return ListView(children: List.generate(10,(index) => CardRealisation()));
   }
 
-  Widget _buildInfoRow(IconData icon, String text, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2),
-      child: Row(
-        children: [
-          Icon(icon, size: 20, color: AppColors.secondary),
-          SizedBox(width: 10),
-          normalTextApp(text, context),
-        ],
-      ),
-    );
-  }
 
   @override
   void dispose() {
