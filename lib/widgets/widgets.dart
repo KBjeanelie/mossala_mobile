@@ -171,11 +171,11 @@ class MultiSelectSearchableDropdown extends StatefulWidget {
   final Function(List<String>) onSelected;
 
   const MultiSelectSearchableDropdown({
-    Key? key,
+    super.key,
     required this.items,
     required this.hintText,
     required this.onSelected,
-  }) : super(key: key);
+  });
 
   @override
   _MultiSelectSearchableDropdownState createState() => _MultiSelectSearchableDropdownState();
@@ -186,7 +186,7 @@ class _MultiSelectSearchableDropdownState extends State<MultiSelectSearchableDro
   final LayerLink _layerLink = LayerLink();
   OverlayEntry? _overlayEntry;
   List<String> _filteredItems = [];
-  List<String> _selectedItems = [];
+  final List<String> _selectedItems = [];
   bool _isDropdownOpen = false;
 
   @override

@@ -1,6 +1,4 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/widgets/app_bar.dart';
 
 import '../../widgets/cards.dart';

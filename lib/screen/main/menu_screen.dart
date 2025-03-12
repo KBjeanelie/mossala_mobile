@@ -4,6 +4,7 @@ import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/screen/about_app_screen.dart';
 import 'package:mossala_mobile/screen/feedback_screen.dart';
+import 'package:mossala_mobile/screen/main/create_service_screen.dart';
 import 'package:mossala_mobile/screen/main/detail/notifications_screen.dart';
 import 'package:mossala_mobile/screen/main/detail/projet_creer_screen.dart';
 import 'package:mossala_mobile/screen/main/detail/projet_remport%C3%A9.dart';
@@ -43,7 +44,7 @@ class MenuScreen extends StatelessWidget {
                   Divider(),
                   ListTile(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => UserProfilScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CreateServiceScreen()));
                     },
                     leading: CircleAvatar(
                       child: Icon(EvaIcons.plus),
