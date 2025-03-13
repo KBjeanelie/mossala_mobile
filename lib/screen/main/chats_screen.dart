@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/widgets/app_bar.dart';
-import '../../widgets/widgets.dart';
+import 'package:mossala_mobile/widgets/widgets.dart';
+
+import 'single_chat_screen.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});
@@ -14,9 +18,60 @@ class _ChatsScreenState extends State<ChatsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarSimple("Discussions", context),
-      body: Center(child: normalTextApp(
-        "Aucun message trouvé\nCréer une offre pour commencer à recevoir de message", context,
-        align: TextAlign.center)),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(
+            20,
+            (index) => CardItemChats(),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CardItemChats extends StatelessWidget {
+  const CardItemChats({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.symmetric(vertical: 2),
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(0),
+      ),
+      child: ListTile(
+        leading: CircleAvatar(
+          radius: 25,
+          backgroundImage: AssetImage("assets/user.jpg"),
+        ),
+        title: mediumTextApp("Elijah Walter", context),
+        subtitle: normalTextApp("Bonjour, en quoi je peux vous...", context),
+        trailing: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          spacing: 5,
+          children: [
+            Text("12:30", style: GoogleFonts.poppins(color: AppColors.secondary, fontSize: 12)),
+            CircleAvatar(
+              radius: 12,
+              backgroundColor: AppColors.secondary,
+              child: Text("1", style: GoogleFonts.poppins(color: AppColors.darkText, fontSize: 12),),
+            )
+          ],
+        ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SingleChatScreen(),
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:mossala_mobile/screen/main/chats_screen.dart';
 import 'package:mossala_mobile/screen/main/create_service_screen.dart';
 import 'package:mossala_mobile/screen/main/main_screen.dart';
 import '../core/theme/app_colors.dart';
@@ -8,15 +9,7 @@ import 'widgets.dart';
 AppBar appBarWidget(String title, BuildContext context, {showAction = true}){
   return AppBar(
     title: headingTextApp(title, context),
-    actions: [
-      CircleAvatar(
-        radius: 15,
-        child: Icon(Icons.add, color: AppColors.secondary),
-      ),
-      IconButton(
-        onPressed: () {},
-        icon: Icon(EvaIcons.paperPlane, color: AppColors.secondary)),
-    ],
+    actions: customeAction(context),
   );
 }
 
@@ -42,7 +35,7 @@ List<Widget> customeAction(BuildContext context) {
     ),
     IconButton(
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ChatsScreen()));
       },
       icon: Icon(EvaIcons.paperPlane, color: AppColors.secondary)),
   ];
