@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/screen/main/detail/realisation_screen.dart';
+import 'package:mossala_mobile/screen/main/single_chat_screen.dart';
 import 'package:mossala_mobile/widgets/cards.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
@@ -66,7 +67,9 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen> with TickerProv
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => SingleChatScreen()));
+        },
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           backgroundColor: AppColors.secondary,
           child: Icon(EvaIcons.messageCircleOutline, color: AppColors.darkText),

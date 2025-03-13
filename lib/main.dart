@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mossala_mobile/screen/home_screen.dart';
 import 'core/theme/app_theme.dart';
-import 'screen/main/chats_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
