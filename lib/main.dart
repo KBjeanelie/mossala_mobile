@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mossala_mobile/screen/home_screen.dart';
+import 'package:mossala_mobile/screen/onboarding_screen.dart';
 import 'core/theme/app_theme.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: HomeScreen(),
+      home: OnboardingScreen(),
     );
   }
 }
