@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/core/utils/validators.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';

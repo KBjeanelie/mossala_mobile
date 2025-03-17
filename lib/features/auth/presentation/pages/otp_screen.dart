@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/utils/validators.dart';
 import 'package:mossala_mobile/screen/home_screen.dart';
 
@@ -17,21 +16,16 @@ class _ConfrimOtpScreenState extends State<ConfrimOtpScreen> {
   TextEditingController optControler = TextEditingController();
 
   void submitForm() {
-    // if (_formKey.currentState!.validate()) {
-    //   // Form is valid, proceed with submission
-    //   print("Formulaire valide !");
-    // }
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
-      (route) => false,
-    );
+    if (_formKey.currentState!.validate()) {
+      // Form is valid, proceed with submission
+      print("Formulaire valide !");
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen()),(route) => false,);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.darkBorder,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: Form(
@@ -45,7 +39,7 @@ class _ConfrimOtpScreenState extends State<ConfrimOtpScreen> {
               inputForm("Code", 
                 optControler,
                 Validators.validateOTP,
-                type: TextInputType.number
+                type: TextInputType.phone
               ),
               SizedBox(height: 20),
               Center(child: buttonApp(context, submitForm, 'Envoyer'))
