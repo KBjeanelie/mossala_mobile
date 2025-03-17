@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
+import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/core/utils/validators.dart';
-import 'package:mossala_mobile/features/auth/presentation/pages/confirm_password_screen.dart';
 import 'package:mossala_mobile/features/auth/presentation/pages/login_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
@@ -18,49 +18,61 @@ class _Register1State extends State<Register1> {
   TextEditingController quarterControler = TextEditingController();
 
   void submitForm() {
-    // if (_formKey.currentState!.validate()) {
-    //   // Form is valid, proceed with submission
-    //   print("Formulaire valide !");
-    // }
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ConfirmPasswordScreen()));
+    if (_formKey.currentState!.validate()) {
+      // Form is valid, proceed with submission
+      print("Formulaire valide !");
+    }
+    //Navigator.push(context, MaterialPageRoute(builder: (context) => ConfirmPasswordScreen()));
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.35),
-              mediumTextApp("Inscription", context),
-              SizedBox(height: 20),
-              inputForm("Numéro de téléphone", telControler, Validators.validatePhoneNumber,type: TextInputType.phone),
-              SizedBox(height: 20),
-              inputForm("Quartier", quarterControler, Validators.validateQuater, type: TextInputType.text, obscureText: true),
-              SizedBox(height: 20),
-              buttonApp(context, submitForm, "S'inscrire"),
-              SizedBox(height: 30),
-              Row(
-                spacing: 5,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  normalTextApp(
-                    "Vous avez déjà un compte?",context),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-                    },
-                    child: normalTextApp(
-                      "Se conecter", context),
-                  ),
-                ],
+      body: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: 1,
+                itemBuilder: (context, index) {
+                  return Container(
+                    padding: AppSizes.spaceHV,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.35),
+                        headingTextApp("S'inscrire", context),
+                        SizedBox(height: 20,),
+                        normalTextApp("Numéro de téléphone", context),
+                        inputForm("", telControler, Validators.validatePhoneNumber, type: TextInputType.phone),
+                        SizedBox(height: 10,),
+                        normalTextApp("Votre quartier", context),
+                        inputForm("", quarterControler, Validators.validateQuater, type: TextInputType.text),
+                        SizedBox(height: 10,),
+                        buttonApp(context, submitForm, "Créer un compte",),
+                      ],
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                normalTextApp("Vous avez déjà un compte?", context),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen()),(route) => false,);
+                  },
+                  child: Text(
+                    "Se connecter",
+                    style: TextStyle(color: AppColors.secondary),
+                  ),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );

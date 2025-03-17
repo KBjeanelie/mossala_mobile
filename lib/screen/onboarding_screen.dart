@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
-import 'package:mossala_mobile/screen/home_screen.dart';
+import 'package:mossala_mobile/features/auth/presentation/pages/login_screen.dart';
+import 'package:mossala_mobile/widgets/widgets.dart';
 
 import '../core/theme/app_colors.dart';
 
@@ -47,7 +48,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(),
       body: Column(
         children: [
@@ -93,7 +93,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ElevatedButton(
                   onPressed: _currentPage < 2 ? _nextPage : (){
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen()),(route) => false,);
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen()),(route) => false,);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.secondary,
@@ -132,21 +132,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: Container(
               margin: EdgeInsets.only(top: 20),
               child: Image.asset(
-                'assets/onboarding_img.jpg',
+                'assets/onboarding_img.png',
                 fit: BoxFit.cover,
               ),
             ),
           ),
           SizedBox(height: 30),
           Center(
-            child: Text(
-              'Postez vos projets et connectez-vous aux experts en quelques clics.',
-              style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  color: AppColors.lightText,
-                ),
-                textAlign: TextAlign.center,
-            ),
+            child: normalTextApp("Postez vos projets et connectez-vous aux experts en quelques clics.", context)
           ),
         ],
       ),
@@ -160,31 +153,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-            child: Text("Inscrivez-vous en tant que Client",
-              style: GoogleFonts.poppins(
-                fontSize: 22,
-                color: AppColors.secondary,
-                fontWeight: FontWeight.w600,
-              ),
-              textAlign: TextAlign.center,
-            )
-          ),
-          SizedBox(height: 5),
-          Center(
             child: Image.asset(
-              'assets/client.jpg',
+              'assets/client.png',
               fit: BoxFit.cover,
             ),
           ),
           SizedBox(height: 20),
-          Text(
-            'Recevez des offres sur-mesure',
-            style: GoogleFonts.poppins(
-              fontSize: 20,
-              color: AppColors.lightText,
-              fontWeight: FontWeight.w600
-            ),
-          ),
+          mediumTextApp("Recevez des offres sur-mesure", context),
           SizedBox(height: 30),
           //<===============  PREMIER BLOCK ECRITURE
           Row(
@@ -223,20 +198,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Publiez gratuitement votre projet ou sevice en 2 min",
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: AppColors.lightText,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                      normalTextApp("Publiez gratuitement votre projet ou sevice en 2 min", context),
                       SizedBox(height: 5),
-                      Text("Décrivez votre projet ou service rapidement, indiquez votre budget et publiez-le gratuitement.",
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: AppColors.lightText,
-                        ),
-                      ),
+                      smallTextApp("Décrivez votre projet ou service rapidement, indiquez votre budget et publiez-le gratuitement.", context),
                     ],
                   ),
                 ),
@@ -282,20 +246,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Recevez des propositions immédiatement",
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: AppColors.lightText,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                      normalTextApp("Recevez des propositions immédiatement", context),
                       SizedBox(height: 5),
-                      Text("En moins de 48 h, recevez jusqu'à 40 devis de travailleurs indépendants expérimentés.",
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: AppColors.lightText,
-                        ),
-                      ),
+                      smallTextApp("Recevez des propositions de travailleurs indépendants qualifiés en quelques minutes.", context),
                     ],
                   ),
                 ),
@@ -341,20 +294,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Choisissez votre travailleur indépendant",
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: AppColors.lightText,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                      normalTextApp("Choisissez le meilleur travailleur indépendant", context),
                       SizedBox(height: 5),
-                      Text("Échangez avec les travailleurs indépendants et choisissez celui qui correspond le plus à vos attentes.",
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: AppColors.lightText,
-                        ),
-                      ),
+                      smallTextApp("Comparez les offres reçues et choisissez le travailleur indépendant qui vous convient le mieux.", context),
                     ],
                   ),
                 ),
@@ -374,7 +316,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-            child: Text("Inscrivez-vous en tant que Travailleur Indépendant",
+            child: Text("Inscrivez-vous gratuitement et commencez à travailler.",
               style: GoogleFonts.poppins(
                 fontSize: 22,
                 color: AppColors.secondary,
@@ -391,15 +333,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
           SizedBox(height: 10),
-          Text(
-            'En tant que Prestataire, proposez vos services, trouvez des missions pu marché et travaillez en toute liberté.',
-            style: GoogleFonts.poppins(
-              fontSize: 16,
-              color: AppColors.lightText,
-              fontWeight: FontWeight.w500
-            ),
-            textAlign: TextAlign.center,
-          ),
+          mediumTextApp("Pourquoi s'inscrire sur Mosala ?", context),
           SizedBox(height: 10),
           Row(
             children: [
@@ -410,20 +344,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Répondez aux appels d'offres",
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: AppColors.lightText,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                      normalTextApp("Déposez vos devis gratuitement", context),
                       SizedBox(height: 5),
-                      Text('Déposez vos devis sur les missions ou demande de service des porteurs de projets',
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          color: AppColors.lightText,
-                        ),
-                      ),
+                      smallTextApp("Déposez vos devis gratuitement et recevez des propositions de projets en quelques minutes", context),
                     ],
                   ),
                 ),
@@ -440,20 +363,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Trouvez de nouvaux clients facilement",
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: AppColors.lightText,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                      normalTextApp("Contactez vos clients", context),
                       SizedBox(height: 5),
-                      Text("Vous pouvez contacter jusqu'à 400 clients par mois depuis votre téléphone grâce à Mosala",
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          color: AppColors.lightText,
-                        ),
-                      ),
+                      smallTextApp("Contactez vos clients et discutez avec eux en toute sécurité grâce à la messagerie de Mosala", context),
                     ],
                   ),
                 ),
@@ -470,20 +382,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Discutez avec vos clients",
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: AppColors.lightText,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                      normalTextApp("Recevez des paiements sécurisés", context),
                       SizedBox(height: 5),
-                      Text("Grâce à la messagerie de Mosala, vous pouvez regrouper toutes vos discusions et contacter même vos anciens clients",
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          color: AppColors.lightText,
-                        ),
-                      ),
+                      smallTextApp("Recevez des paiements sécurisés pour vos projets et services grâce à notre système de paiement sécurisé", context),
                     ],
                   ),
                 ),

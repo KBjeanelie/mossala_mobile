@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/core/utils/validators.dart';
+import 'package:mossala_mobile/features/auth/presentation/pages/register1.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 import 'forgetpassword_screen.dart';
@@ -75,7 +76,9 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 normalTextApp("Vous n'avez pas de compte ?", context),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Register1()),(route) => false,);
+                  },
                   child: Text(
                     "S'inscrire",
                     style: TextStyle(color: AppColors.secondary),
