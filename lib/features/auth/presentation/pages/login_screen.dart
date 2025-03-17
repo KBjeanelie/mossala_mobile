@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/core/utils/validators.dart';
-import 'package:mossala_mobile/features/auth/presentation/pages/register1.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
-
-import 'forgetpassword_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -56,9 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
-                              onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetPasswordScreen()));
-                              },
+                              onPressed: () => context.push("/forgetpassword"),
                               child: smallTextApp("Mot de passe oublié?", context),
                             )
                           ],
@@ -76,9 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 normalTextApp("Vous n'avez pas de compte ?", context),
                 TextButton(
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Register1()),(route) => false,);
-                  },
+                  onPressed: () => context.go("/register"),
                   child: Text(
                     "S'inscrire",
                     style: TextStyle(color: AppColors.secondary),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/features/auth/presentation/pages/login_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/theme/app_colors.dart';
 
@@ -45,6 +47,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       );
     }
   }
+
+  void completeOnboarding(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('onboarding_done', true);
+    context.go('/login');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,9 +101,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                   ),
                 ElevatedButton(
-                  onPressed: _currentPage < 2 ? _nextPage : (){
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginScreen()),(route) => false,);
-                  },
+                  onPressed: _currentPage < 2 ? _nextPage : () => completeOnboarding(context),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.secondary,
                     padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
