@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mossala_mobile/features/auth/presentation/pages/confirm_password_screen.dart';
+import 'package:mossala_mobile/features/auth/presentation/pages/forgetpassword_screen.dart';
 import 'package:mossala_mobile/features/auth/presentation/pages/login_screen.dart';
 import 'package:mossala_mobile/screen/onboarding_screen.dart';
 import 'core/theme/app_theme.dart';
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: LoginScreen(),
+      home: ForgetPasswordScreen(),
     );
   }
 }

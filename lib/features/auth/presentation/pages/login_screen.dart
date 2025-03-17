@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/core/utils/validators.dart';
-import 'package:mossala_mobile/features/auth/presentation/pages/forgetpassword_screen.dart';
-import 'package:mossala_mobile/features/auth/presentation/pages/register1.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
-import 'otp_screen.dart';
+import 'forgetpassword_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -57,7 +55,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetPasswordScreen()));
+                              },
                               child: smallTextApp("Mot de passe oublié?", context),
                             )
                           ],

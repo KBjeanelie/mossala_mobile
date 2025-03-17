@@ -33,7 +33,6 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.darkBackground,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: Form(
