@@ -1,0 +1,2 @@
+/home/walter/Applications/FlutterProjects/mossala_mobile/android/app/.cxx/RelWithDebInfo/2bg62523/x86/CMakeFiles/edit_cache.dir
+/home/walter/Applications/FlutterProjects/mossala_mobile/android/app/.cxx/RelWithDebInfo/2bg62523/x86/CMakeFiles/rebuild_cache.dir
