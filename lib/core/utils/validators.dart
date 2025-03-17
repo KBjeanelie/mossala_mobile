@@ -22,10 +22,18 @@ class Validators {
   }
 
   static String? validatePhoneNumber(String? value) {
-    if (value == null || value.isEmpty) return "Le numéro de téléphone est requis";
-    if (!RegExp(r'^0[1-9][0-9]{8}$').hasMatch(value)) return "Numéro de téléphone invalide";
+    if (value == null || value.isEmpty) {
+      return "Le numéro de téléphone est requis";
+    }
+    
+    // Regex améliorée pour prendre en charge plusieurs formats
+    if (!RegExp(r'^(?:\+?(\d{1,3}))?[-. ]?(\d{2,4})[-. ]?(\d{2,4})[-. ]?(\d{2,4})$').hasMatch(value)) {
+      return "Numéro de téléphone invalide";
+    }
+    
     return null;
   }
+
 
   static String? validateName(String? value) {
     if (value == null || value.isEmpty) return "Le nom est requis";
