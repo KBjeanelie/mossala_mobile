@@ -67,10 +67,10 @@ TextFormField inputForm(
     maxLength: length,
     decoration: InputDecoration(
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.secondary, width: 2)
+        borderSide: BorderSide(color: AppColors.darkTextSecondary, width: 1.5)
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.secondary, width: 2)
+        borderSide: BorderSide(color: AppColors.secondary, width: 2.5)
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderSide: BorderSide(color: const Color.fromARGB(255, 192, 27, 27), width: 2)
