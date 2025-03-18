@@ -22,9 +22,9 @@ class User extends Equatable {
   final String? phoneWork;
   final String? profession;
   final String? updatedAt;
-  final String username;
+  final String? username;
   final String tel;
-  final String email;
+  final String? email;
   final bool emailVerified;
   final String dateJoined;
   final String? lastLogin;
@@ -64,9 +64,9 @@ class User extends Equatable {
     this.phoneWork,
     this.profession,
     this.updatedAt,
-    required this.username,
+    this.username,
     required this.tel,
-    required this.email,
+    this.email,
     required this.emailVerified,
     required this.dateJoined,
     this.lastLogin,
