@@ -176,7 +176,7 @@ class MenuScreen extends StatelessWidget {
                 },
                 builder: (context, state) {
                   if (state is AuthLoading) {
-                    return const CircularProgressIndicator();
+                    return Center(child: const CircularProgressIndicator());
                   }
                   return ListTile(
                     leading: Icon(EvaIcons.logOut, color: AppColors.secondary),

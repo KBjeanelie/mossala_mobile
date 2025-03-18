@@ -46,7 +46,7 @@ class AuthRepositoryImpl implements AuthRepository {
           return Left("Numéro de téléphone ou mot de passe incorrect");
         } else {
           debugPrint("UNKNOWN ERROR: ${e.response?.data}");
-          return Left("ERROR: ${e.response?.data}");
+          return Left("Serveur indisponible, veuillez réessayer plus tard");
         }
       } else {
         debugPrint("UNKNOWN ERROR: $e");

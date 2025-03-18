@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           builder: (context, state) {
                             if (state is AuthLoading) {
-                              return const CircularProgressIndicator();
+                              return Center(child: const CircularProgressIndicator());
                             }
                             return buttonApp(context, submitForm, "Se connecter");
                           },
