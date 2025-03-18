@@ -1,9 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:mossala_mobile/features/auth/presentation/pages/forgetpassword_screen.dart';
+import 'package:mossala_mobile/features/auth/presentation/pages/login_screen.dart';
 import 'package:mossala_mobile/features/auth/presentation/pages/register1.dart';
+import 'package:mossala_mobile/screen/home_screen.dart';
+import 'package:mossala_mobile/screen/onboarding_screen.dart';
+import 'package:mossala_mobile/services/auth_guard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../features/auth/presentation/pages/login_screen.dart';
-import '../../screen/onboarding_screen.dart';
 
 Future<bool> isFirstLaunch() async {
   final prefs = await SharedPreferences.getInstance();
@@ -13,7 +15,7 @@ Future<bool> isFirstLaunch() async {
 Future<GoRouter> createRouter() async {
   final firstLaunch = await isFirstLaunch();
   return GoRouter(
-    initialLocation: firstLaunch ? '/login' : '/onboarding',
+    initialLocation: firstLaunch ? '/' : '/onboarding',
     routes: [
       GoRoute(
         path: '/onboarding',
@@ -31,6 +33,12 @@ Future<GoRouter> createRouter() async {
         path: '/forgetpassword',
         builder: (context, state) => ForgetPasswordScreen(),
       ),
+      GoRoute(
+        path: '/',
+        builder: (context, state) => HomeScreen(),
+        redirect: (context, state) => AuthGuard.redirect(context, state)
+      ),
+
 
     ],
   );
