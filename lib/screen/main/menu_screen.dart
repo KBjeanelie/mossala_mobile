@@ -1,7 +1,11 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
+import 'package:mossala_mobile/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mossala_mobile/features/auth/presentation/bloc/auth_state.dart';
 import 'package:mossala_mobile/screen/about_app_screen.dart';
 import 'package:mossala_mobile/screen/feedback_screen.dart';
 import 'package:mossala_mobile/screen/main/create_service_screen.dart';
@@ -14,6 +18,7 @@ import 'package:mossala_mobile/screen/warning_screen.dart';
 import 'package:mossala_mobile/widgets/app_bar.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
+import '../../features/auth/presentation/bloc/auth_event.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -32,8 +37,11 @@ class MenuScreen extends StatelessWidget {
               child: Column(
                 children: [
                   ListTile(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => UserProfilScreen()));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UserProfilScreen()));
                     },
                     leading: CircleAvatar(
                       backgroundImage: AssetImage("assets/user.jpg"),
@@ -43,14 +51,19 @@ class MenuScreen extends StatelessWidget {
                   ),
                   Divider(),
                   ListTile(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => CreateServiceScreen()));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CreateServiceScreen()));
                     },
                     leading: CircleAvatar(
                       child: Icon(EvaIcons.plus),
                     ),
                     title: normalTextApp("Créer un nouveau projet", context),
-                    subtitle: smallTextApp("Créer un nouveau projet ou demander un service en toute simplicité", context),
+                    subtitle: smallTextApp(
+                        "Créer un nouveau projet ou demander un service en toute simplicité",
+                        context),
                   ),
                 ],
               ),
@@ -62,48 +75,115 @@ class MenuScreen extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Expanded(child: GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => RealisationScreen()));
-                        },
-                        child: CardMenu(icon: EvaIcons.checkmarkSquare, title: "Réalisations",))),
-
-                      Expanded(child: GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProjetCreerScreen()));
-                        },
-                        child: CardMenu(icon: EvaIcons.edit2, title: "Projets créés",))),
+                      Expanded(
+                          child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            RealisationScreen()));
+                              },
+                              child: CardMenu(
+                                icon: EvaIcons.checkmarkSquare,
+                                title: "Réalisations",
+                              ))),
+                      Expanded(
+                          child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ProjetCreerScreen()));
+                              },
+                              child: CardMenu(
+                                icon: EvaIcons.edit2,
+                                title: "Projets créés",
+                              ))),
                     ],
                   ),
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProjetRemporteScreen()));
-                        },
-                        child: CardMenu(icon: EvaIcons.award, title: "Projets remportés",)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ProjetRemporteScreen()));
+                          },
+                          child: CardMenu(
+                            icon: EvaIcons.award,
+                            title: "Projets remportés",
+                          )),
                     ],
                   ),
                 ],
               ),
             ),
             SizedBox(height: 20),
-            CardMenu2(icon: EvaIcons.bell, title: "Notifications", function: (){Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationsScreen()));}),
-            CardMenu2(icon: EvaIcons.settings, title: "Paramètres", function: (){}),
-            CardMenu2(icon: EvaIcons.alertTriangle, title: "Signaler un problème",  function: (){Navigator.push(context, MaterialPageRoute(builder: (context) => WarningScreen()));}),
-            CardMenu2(icon: EvaIcons.externalLink, title: "Envoyer un feedback",  function: (){Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen()));}),
-            CardMenu2(icon: EvaIcons.info, title: "À propos de nous",  function: (){Navigator.push(context, MaterialPageRoute(builder: (context) => AboutAppScreen()));}),
-
+            CardMenu2(
+                icon: EvaIcons.bell,
+                title: "Notifications",
+                function: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => NotificationsScreen()));
+                }),
+            CardMenu2(
+                icon: EvaIcons.settings, title: "Paramètres", function: () {}),
+            CardMenu2(
+                icon: EvaIcons.alertTriangle,
+                title: "Signaler un problème",
+                function: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => WarningScreen()));
+                }),
+            CardMenu2(
+                icon: EvaIcons.externalLink,
+                title: "Envoyer un feedback",
+                function: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FeedbackScreen()));
+                }),
+            CardMenu2(
+                icon: EvaIcons.info,
+                title: "À propos de nous",
+                function: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AboutAppScreen()));
+                }),
             Container(
               margin: EdgeInsets.only(left: 15, right: 15, top: 30),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppSizes.borderRadius),
-                color: const Color.fromARGB(33, 29, 114, 184)
-              ),
-              child: ListTile(
-                leading: Icon(EvaIcons.logOut, color: AppColors.secondary),
-                title: normalTextApp("Déconnexion", context),
-                onTap: () {},
+                  borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+                  color: const Color.fromARGB(33, 29, 114, 184)),
+              child: BlocConsumer<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthLoggedOut) {
+                    context.go("/login");
+                  } else if (state is AuthError) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: normalTextApp(state.message, context))
+                    );
+                  }
+                },
+                builder: (context, state) {
+                  if (state is AuthLoading) {
+                    return const CircularProgressIndicator();
+                  }
+                  return ListTile(
+                    leading: Icon(EvaIcons.logOut, color: AppColors.secondary),
+                    title: normalTextApp("Déconnexion", context),
+                    onTap: () => context.read<AuthBloc>().add(LogoutEvent()),
+                  );
+                },
               ),
             )
           ],
@@ -117,7 +197,9 @@ class CardMenu extends StatelessWidget {
   final IconData icon;
   final String title;
   const CardMenu({
-    super.key, required this.icon, required this.title,
+    super.key,
+    required this.icon,
+    required this.title,
   });
 
   @override
@@ -129,7 +211,10 @@ class CardMenu extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(icon, color: AppColors.secondary,),
+            Icon(
+              icon,
+              color: AppColors.secondary,
+            ),
             normalTextApp(title, context)
           ],
         ),
@@ -138,15 +223,15 @@ class CardMenu extends StatelessWidget {
   }
 }
 
-
-
 class CardMenu2 extends StatelessWidget {
   final IconData icon;
   final String title;
   final VoidCallback function;
-  const CardMenu2({
-    super.key, required this.icon, required this.title, required this.function
-  });
+  const CardMenu2(
+      {super.key,
+      required this.icon,
+      required this.title,
+      required this.function});
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +239,10 @@ class CardMenu2 extends StatelessWidget {
       margin: EdgeInsets.only(left: 5, right: 5, top: 3),
       child: ListTile(
         onTap: function,
-        leading: Icon(icon, color: AppColors.secondary,),
+        leading: Icon(
+          icon,
+          color: AppColors.secondary,
+        ),
         title: normalTextApp(title, context),
       ),
     );

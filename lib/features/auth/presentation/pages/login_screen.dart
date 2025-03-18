@@ -84,11 +84,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           listener: (context, state) {
                             if (state is AuthAuthenticated) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("Connexion réussie !"))
+                                SnackBar(content: normalTextApp("Connexion réussie !", context))
                               );
                             } else if (state is AuthError) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text(state.message))
+                                SnackBar(content: normalTextApp(state.message, context))
                               );
                             }
                           },

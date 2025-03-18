@@ -86,6 +86,7 @@ class AuthRepositoryImpl implements AuthRepository {
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
+            "Authorization": "Bearer ${await authLocalDataSource.getAccessToken()}",
           },
         ),
       );
@@ -94,6 +95,19 @@ class AuthRepositoryImpl implements AuthRepository {
       await authLocalDataSource.deleteToken();
       return Right(true);
     } catch (e) {
+      debugPrint("LOGOUT ERROR: $e");
+      if (e is DioException) {
+        debugPrint("INVALID REFRESH TOKEN: ${e.response?.data}");
+        if (e.response?.statusCode == 302) {
+          debugPrint("INVALID REFRESH TOKEN: ${e.response?.data}");
+          return Left("Token invalide");
+        } else {
+          debugPrint("UNKNOWN ERROR: ${e.response?.data}");
+          return Left("ERROR: ${e.response?.data}");
+        }
+      } else {
+        debugPrint("UNKNOWN ERROR: $e");
+      }
       return Left("Erreur réseau ou serveur");
     }
   }

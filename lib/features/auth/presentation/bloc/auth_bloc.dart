@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/usecases/login_usecase.dart';
+import '../../domain/usecases/logout_usecase.dart';
 import '../../domain/usecases/register_usecase.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
@@ -7,10 +8,12 @@ import 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LoginUseCase loginUseCase;
   final RegisterUseCase registerUseCase;
+  final LogoutUsecase logoutUseCase;
 
   AuthBloc({
     required this.loginUseCase,
     required this.registerUseCase,
+    required this.logoutUseCase,
   }) : super(AuthInitial()) {
     on<LoginEvent>(_onLogin);
     on<RegisterEvent>(_onRegister);
@@ -35,7 +38,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  void _onLogout(LogoutEvent event, Emitter<AuthState> emit) {
-    emit(AuthLoggedOut());
+  void _onLogout(LogoutEvent event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+    final result = await logoutUseCase();
+    result.fold(
+      (error) => emit(AuthError(error)),
+      (_) => emit(AuthLoggedOut()),
+    );
   }
 }
