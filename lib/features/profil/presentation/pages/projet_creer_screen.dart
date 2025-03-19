@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
-import '../../../widgets/cards.dart';
+import '../../../../widgets/cards.dart';
 
 class ProjetCreerScreen extends StatelessWidget {
   const ProjetCreerScreen({super.key});

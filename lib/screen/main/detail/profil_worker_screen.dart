@@ -2,7 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
-import 'package:mossala_mobile/screen/main/detail/realisation_screen.dart';
+import 'package:mossala_mobile/features/profil/presentation/pages/realisation_screen.dart';
 import 'package:mossala_mobile/screen/main/single_chat_screen.dart';
 import 'package:mossala_mobile/widgets/cards.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';

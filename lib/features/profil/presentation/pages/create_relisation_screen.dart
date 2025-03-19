@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
-import '../../../core/utils/validators.dart';
+import '../../../../core/utils/validators.dart';
 
 class CreateRelisationScreen extends StatefulWidget {
   const CreateRelisationScreen({super.key});
