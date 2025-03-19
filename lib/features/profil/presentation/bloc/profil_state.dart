@@ -1,5 +1,6 @@
 
 import 'package:equatable/equatable.dart';
+import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 import 'package:mossala_mobile/features/profil/domain/entities/experience.dart';
 
 abstract class ProfilState extends Equatable {
@@ -26,4 +27,22 @@ class ProfilExperienceLoaded extends ProfilState {
 
   @override
   List<Object?> get props => [experiences];
+}
+
+class ProfilCreatedProjectLoaded extends ProfilState {
+  final List<ProjectEntity> createdProjects;
+
+  ProfilCreatedProjectLoaded(this.createdProjects);
+
+  @override
+  List<Object?> get props => [createdProjects];
+}
+
+class ProfilAssignedProjectLoaded extends ProfilState {
+  final List<ProjectEntity> assignedProjects;
+
+  ProfilAssignedProjectLoaded(this.assignedProjects);
+
+  @override
+  List<Object?> get props => [assignedProjects];
 }

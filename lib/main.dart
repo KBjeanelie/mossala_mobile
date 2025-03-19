@@ -13,7 +13,7 @@ import 'features/auth/domain/usecases/login_usecase.dart';
 import 'features/auth/domain/usecases/register_usecase.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/profil/data/repositories/profil_repository_impl.dart';
-import 'features/profil/domain/usecases/experience_usecase.dart';
+import 'features/profil/domain/usecases/profil_usecase.dart';
 import 'features/profil/presentation/bloc/profil_bloc.dart';
 
 void main() async {
@@ -57,8 +57,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ProfilBloc(
+            projetAssignedUsecase: ProjetAssignedUsecase(profilRepository),
+            projetCreatedUsecase: ProjetCreatedUsecase(profilRepository),
             experienceUsecase: ExperienceUsecase(profilRepository),
-          ),
+          )
         )
       ],
       child: MaterialApp.router(
