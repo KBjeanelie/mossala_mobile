@@ -1,6 +1,5 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 import 'package:mossala_mobile/features/worker/domain/usecases/worker_usecase.dart';
 import 'package:mossala_mobile/features/worker/presentation/bloc/worker_event.dart';
 import 'package:mossala_mobile/features/worker/presentation/bloc/worker_state.dart';
