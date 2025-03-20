@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mossala_mobile/core/utils/validators.dart';
-import 'package:mossala_mobile/screen/home_screen.dart';
+import 'package:mossala_mobile/screen/main/home_screen.dart';
 
 import '../../../../widgets/widgets.dart';
 

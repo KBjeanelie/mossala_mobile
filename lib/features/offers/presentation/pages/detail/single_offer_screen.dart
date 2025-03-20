@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/core/utils/validators.dart';
-import 'package:mossala_mobile/screen/main/detail/more_offer_screen.dart';
+import 'package:mossala_mobile/features/offers/presentation/pages/detail/more_offer_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
-import '../../../core/theme/app_colors.dart';
-import '../../../widgets/cards.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../widgets/cards.dart';
 
 class SingleOfferScreen extends StatefulWidget {
   const SingleOfferScreen({super.key});

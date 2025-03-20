@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
-import '../../../widgets/cards.dart';
+import '../../../../../widgets/cards.dart';
 
 class MoreOfferScreen extends StatelessWidget {
   const MoreOfferScreen({super.key});

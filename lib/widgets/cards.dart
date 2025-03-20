@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
-import 'package:mossala_mobile/screen/main/detail/profil_worker_screen.dart';
-import 'package:mossala_mobile/screen/main/detail/single_offer_screen.dart';
+import 'package:mossala_mobile/features/worker/presentation/pages/profil_worker_screen.dart';
+import 'package:mossala_mobile/features/offers/presentation/pages/detail/single_offer_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 class WorkerCardView extends StatefulWidget {

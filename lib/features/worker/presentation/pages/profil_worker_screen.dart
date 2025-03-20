@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/features/profil/presentation/pages/realisation_screen.dart';
-import 'package:mossala_mobile/screen/main/single_chat_screen.dart';
+import 'package:mossala_mobile/features/chats/presentation/pages/single_chat_screen.dart';
 import 'package:mossala_mobile/widgets/cards.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_colors.dart';
 
 class ProfilWorkerScreen extends StatefulWidget {
   const ProfilWorkerScreen({super.key});

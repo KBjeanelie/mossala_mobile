@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mossala_mobile/features/auth/domain/usecases/logout_usecase.dart';
+import 'package:mossala_mobile/features/offers/domain/repositories/offer_repository.dart';
 import 'core/routes/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'features/auth/data/datasources/auth_local_datasource.dart';
@@ -12,6 +13,9 @@ import 'features/auth/data/repositories/auth_repository_impl.dart';
 import 'features/auth/domain/usecases/login_usecase.dart';
 import 'features/auth/domain/usecases/register_usecase.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
+import 'features/offers/data/repositories/offer_repository_impl.dart';
+import 'features/offers/domain/usecases/offer_usecase.dart';
+import 'features/offers/presentation/bloc/offer_bloc.dart';
 import 'features/profil/data/repositories/profil_repository_impl.dart';
 import 'features/profil/domain/usecases/profil_usecase.dart';
 import 'features/profil/presentation/bloc/profil_bloc.dart';
@@ -25,6 +29,7 @@ void main() async {
   final authLocalDataSource = AuthLocalDataSource(secureStorage: secureStorage);
   final authRepository = AuthRepositoryImpl(authLocalDataSource, dio: dio);
   final profilRepository = ProfileRepositoryImpl(dio);
+  final offerRepository = OfferRepositoryImpl(dio);
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp, // Mode portrait uniquement
@@ -32,7 +37,9 @@ void main() async {
     runApp(MyApp(
       router: router, 
       authRepository: authRepository,
-      profilRepository: profilRepository));
+      profilRepository: profilRepository,
+      offerRepository: offerRepository,
+    ));
   });
 }
 
@@ -40,7 +47,8 @@ class MyApp extends StatelessWidget {
   final GoRouter router;
   final AuthRepositoryImpl authRepository;
   final ProfileRepositoryImpl profilRepository;
-  const MyApp({super.key, required this.router, required this.authRepository, required this.profilRepository});
+  final OfferRepositoryImpl offerRepository;
+  const MyApp({super.key, required this.router, required this.authRepository, required this.profilRepository, required this.offerRepository});
 
   // This widget is the root of your application.
   @override
@@ -61,7 +69,15 @@ class MyApp extends StatelessWidget {
             projetCreatedUsecase: ProjetCreatedUsecase(profilRepository),
             experienceUsecase: ExperienceUsecase(profilRepository),
           )
-        )
+        ),
+        BlocProvider(
+          create: (context) => OfferBloc(
+            getOfferUsecase: GetOfferUsecase(offerRepository), 
+            getOfferByIdUsecase: GetOfferByIdUsecase(offerRepository), 
+            createOfferUsecase: CreateOfferUsecase(offerRepository), 
+            deleteOfferUsecase: DeleteOfferUsecase(offerRepository),
+          )
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

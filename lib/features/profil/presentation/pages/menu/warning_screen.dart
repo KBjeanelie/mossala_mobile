@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:mossala_mobile/widgets/widgets.dart';
 
-import '../core/theme/app_colors.dart';
-import '../core/theme/app_sizes.dart';
-import '../core/utils/validators.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_sizes.dart';
+import '../../../../../core/utils/validators.dart';
+import '../../../../../widgets/widgets.dart';
 
-class FeedbackScreen extends StatefulWidget {
-  const FeedbackScreen({super.key});
+class WarningScreen extends StatefulWidget {
+  const WarningScreen({super.key});
 
   @override
-  State<FeedbackScreen> createState() => _FeedbackScreenState();
+  State<WarningScreen> createState() => _WarningScreenState();
 }
 
-class _FeedbackScreenState extends State<FeedbackScreen> {
+class _WarningScreenState extends State<WarningScreen> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController controler = TextEditingController();
 
@@ -26,7 +26,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: headingTextApp("Feedback", context),
+        title: headingTextApp("Signaler un problème", context),
       ),
       body: SingleChildScrollView(
         padding: AppSizes.spaceHV,
@@ -37,7 +37,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
             children: [
               SizedBox(height: 50,),
               Center(child: Image.asset("assets/logo.png")),
-              normalTextApp("Vous avez des remarques ? Merci de nous laisser un retour sur l'utilisation de l'application", context,),
+              normalTextApp("Vous avez rencontré un problème ? Un beug trouvé ? \nDécrivez le problème rencontré et nos developpeur se chargerons du reste !", context,),
               SizedBox(height: 20,),
               TextFormField(
                 maxLength: 870,
