@@ -8,15 +8,15 @@ class WorkerBloc extends Bloc<WorkerEvent, WorkerState> {
   final GetWorkersUsecase getWorkersUsecase;
   final GetSingleWorkerUsecase getSingleWorkerUsecase;
   final ExperienceOfWorkerUsecase experienceOfWorkerUsecase;
-  final ProjectAssignedToWorkerUsecase updateWorkerUsecase;
-  final ProjectCreatedByWorkerUsecase deleteWorkerUsecase;
+  final ProjectAssignedToWorkerUsecase projectAssignedToWorkerUsecase;
+  final ProjectCreatedByWorkerUsecase projectCreatedByWorkerUsecase;
 
   WorkerBloc({
     required this.getWorkersUsecase,
     required this.getSingleWorkerUsecase,
     required this.experienceOfWorkerUsecase,
-    required this.updateWorkerUsecase,
-    required this.deleteWorkerUsecase,
+    required this.projectAssignedToWorkerUsecase,
+    required this.projectCreatedByWorkerUsecase,
   }) : super(WorkerInitial()) {
     on<FetchWorkersEvent>(_fetchWorkers);
     on<FetchSingleWorkerEvent>(_fetchSingleWorker);
@@ -58,7 +58,7 @@ class WorkerBloc extends Bloc<WorkerEvent, WorkerState> {
   Future<void> _fetchAssignedProject(WorkerEventAssignedProject event, Emitter<WorkerState> emit) async {
     emit(WorkerLoading());
 
-    final result = await updateWorkerUsecase(event.userId);
+    final result = await projectAssignedToWorkerUsecase(event.userId);
     result.fold(
       (error) => emit(WorkerError(error)),
       (assignedProjects) => emit(WorkerAssignedProjectLoaded(assignedProjects)),
@@ -67,7 +67,7 @@ class WorkerBloc extends Bloc<WorkerEvent, WorkerState> {
 
   Future<void> _fetchCreatedProject(WorkerEventCreatedProject event, Emitter<WorkerState> emit) async {
     emit(WorkerLoading());
-    final result = await deleteWorkerUsecase(event.userId);
+    final result = await projectCreatedByWorkerUsecase(event.userId);
     result.fold(
       (error) => emit(WorkerError(error)),
       (createdProjects) => emit(WorkerCreatedProjectLoaded(createdProjects)),
