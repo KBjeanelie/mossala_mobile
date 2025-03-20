@@ -66,14 +66,15 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen> with TickerProv
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => SingleChatScreen()));
-        },
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-          backgroundColor: AppColors.secondary,
-          child: Icon(EvaIcons.messageCircleOutline, color: AppColors.darkText),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: (){
+      //     Navigator.push(context, MaterialPageRoute(builder: (context) => SingleChatScreen()));
+      //   },
+      //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+      //     backgroundColor: AppColors.secondary,
+      //     mini: true,
+      //     child: Icon(EvaIcons.messageCircleOutline, color: AppColors.darkText),
+      // ),
     );
   }
   Widget _buildAboutCard(BuildContext context){
