@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/features/profil/presentation/pages/edit_account_screen.dart';
@@ -7,7 +8,10 @@ import 'package:mossala_mobile/features/profil/presentation/pages/realisation_sc
 import 'package:mossala_mobile/widgets/cards.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
-import '../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../bloc/profil_bloc.dart';
+import '../bloc/profil_event.dart';
+import '../bloc/profil_state.dart';
 
 class UserProfilScreen extends StatefulWidget {
   const UserProfilScreen({super.key});
@@ -23,6 +27,11 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+    Future.microtask(() {
+      context.read<ProfilBloc>().add(ProfilEventAssignedProject());
+      context.read<ProfilBloc>().add(ProfilEventCreatedProject());
+      context.read<ProfilBloc>().add(ProfilEventExperience());
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -201,14 +210,161 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
 
 
   Widget _buildProjectsDoneTab(BuildContext context) {
-    return ListView(children: List.generate(10,(index) => CardOfferView()));
+    return BlocConsumer<ProfilBloc, ProfilState>(
+      listener: (context, state) {
+        if (state is ProfilLoading) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (_) => Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else {
+          // Fermer le dialogue quand le chargement est terminé
+          Navigator.of(context, rootNavigator: true).pop();
+        }
+
+        if (state is ProfilError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: normalTextApp(state.message, context)),
+          );
+        }
+      },
+      builder: (context, state) {
+        if (state is ProfilLoading) {
+          return Center(child: CircularProgressIndicator());
+        }
+
+        if (state is ProfilAssignedProjectLoaded) {
+          // Afficher les réalisations récupérées
+          return ListView(
+            children: [
+              // Vérifier si la liste est vide
+              if (state.assignedProjects.isEmpty) 
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Center(
+                    child: normalTextApp("Aucun projet remporté trouvé", context),
+                  ),
+                )
+              else 
+                ...state.assignedProjects.map((realisation) => CardOfferView()).toList(),
+
+              SizedBox(height: 15),
+            ],
+          );
+
+        }
+
+        return Center(child: normalTextApp("Aucun projet remporté trouvée", context));
+      },
+    );
   }
   Widget _buildProjectsCreateTab(BuildContext context) {
-    return ListView(children: List.generate(10,(index) => CardOfferView()));
+    return BlocConsumer<ProfilBloc, ProfilState>(
+      listener: (context, state) {
+        if (state is ProfilLoading) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (_) => Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else {
+          // Fermer le dialogue quand le chargement est terminé
+          Navigator.of(context, rootNavigator: true).pop();
+        }
+
+        if (state is ProfilError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.message)),
+          );
+        }
+      },
+      builder: (context, state) {
+        if (state is ProfilLoading) {
+          return Center(child: CircularProgressIndicator());
+        }
+
+        if (state is ProfilCreatedProjectLoaded) {
+          // Afficher les réalisations récupérées
+          return ListView(
+            children: [
+              // Vérifier si la liste est vide
+              if (state.createdProjects.isEmpty) 
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Center(
+                    child: normalTextApp("Aucun projet créé trouvé", context),
+                  ),
+                )
+              else 
+                ...state.createdProjects.map((realisation) => CardOfferView()).toList(),
+
+              SizedBox(height: 15),
+            ],
+          );
+
+        }
+
+        return Center(child: normalTextApp("Aucun projet créé trouvée", context));
+      },
+    );
   }
 
   Widget _buildRealisationTab(BuildContext context) {
-    return ListView(children: List.generate(10,(index) => CardRealisation()));
+    return BlocConsumer<ProfilBloc, ProfilState>(
+      listener: (context, state) {
+        if (state is ProfilLoading) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (_) => Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else {
+          // Fermer le dialogue quand le chargement est terminé
+          Navigator.of(context, rootNavigator: true).pop();
+        }
+
+        if (state is ProfilError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: normalTextApp(state.message, context)),
+          );
+        }
+      },
+      builder: (context, state) {
+        if (state is ProfilLoading) {
+          return Center(child: CircularProgressIndicator());
+        }
+
+        if (state is ProfilExperienceLoaded) {
+          // Afficher les réalisations récupérées
+          return ListView(
+            children: [
+              // Vérifier si la liste est vide
+              if (state.experiences.isEmpty) 
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Center(
+                    child: normalTextApp("Aucune réalisation trouvée", context),
+                  ),
+                )
+              else 
+                ...state.experiences.map((realisation) => CardRealisation()).toList(),
+
+              SizedBox(height: 15),
+            ],
+          );
+
+        }
+
+        return Center(child: normalTextApp("Aucune réalisation trouvée", context));
+      },
+    );
   }
 
 

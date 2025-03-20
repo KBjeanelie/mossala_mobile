@@ -63,12 +63,10 @@ class _ProjetCreerScreenState extends State<ProjetCreerScreen> {
               children: [
                 // Vérifier si la liste est vide
                 if (state.createdProjects.isEmpty) 
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Center(
-                        child: normalTextApp("Aucun projet créé trouvé", context),
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: normalTextApp("Aucun projet créé trouvé", context),
                     ),
                   )
                 else 
@@ -80,7 +78,7 @@ class _ProjetCreerScreenState extends State<ProjetCreerScreen> {
 
           }
 
-          return Center(child: Text("Aucun projet créé trouvée"));
+          return Center(child: normalTextApp("Aucun projet créé trouvée", context));
         },
       ),
     );

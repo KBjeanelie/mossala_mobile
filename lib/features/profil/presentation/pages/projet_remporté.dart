@@ -62,12 +62,10 @@ class _ProjetRemporteScreenState extends State<ProjetRemporteScreen> {
               children: [
                 // Vérifier si la liste est vide
                 if (state.assignedProjects.isEmpty) 
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Center(
-                        child: normalTextApp("Aucun projet remporté trouvé", context),
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: normalTextApp("Aucun projet remporté trouvé", context),
                     ),
                   )
                 else 

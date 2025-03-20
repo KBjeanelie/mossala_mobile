@@ -80,12 +80,10 @@ class _RealisationScreenState extends State<RealisationScreen> {
 
                 // Vérifier si la liste est vide
                 if (state.experiences.isEmpty) 
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Center(
-                        child: normalTextApp("Aucune réalisation trouvée", context),
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: normalTextApp("Aucune réalisation trouvée", context),
                     ),
                   )
                 else 
