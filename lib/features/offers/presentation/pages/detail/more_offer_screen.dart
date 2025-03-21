@@ -7,7 +7,8 @@ import 'package:mossala_mobile/widgets/widgets.dart';
 import '../../../../../widgets/cards.dart';
 
 class MoreOfferScreen extends StatelessWidget {
-  const MoreOfferScreen({super.key});
+  final int projectId;
+  const MoreOfferScreen({super.key, required this.projectId});
 
   @override
   Widget build(BuildContext context) {

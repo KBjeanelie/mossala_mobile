@@ -9,7 +9,8 @@ import 'package:mossala_mobile/widgets/widgets.dart';
 import '../../../../core/theme/app_colors.dart';
 
 class ProfilWorkerScreen extends StatefulWidget {
-  const ProfilWorkerScreen({super.key});
+  final int workerId;
+  const ProfilWorkerScreen({super.key, required this.workerId});
 
   @override
   State<ProfilWorkerScreen> createState() => _ProfilWorkerScreenState();

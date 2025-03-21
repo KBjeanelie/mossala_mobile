@@ -10,7 +10,8 @@ import '../../../../../core/theme/app_colors.dart';
 import '../../../../../widgets/cards.dart';
 
 class SingleOfferScreen extends StatefulWidget {
-  const SingleOfferScreen({super.key});
+  final int projectId;
+  const SingleOfferScreen({super.key, required this.projectId});
 
   @override
   State<SingleOfferScreen> createState() => _SingleOfferScreenState();
@@ -100,7 +101,7 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                         _showCustomModal(context, controle);
                       }, "Faire une offre", size: 0.5)),
                       Expanded(child: mainOutlinedButtonApp(context, (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => MoreOfferScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MoreOfferScreen(projectId: 1,)));
                       }, "Voir plus", size: 0.3))
                     ],
                   )

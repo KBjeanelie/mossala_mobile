@@ -37,12 +37,7 @@ class MenuScreen extends StatelessWidget {
               child: Column(
                 children: [
                   ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => UserProfilScreen()));
-                    },
+                    onTap: () => context.push("/profil"),
                     leading: CircleAvatar(
                       backgroundImage: AssetImage("assets/user.jpg"),
                     ),
@@ -51,19 +46,12 @@ class MenuScreen extends StatelessWidget {
                   ),
                   Divider(),
                   ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CreateServiceScreen()));
-                    },
+                    onTap: () => context.push('/create_project'),
                     leading: CircleAvatar(
                       child: Icon(EvaIcons.plus),
                     ),
                     title: normalTextApp("Créer un nouveau projet", context),
-                    subtitle: smallTextApp(
-                        "Créer un nouveau projet ou demander un service en toute simplicité",
-                        context),
+                    subtitle: smallTextApp("Créer un nouveau projet ou demander un service en toute simplicité",context),
                   ),
                 ],
               ),
@@ -76,43 +64,25 @@ class MenuScreen extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                          child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            RealisationScreen()));
-                              },
-                              child: CardMenu(
-                                icon: EvaIcons.checkmarkSquare,
-                                title: "Réalisations",
-                              ))),
+                        child: GestureDetector(
+                            onTap: () => context.push('/realisations'),
+                            child: CardMenu(
+                              icon: EvaIcons.checkmarkSquare,
+                              title: "Réalisations",
+                            ))),
                       Expanded(
-                          child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            ProjetCreerScreen()));
-                              },
-                              child: CardMenu(
-                                icon: EvaIcons.edit2,
-                                title: "Projets créés",
-                              ))),
+                        child: GestureDetector(
+                          onTap: () => context.push('/project_create'),
+                          child: CardMenu(
+                            icon: EvaIcons.edit2,
+                            title: "Projets créés",
+                          ))),
                     ],
                   ),
                   Row(
                     children: [
                       GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        ProjetRemporteScreen()));
-                          },
+                          onTap: () => context.push('/project_assigned'),
                           child: CardMenu(
                             icon: EvaIcons.award,
                             title: "Projets remportés",
@@ -126,39 +96,21 @@ class MenuScreen extends StatelessWidget {
             CardMenu2(
                 icon: EvaIcons.bell,
                 title: "Notifications",
-                function: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => NotificationsScreen()));
-                }),
+                function: () => context.push('/notifications')),
             CardMenu2(
                 icon: EvaIcons.settings, title: "Paramètres", function: () {}),
             CardMenu2(
                 icon: EvaIcons.alertTriangle,
                 title: "Signaler un problème",
-                function: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => WarningScreen()));
-                }),
+                function: () => context.push('/warning')),
             CardMenu2(
                 icon: EvaIcons.externalLink,
                 title: "Envoyer un feedback",
-                function: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => FeedbackScreen()));
-                }),
+                function: () => context.push('/feedback')),
             CardMenu2(
                 icon: EvaIcons.info,
                 title: "À propos de nous",
-                function: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AboutAppScreen()));
-                }),
+                function: () => context.push('/about')),
             Container(
               margin: EdgeInsets.only(left: 15, right: 15, top: 30),
               decoration: BoxDecoration(

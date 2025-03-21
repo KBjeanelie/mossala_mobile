@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
@@ -87,7 +88,7 @@ class _WorkerCardViewState extends State<WorkerCardView> {
                   ],
                 ),
                 mainButtonApp(context, (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilWorkerScreen()));
+                  context.push('/worker/${widget.user.id}');
                 }, "Voir le profil")
               ],
             ),
@@ -197,7 +198,7 @@ class _CardOfferViewState extends State<CardOfferView> {
             SizedBox(height: 20),
             mainButtonApp(context, (){
               // Navigate to the chat screen here
-              Navigator.push(context, MaterialPageRoute(builder: (context) => SingleOfferScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SingleOfferScreen(projectId: 1,)));
             }, "Voir l'offre")
           ],
         ),
