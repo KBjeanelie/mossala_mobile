@@ -69,7 +69,7 @@ class _ProjetRemporteScreenState extends State<ProjetRemporteScreen> {
                     ),
                   )
                 else 
-                  ...state.assignedProjects.map((realisation) => CardOfferView()).toList(),
+                  ...state.assignedProjects.map((realisation) => CardOfferView()),
 
                 SizedBox(height: 15),
               ],

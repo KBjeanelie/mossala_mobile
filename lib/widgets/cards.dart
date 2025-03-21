@@ -7,8 +7,11 @@ import 'package:mossala_mobile/features/worker/presentation/pages/profil_worker_
 import 'package:mossala_mobile/features/offers/presentation/pages/detail/single_offer_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
+import '../features/auth/domain/entities/user_entity.dart';
+
 class WorkerCardView extends StatefulWidget {
-  const WorkerCardView({super.key});
+  const WorkerCardView({super.key, required this.user});
+  final User user;
 
   @override
   State<WorkerCardView> createState() => _WorkerCardViewState();
@@ -25,16 +28,26 @@ class _WorkerCardViewState extends State<WorkerCardView> {
               radius: 30,
               backgroundImage: AssetImage("assets/user.jpg"),
             ),
-            title: mediumTextApp("Elijah Walter", context),
+            title: mediumTextApp(
+              "${widget.user.lastname} ${widget.user.firstname}", context),
             subtitle: Row(
               spacing: 5,
               children: [
-                Icon(Icons.circle, size: 10, color: AppColors.open,),
-                Text("Disponible", style: GoogleFonts.poppins(
-                  color: AppColors.open,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600
-                ),)
+                if (widget.user.isActive)...[
+                  Icon(Icons.circle, size: 10, color: AppColors.open,),
+                  Text("Disponible", style: GoogleFonts.poppins(
+                    color: AppColors.open,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600
+                  ),)
+                ]else...[
+                  Icon(Icons.circle, size: 10, color: AppColors.closed,),
+                  Text("Indisponible", style: GoogleFonts.poppins(
+                    color: AppColors.closed,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600
+                  ),)
+                ]
               ],
             ),
           ),
@@ -49,7 +62,7 @@ class _WorkerCardViewState extends State<WorkerCardView> {
                   spacing: 5,
                   runSpacing: 5,
                   children: [
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < widget.user.competence.length; i++)
                       BadgeApp(i: i),
                   ],
                 ),

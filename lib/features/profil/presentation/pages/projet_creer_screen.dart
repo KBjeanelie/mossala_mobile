@@ -70,7 +70,7 @@ class _ProjetCreerScreenState extends State<ProjetCreerScreen> {
                     ),
                   )
                 else 
-                  ...state.createdProjects.map((realisation) => CardOfferView()).toList(),
+                  ...state.createdProjects.map((realisation) => CardOfferView()),
 
                 SizedBox(height: 15),
               ],

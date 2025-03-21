@@ -87,7 +87,7 @@ class _RealisationScreenState extends State<RealisationScreen> {
                     ),
                   )
                 else 
-                  ...state.experiences.map((realisation) => CardRealisation()).toList(),
+                  ...state.experiences.map((realisation) => CardRealisation()),
 
                 SizedBox(height: 15),
               ],

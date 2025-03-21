@@ -65,8 +65,8 @@ class _WorkerScreenState extends State<WorkerScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: Column(
                   children: List.generate(
-                    2,
-                    (index) => WorkerCardView(),
+                    state.workers.length,
+                    (index) => WorkerCardView(user: state.workers[index]),
                   ),
                 ),
               );
