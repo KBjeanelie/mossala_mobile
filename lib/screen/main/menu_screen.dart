@@ -6,15 +6,6 @@ import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mossala_mobile/features/auth/presentation/bloc/auth_state.dart';
-import 'package:mossala_mobile/features/profil/presentation/pages/menu/about_app_screen.dart';
-import 'package:mossala_mobile/features/profil/presentation/pages/menu/feedback_screen.dart';
-import 'package:mossala_mobile/features/offers/presentation/pages/create_service_screen.dart';
-import 'package:mossala_mobile/features/profil/presentation/pages/menu/notifications_screen.dart';
-import 'package:mossala_mobile/features/profil/presentation/pages/projet_creer_screen.dart';
-import 'package:mossala_mobile/features/profil/presentation/pages/projet_remport%C3%A9.dart';
-import 'package:mossala_mobile/features/profil/presentation/pages/realisation_screen.dart';
-import 'package:mossala_mobile/features/profil/presentation/pages/user_profil_screen.dart';
-import 'package:mossala_mobile/features/profil/presentation/pages/menu/warning_screen.dart';
 import 'package:mossala_mobile/widgets/app_bar.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
