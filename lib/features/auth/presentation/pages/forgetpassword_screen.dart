@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/core/utils/validators.dart';
@@ -18,7 +20,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   void submitForm() {
     if (_formKey.currentState!.validate()) {
       // Form is valid, proceed with submission
-      print("Formulaire valide !");
+      log("Formulaire valide !");
     }
   }
 

@@ -20,7 +20,6 @@ class _Register1State extends State<Register1> {
   void submitForm() {
     if (_formKey.currentState!.validate()) {
       // Form is valid, proceed with submission
-      print("Formulaire valide !");
     }
     //Navigator.push(context, MaterialPageRoute(builder: (context) => ConfirmPasswordScreen()));
   }
