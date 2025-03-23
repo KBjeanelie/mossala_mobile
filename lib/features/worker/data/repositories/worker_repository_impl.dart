@@ -89,7 +89,7 @@ class WorkerRepositoryImpl implements WorkerRepository {
   Future<Either<String, User>> getSingleWorker(int userId) async{
     log("FETCHING DATA FROM API FOR SINGLE WORKER");
     try {
-      final response = await apiService.get('/users/$userId/');
+      final response = await apiService.get('/workers/$userId/');
       if (response != null && response.data != null) {
         log("DATA FETCHED SUCCESSFULLY");
         log("DATA: ${response.data}");
@@ -109,7 +109,7 @@ class WorkerRepositoryImpl implements WorkerRepository {
   Future<Either<String, List<User>>> getWorkers() async{
     log("FETCHING DATA FROM API FOR WORKERS");
     try {
-      final response = await apiService.get('/users/');
+      final response = await apiService.get('/workers/');
       if (response != null && response.data != null) {
         log("DATA FETCHED SUCCESSFULLY");
         log("DATA: ${response.data}");

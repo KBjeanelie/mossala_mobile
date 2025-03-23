@@ -32,16 +32,7 @@ class _WorkerScreenState extends State<WorkerScreen> {
       body: BlocConsumer<WorkerBloc, WorkerState>(
         listener: (context, state) {
           if (state is WorkerLoading) {
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (_) => Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          } else {
-            // Fermer le dialogue quand le chargement est terminé
-            Navigator.of(context, rootNavigator: true).pop();
+            CircularProgressIndicator();
           }
 
           if (state is WorkerError) {

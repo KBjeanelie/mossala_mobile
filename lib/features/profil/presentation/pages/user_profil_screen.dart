@@ -336,6 +336,7 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
           );
         }
       },
+      
       builder: (context, state) {
         if (state is ProfilLoading) {
           return Center(child: CircularProgressIndicator());
