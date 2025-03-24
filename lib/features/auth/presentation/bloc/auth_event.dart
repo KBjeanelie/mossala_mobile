@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:mossala_mobile/features/auth/domain/entities/quarter_entity.dart';
 
 abstract class AuthEvent extends Equatable {
   @override
@@ -16,14 +17,31 @@ class LoginEvent extends AuthEvent {
 }
 
 class RegisterEvent extends AuthEvent {
-  final String username;
-  final String email;
+  final String lastname;
+  final String firstname;
+  final String tel;
+  final String adress;
   final String password;
 
-  RegisterEvent({required this.username, required this.email, required this.password});
+  RegisterEvent(this.lastname, this.firstname, this.tel, this.adress, this.password);
 
   @override
-  List<Object?> get props => [username, email, password];
+  List<Object?> get props => [
+    lastname,
+    firstname,
+    tel,
+    adress,
+    password,
+  ];
 }
 
 class LogoutEvent extends AuthEvent {}
+
+class FetchQuarters extends AuthEvent {
+  final List<QuarterEntity> quarters = [];
+
+  FetchQuarters();
+
+  @override
+  List<Object?> get props => [quarters];
+}

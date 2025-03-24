@@ -7,6 +7,15 @@ class AuthLocalDataSource {
 
   static const _accessTokenKey = "access_token";
   static const _refreshTokenKey = "refresh_token";
+  static const _user = "user";
+
+  Future<void> saveUser(user) async {
+    await secureStorage.write(key: _user, value: user);
+  }
+
+  Future<String?> getUser() async {
+    return await secureStorage.read(key: _user);
+  }
 
   Future<void> saveAccessToken(String token) async {
     await secureStorage.write(key: _accessTokenKey, value: token);
@@ -27,5 +36,6 @@ class AuthLocalDataSource {
   Future<void> deleteToken() async {
     await secureStorage.delete(key: _accessTokenKey);
     await secureStorage.delete(key: _refreshTokenKey);
+    await secureStorage.delete(key: _user);
   }
 }

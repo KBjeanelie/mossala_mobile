@@ -2,7 +2,7 @@ class Validators {
   static String? validateInput(String? value) {
     if (value == null || value.isEmpty || value.length < 5) return "Le champs est requis";
     // ignore: valid_regexps
-    if (!RegExp(r'^[A-Za-z��-Ö��-öø-�� ]+$').hasMatch(value)) return "Champs invalide";
+    if (!RegExp(r'^[A-Za-zÀ-ÖØ-öø-ÿ ]+$').hasMatch(value)) return "Champs invalide";
     return null;
   }
   static String? validateEmail(String? value) {
@@ -38,7 +38,14 @@ class Validators {
   static String? validateName(String? value) {
     if (value == null || value.isEmpty) return "Le nom est requis";
     // ignore: valid_regexps
-    if (!RegExp(r'^[A-Za-z��-Ö��-öø-�� ]+$').hasMatch(value)) return "Nom invalide";
+    if (!RegExp(r'^[A-Za-zÀ-ÖØ-öø-ÿ ]+$').hasMatch(value)) return "Nom invalide";
+    return null;
+  }
+
+  static String? validateFirstName(String? value) {
+    if (value == null || value.isEmpty) return "Le prénom est requis";
+    // ignore: valid_regexps
+    if (!RegExp(r'^[A-Za-zÀ-ÖØ-öø-ÿ ]+$').hasMatch(value)) return "Prénom invalide";
     return null;
   }
 

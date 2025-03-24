@@ -83,8 +83,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         BlocConsumer<AuthBloc, AuthState>(
                           listener: (context, state) {
                             if (state is AuthAuthenticated) {
+                              context.go('/');
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: normalTextApp("Connexion réussie !", context))
+                                SnackBar(content: normalTextApp("Connexion réussie !", context), backgroundColor: AppColors.open,)
                               );
                             } else if (state is AuthError) {
                               ScaffoldMessenger.of(context).showSnackBar(

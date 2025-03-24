@@ -37,7 +37,8 @@ class AuthRepositoryImpl implements AuthRepository {
       final refreshToken = response.data['refresh'];
       await authLocalDataSource.saveAccessToken(accessToken);
       await authLocalDataSource.saveRefreshToken(refreshToken);
-      final user = UserModel.fromJson(response.data);
+      final user = UserModel.fromJson(response.data['user']);
+      await authLocalDataSource.saveUser(user);
       return Right(user);
     } catch (e) {
       if (e is DioException) {
@@ -56,20 +57,64 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<String, User>> register(String username, String tel, String password) async {
+  Future<Either<String, User>> register(String lastname, 
+    String firstname, 
+    String tel,
+    String adress,
+    String password) async {
+      log("REGISTER : $lastname, $firstname, $tel, $adress, $password");
     try {
-      final response = await dio.post(
-        '/auth/register/',
-        data: {"username": username, "tel": tel, "password": password},
+      log("LOGIN REQUEST API : ${apiService.baseUrlLocal}/register/");
+      final response = await dio.post('${apiService.baseUrlLocal}/register/',
+        data: {
+          "lastname": lastname,
+          "firstname": firstname,
+          "tel": tel,
+          "address": adress,
+          "password": password,
+        },
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          },
+        ),
       );
-
+      log("REGISTER SUCCESS....");
       if (response.statusCode == 201) {
-        final user = UserModel.fromJson(response.data);
+        final accessToken = response.data['access'];
+        final refreshToken = response.data['refresh'];
+        await authLocalDataSource.saveAccessToken(accessToken);
+        await authLocalDataSource.saveRefreshToken(refreshToken);
+        log("GET CURRENT USER FROM API...");
+        final userResponse = await dio.get('${apiService.baseUrlLocal}/user/current/',
+          options: Options(
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "Authorization": "Bearer ${await authLocalDataSource.getAccessToken()}",
+            },
+          ),);
+        final user = UserModel.fromJson(userResponse.data);
+        await authLocalDataSource.saveUser(user);
         return Right(user);
       } else {
         return Left("Erreur lors de l'inscription");
       }
     } catch (e) {
+      if (e is DioException) {
+        if (e.response?.statusCode == 400) {
+          debugPrint("INVALID NUMBER OR PASSWORD: ${e.response?.data}");
+          return Left("${e.response?.data['tel'][0]}");
+        } else {
+          log("UNKNOWN ERROR: ${e.response?.data} ");
+          log("STATUS CODE : ${e.response?.statusCode}");
+          return Left("Serveur indisponible, veuillez réessayer plus tard");
+        }
+      } else {
+        debugPrint("UNKNOWN ERROR: $e");
+      }
+
       return Left("Erreur réseau ou serveur");
     }
   }
@@ -111,4 +156,5 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left("Erreur réseau ou serveur");
     }
   }
+
 }

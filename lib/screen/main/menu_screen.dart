@@ -124,7 +124,12 @@ class MenuScreen extends StatelessWidget {
                   return ListTile(
                     leading: Icon(EvaIcons.logOut, color: AppColors.secondary),
                     title: normalTextApp("Déconnexion", context),
-                    onTap: () => context.read<AuthBloc>().add(LogoutEvent()),
+                    onTap: () { 
+                      context.read<AuthBloc>().add(LogoutEvent());
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: normalTextApp("Vous êtes déconnectés !", context), backgroundColor: AppColors.closed),
+                      );
+                    },
                   );
                 },
               ),

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:mossala_mobile/features/auth/domain/entities/quarter_entity.dart';
 
 import '../../domain/entities/user_entity.dart';
 
@@ -30,3 +31,11 @@ class AuthError extends AuthState {
 }
 
 class AuthLoggedOut extends AuthState {}
+
+
+
+class QuartersLoaded extends AuthState {
+  final List<QuarterEntity> quarters;
+
+  QuartersLoaded(this.quarters);
+}

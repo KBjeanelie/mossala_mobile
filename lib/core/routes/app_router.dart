@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:mossala_mobile/features/auth/presentation/pages/forgetpassword_screen.dart';
 import 'package:mossala_mobile/features/auth/presentation/pages/login_screen.dart';
-import 'package:mossala_mobile/features/auth/presentation/pages/register1.dart';
+import 'package:mossala_mobile/features/auth/presentation/pages/register_screen.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/create_service_screen.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/detail/more_offer_screen.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/detail/single_offer_screen.dart';
@@ -40,7 +40,7 @@ Future<GoRouter> createRouter() async {
       ),
       GoRoute(
         path: '/register',
-        builder: (context, state) => Register1(),
+        builder: (context, state) => RegisterScreen(),
       ),
       GoRoute(
         path: '/forgetpassword',

@@ -1,7 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../domain/usecases/login_usecase.dart';
-import '../../domain/usecases/logout_usecase.dart';
-import '../../domain/usecases/register_usecase.dart';
+import '../../domain/usecases/auth_usecase.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 
@@ -20,6 +18,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LogoutEvent>(_onLogout);
   }
 
+
+
   Future<void> _onLogin(LoginEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     final result = await loginUseCase(event.tel, event.password);
@@ -31,7 +31,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _onRegister(RegisterEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
-    final result = await registerUseCase(event.username, event.email, event.password);
+    final result = await registerUseCase(
+      event.lastname,
+      event.firstname,
+      event.tel,
+      event.adress,
+      event.password,
+    );
     result.fold(
       (error) => emit(AuthError(error)),
       (user) => emit(AuthAuthenticated(user)),
@@ -46,4 +52,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (_) => emit(AuthLoggedOut()),
     );
   }
+
+    
+
 }
