@@ -1,9 +1,15 @@
+import 'dart:developer';
+
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
+import 'package:mossala_mobile/features/auth/data/datasources/auth_local_datasource.dart';
+import 'package:mossala_mobile/features/auth/data/models/user_model.dart';
+import 'package:mossala_mobile/features/auth/domain/entities/user_entity.dart';
 import 'package:mossala_mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mossala_mobile/features/auth/presentation/bloc/auth_state.dart';
 import 'package:mossala_mobile/widgets/app_bar.dart';
@@ -11,11 +17,56 @@ import 'package:mossala_mobile/widgets/widgets.dart';
 
 import '../../features/auth/presentation/bloc/auth_event.dart';
 
-class MenuScreen extends StatelessWidget {
+class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
 
   @override
+  State<MenuScreen> createState() => _MenuScreenState();
+}
+
+class _MenuScreenState extends State<MenuScreen> {
+  final AuthLocalDataSource authLocalDataSource = AuthLocalDataSource(secureStorage: FlutterSecureStorage());
+  User? currentUser;
+  bool isLoading = true; // Pour gérer le chargement
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUser();
+  }
+
+  Future<void> _loadUser() async {
+    try {
+      final user = await authLocalDataSource.getUser();
+      log("user : $user");
+      setState(() {
+        currentUser = UserModel.fromJson(user!);
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: normalTextApp("Erreur lors du chargement des informations.", context), backgroundColor: AppColors.closed,),
+      );
+    }
+  }
+  @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return Scaffold(
+        appBar: appBarSimple("Menu", context),
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (currentUser == null) {
+      return Scaffold(
+        appBar: appBarSimple("Menu", context),
+        body: Center(child: normalTextApp("Impossible de récupérer les informations de l'utilisateur.", context)),
+      );
+    }
     return Scaffold(
       appBar: appBarSimple("Menu", context),
       body: SingleChildScrollView(
@@ -32,7 +83,7 @@ class MenuScreen extends StatelessWidget {
                     leading: CircleAvatar(
                       backgroundImage: AssetImage("assets/user.jpg"),
                     ),
-                    title: mediumTextApp("KUBEMBULA Jean Elie", context),
+                    title: mediumTextApp("${currentUser!.lastname} ${currentUser!.firstname}", context),
                     trailing: Icon(EvaIcons.arrowIosForward),
                   ),
                   Divider(),

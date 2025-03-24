@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthLocalDataSource {
@@ -9,12 +11,14 @@ class AuthLocalDataSource {
   static const _refreshTokenKey = "refresh_token";
   static const _user = "user";
 
-  Future<void> saveUser(user) async {
-    await secureStorage.write(key: _user, value: user);
+  Future<void> saveUser(Map<String, dynamic> user) async {
+    await secureStorage.write(key: _user, value: jsonEncode(user));
   }
 
-  Future<String?> getUser() async {
-    return await secureStorage.read(key: _user);
+  Future<Map<String, dynamic>?> getUser() async {
+    String? userJson = await secureStorage.read(key: _user);
+    if (userJson == null) return null;
+    return jsonDecode(userJson) as Map<String, dynamic>;
   }
 
   Future<void> saveAccessToken(String token) async {

@@ -38,7 +38,7 @@ class AuthRepositoryImpl implements AuthRepository {
       await authLocalDataSource.saveAccessToken(accessToken);
       await authLocalDataSource.saveRefreshToken(refreshToken);
       final user = UserModel.fromJson(response.data['user']);
-      await authLocalDataSource.saveUser(user);
+      await authLocalDataSource.saveUser(user.toJson());
       return Right(user);
     } catch (e) {
       if (e is DioException) {
@@ -96,7 +96,7 @@ class AuthRepositoryImpl implements AuthRepository {
             },
           ),);
         final user = UserModel.fromJson(userResponse.data);
-        await authLocalDataSource.saveUser(user);
+        await authLocalDataSource.saveUser(user.toJson());
         return Right(user);
       } else {
         return Left("Erreur lors de l'inscription");
