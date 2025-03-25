@@ -15,6 +15,15 @@ class OffersEventFetch extends OfferEvent {
   List<Object?> get props => [offers];
 }
 
+class OpenOffersEventFetch extends OfferEvent {
+  final List<ProjectEntity> offers = [];
+
+  OpenOffersEventFetch();
+
+  @override
+  List<Object?> get props => [offers];
+}
+
 class SingleOfferEvent extends OfferEvent {
   final ProjectEntity offer;
 
@@ -24,6 +33,14 @@ class SingleOfferEvent extends OfferEvent {
 }
 
 class OfferDeletedEvent extends OfferEvent {}
+
+class AssignedOfferToWorkerEvent extends OfferEvent {
+  final String projectId;
+  final String workerId;
+  AssignedOfferToWorkerEvent(this.projectId, this.workerId);
+  @override
+  List<Object?> get props => [projectId, workerId];
+}
 
 class OfferEventCreate extends OfferEvent {
   final ProjectEntity offer;

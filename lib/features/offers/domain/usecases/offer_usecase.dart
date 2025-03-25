@@ -14,6 +14,18 @@ class GetOfferUsecase {
   }
 }
 
+
+class GetOpenOffer{
+  final OfferRepository repository;
+
+  GetOpenOffer(this.repository);
+
+   Future<Either<String, List<ProjectEntity>>> call() async {
+    return await repository.getOpenOffer();
+  }
+}
+
+
 class GetOfferByIdUsecase {
   final OfferRepository repository;
 
@@ -43,4 +55,14 @@ class DeleteOfferUsecase {
   Future<Either<String, ProjectEntity>> call(String id) async {
     return await repository.deleteOffer(id);
   }
-} 
+}
+
+class AssignedOfferToWorker{
+  final OfferRepository repository;
+
+  AssignedOfferToWorker(this.repository);
+
+  Future<Either<String, ProjectEntity>> call(String projectId, String workerId) async {
+    return await repository.assignedOfferToWorker(projectId, workerId);
+  }
+}

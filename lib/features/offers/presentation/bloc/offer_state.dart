@@ -28,6 +28,15 @@ class OffersLoaded extends OfferState {
   List<Object?> get props => [offers];
 }
 
+class OpenOffersLoaded extends OfferState {
+  final List<ProjectEntity> offers;
+
+  OpenOffersLoaded({required this.offers});
+
+  @override
+  List<Object?> get props => [offers];
+}
+
 
 class OfferSelected extends OfferState {
   final ProjectEntity offer;
@@ -51,6 +60,15 @@ class OfferDeleted extends OfferState {
   final ProjectEntity offer;
 
   OfferDeleted({required this.offer});
+
+  @override
+  List<Object?> get props => [offer];
+}
+
+class OfferAssignedToWorker extends OfferState {
+  final ProjectEntity offer;
+
+  OfferAssignedToWorker({required this.offer});
 
   @override
   List<Object?> get props => [offer];

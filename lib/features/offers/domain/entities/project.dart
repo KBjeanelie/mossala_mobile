@@ -5,43 +5,43 @@ class ProjectEntity extends Equatable {
   final String name;
   final String description;
   final int amount;
-  final String adress;
-  final String startDate;
-  final String endDate;
-  final String status;
+  final String address;
   final bool isClosed;
+  final String createdAt;
   final int owner;
   final int assignedFreelancer;
-  final List<int> specialty;
+  final List<dynamic> specialty;
+  final List<dynamic> images;
+  final List<dynamic> uploadedImages;
 
   const ProjectEntity({
     required this.id,
     required this.name,
     required this.description,
     required this.amount,
-    required this.adress,
-    required this.startDate,
-    required this.endDate,
-    required this.status,
+    required this.address,
     required this.isClosed,
+    required this.createdAt,
     required this.owner,
     required this.assignedFreelancer,
     required this.specialty,
+    required this.images,
+    required this.uploadedImages,
   });
 
   @override
   List<Object?> get props => [
-        id,
-        name,
-        description,
-        amount,
-        adress,
-        startDate,
-        endDate,
-        status,
-        isClosed,
-        owner,
-        assignedFreelancer,
-        specialty,
-      ];
+    id,
+    name,
+    description,
+    amount,
+    address,
+    isClosed,
+    createdAt,
+    owner,
+    assignedFreelancer,
+    specialty,
+    images,
+    uploadedImages,
+  ];
 }

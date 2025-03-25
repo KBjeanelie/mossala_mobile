@@ -78,19 +78,54 @@ class OfferRepositoryImpl implements OfferRepository {
 
   @override
   Future<Either<String, List<ProjectEntity>>> getOffers() async{
-    log("FETCHING DATA FROM API FOR GET ALL PROJECTS");
-
     try {
       final response = await apiService.get('/projects/');
       if (response != null && response.data != null) {
-        log("DATA FETCHED SUCCESSFULLY");
-        log("DATA: ${response.data}");
         final offers = (response.data as List)
             .map((e) => ProjectModel.fromJson(e))
             .toList();
         return Right(offers);
       } else {
         log("ERROR FETCHING DATA");
+        return Left("Error fetching data");
+      }
+    } catch (e) {
+      log("EXCEPTION OCCURRED: $e");
+      return Left("Exception occurred while fetching data");
+    }
+  }
+  
+  @override
+  Future<Either<String, ProjectEntity>> assignedOfferToWorker(String projectId, String workerId) async{
+    try {
+      final data =  {
+        "freelancer_id": workerId
+      };
+      final response = await dio.post('/projects/$projectId/assign_freelancer/', data: data);
+      if (response.statusCode == 201) {
+        return Right(ProjectModel.fromJson(response.data));
+
+      } else {
+        log("ERROR CREATING DATA");
+        return Left("Error creating data");
+      }
+    } catch (e) {
+      log("EXCEPTION OCCURRED: $e");
+      return Left("Exception occurred while fetching data");
+    }
+  }
+  
+  @override
+  Future<Either<String, List<ProjectEntity>>> getOpenOffer() async{
+    try {
+      final response = await apiService.get('/projects/is-open/');
+      if (response != null && response.data != null) {
+        final offers = (response.data as List)
+            .map((e) => ProjectModel.fromJson(e))
+            .toList();
+        return Right(offers);
+      } else {
+        log("ERROR FETCHING DATA $response");
         return Left("Error fetching data");
       }
     } catch (e) {

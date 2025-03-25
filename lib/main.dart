@@ -85,7 +85,9 @@ class MyApp extends StatelessWidget {
             getOfferUsecase: GetOfferUsecase(offerRepository), 
             getOfferByIdUsecase: GetOfferByIdUsecase(offerRepository), 
             createOfferUsecase: CreateOfferUsecase(offerRepository), 
-            deleteOfferUsecase: DeleteOfferUsecase(offerRepository),
+            deleteOfferUsecase: DeleteOfferUsecase(offerRepository), 
+            assignedOfferToWorker: AssignedOfferToWorker(offerRepository),
+            getOpenOffer: GetOpenOffer(offerRepository),
           )
         ),
         BlocProvider(
