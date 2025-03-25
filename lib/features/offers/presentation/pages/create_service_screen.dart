@@ -42,7 +42,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
   /// Fonction pour sélectionner des images
   Future<void> _pickImages() async {
     final List<XFile> images = await _picker.pickMultiImage();
-    if (images != null && images.isNotEmpty) {
+    if (images.isNotEmpty) {
       setState(() {
         _selectedImages.addAll(images);
       });
