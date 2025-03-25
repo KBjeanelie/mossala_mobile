@@ -29,7 +29,7 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   final AuthLocalDataSource authLocalDataSource = AuthLocalDataSource(secureStorage: FlutterSecureStorage());
   User? currentUser;
-  bool isLoading = true; // Pour gérer le chargement
+  bool isLoading = true;
 
   @override
   void initState() {

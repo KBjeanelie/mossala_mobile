@@ -41,7 +41,7 @@ class OfferRepositoryImpl implements OfferRepository {
       FormData formData = FormData.fromMap({
         'name': name,
         'description': description,
-        'address': address,
+        'adress': address,
         'amount': amount,
         'uploaded_images': imageFiles, 
         'is_closed': false,

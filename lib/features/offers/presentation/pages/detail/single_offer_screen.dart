@@ -1,10 +1,14 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/core/utils/validators.dart';
+import 'package:mossala_mobile/features/auth/data/datasources/auth_local_datasource.dart';
+import 'package:mossala_mobile/features/auth/data/models/user_model.dart';
+import 'package:mossala_mobile/features/auth/domain/entities/user_entity.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_state.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
@@ -22,12 +26,29 @@ class SingleOfferScreen extends StatefulWidget {
 }
 
 class _SingleOfferScreenState extends State<SingleOfferScreen> {
+  final AuthLocalDataSource authLocalDataSource = AuthLocalDataSource(secureStorage: FlutterSecureStorage());
+  User? currentUser;
+  
   @override
   void initState() {
     super.initState();
     Future.microtask(() {
+      _loadUser();
       context.read<OfferBloc>().add(SingleOfferEvent(widget.projectId.toString()));
     });
+  }
+
+  Future<void> _loadUser() async {
+    try {
+      final user = await authLocalDataSource.getUser();
+      setState(() {
+        currentUser = UserModel.fromJson(user!);
+      });
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: normalTextApp("Erreur lors du chargement des informations.", context), backgroundColor: AppColors.closed,),
+      );
+    }
   }
 
   final TextEditingController controle = TextEditingController();
@@ -101,46 +122,49 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
         return Scaffold(
           appBar: AppBar(
             actions: [
-              PopupMenuButton<String>(
-                onSelected: (value) {
-                  if (value == "closed") {
-                    _showConfirmationDialog(
-                      context,
-                      title: "Fermer le projet",
-                      content: "Êtes-vous sûr de vouloir fermer ce projet ?",
-                      onConfirm: () {
-                        print("Projet fermé !");
-                        // Appelle ici la fonction pour fermer le projet
-                      },
-                    );
-                  } else if (value == "delete") {
-                    _showConfirmationDialog(
-                      context,
-                      title: "Supprimer le projet",
-                      content:"Êtes-vous sûr de vouloir supprimer ce projet ? Cette action est irréversible.",
-                      onConfirm: () =>_deleteOffer(widget.projectId.toString()),
-                    );
-                  }
-                },
-                itemBuilder: (BuildContext context) => [
-                  PopupMenuItem(
-                    value: "closed",
-                    child: ListTile(
-                      leading:
-                          Icon(EvaIcons.lock, color: AppColors.secondary),
-                      title: normalTextApp("Fermer le projet", context),
+              if (state is OfferSelected)...[
+                if(state.offer.owner == currentUser?.id)...[
+                PopupMenuButton<String>(
+                  onSelected: (value) {
+                    if (value == "closed") {
+                      _showConfirmationDialog(
+                        context,
+                        title: "Fermer le projet",
+                        content: "Êtes-vous sûr de vouloir fermer ce projet ?",
+                        onConfirm: () {
+                          print("Projet fermé !");
+                          // Appelle ici la fonction pour fermer le projet
+                        },
+                      );
+                    } else if (value == "delete") {
+                      _showConfirmationDialog(
+                        context,
+                        title: "Supprimer le projet",
+                        content:"Êtes-vous sûr de vouloir supprimer ce projet ? Cette action est irréversible.",
+                        onConfirm: () =>_deleteOffer(widget.projectId.toString()),
+                      );
+                    }
+                  },
+                  itemBuilder: (BuildContext context) => [
+                    PopupMenuItem(
+                      value: "closed",
+                      child: ListTile(
+                        leading:
+                            Icon(EvaIcons.lock, color: AppColors.secondary),
+                        title: normalTextApp("Fermer le projet", context),
+                      ),
                     ),
-                  ),
-                  PopupMenuItem(
-                    value: "delete",
-                    child: ListTile(
-                      leading: Icon(EvaIcons.trash2, color: Colors.red),
-                      title: normalTextApp("Supprimer le projet", context),
+                    PopupMenuItem(
+                      value: "delete",
+                      child: ListTile(
+                        leading: Icon(EvaIcons.trash2, color: Colors.red),
+                        title: normalTextApp("Supprimer le projet", context),
+                      ),
                     ),
-                  ),
-                ],
-                icon: Icon(Icons.more_vert),
-              )
+                  ],
+                  icon: Icon(EvaIcons.settings2Outline),
+                )]
+              ]
             ],
           ),
           body:ListView(
@@ -197,7 +221,7 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                         normalTextApp("6 dévis envoyés", context),
                         SizedBox(height: 20),
                         normalTextApp(state.offer.description.length > 150
-                          ? state.offer.description.substring(0, 150)
+                          ? "${state.offer.description.substring(0, 150)}..."
                           : state.offer.description,context),
                         SizedBox(height: 30),
                         Row(

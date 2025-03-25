@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
-import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_bloc.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_event.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_state.dart';
