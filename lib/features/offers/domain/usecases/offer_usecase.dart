@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 
 import '../entities/project.dart';
@@ -42,8 +44,14 @@ class CreateOfferUsecase {
 
   CreateOfferUsecase(this.repository);
 
-  Future<Either<String, ProjectEntity>> call(ProjectEntity offer) async {
-    return await repository.createOffer(offer);
+  Future<Either<String, ProjectEntity>> call(
+    String name,
+    String description,
+    String address,
+    double amount,
+    List<File> uploadedImages,
+  ) async {
+    return await repository.createOffer(name, description, address, amount, uploadedImages);
   }
 }
 

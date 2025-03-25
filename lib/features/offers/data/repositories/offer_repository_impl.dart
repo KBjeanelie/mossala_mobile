@@ -1,8 +1,10 @@
 
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 import 'package:mossala_mobile/services/api_service.dart';
@@ -16,23 +18,57 @@ class OfferRepositoryImpl implements OfferRepository {
 
   OfferRepositoryImpl(this.dio);
 
-
-  @override
-  Future<Either<String, ProjectEntity>> createOffer(ProjectEntity offer) async{
-    log("FETCHING DATA FROM API FOR CREATING PROJECT");
+  
+  Future<Either<String, ProjectEntity>> createOffer(
+    String name,
+    String description,
+    String address,
+    double amount,
+    List<File> uploadedImages,
+  ) async {
     try {
-      final response = await dio.post('/projects/', data: offer);
-      if (response.statusCode == 201) {
-        log("DATA CREATED SUCCESSFULLY");
-        return Right(ProjectModel.fromJson(response.data));
+      // Étape 1 : Convertir les fichiers en `MultipartFile`
+      List<MultipartFile> imageFiles = [];
+      for (var image in uploadedImages) {
+        imageFiles.add(await MultipartFile.fromFile(
+          image.path,
+          filename: image.path.split('/').last,
+        ));
+      }
 
+      // Étape 2 : Construire les données multipart
+      FormData formData = FormData.fromMap({
+        'name': name,
+        'description': description,
+        'address': address,
+        'amount': amount,
+        'uploaded_images': imageFiles, 
+        'is_closed': false,
+        'assigned_freelancer': null,
+      });
+
+      // Étape 3 : Envoyer la requête
+      final response = await apiService.postWithFile('/projects/', formData);
+
+      if (response?.statusCode == 201) {
+        return Right(ProjectModel.fromJson(response?.data));
       } else {
-        log("ERROR CREATING DATA");
-        return Left("Error creating data");
+        debugPrint("ERROR: ${response?.data}");
+        return Left("Erreur création projet : ${response?.data}");
       }
     } catch (e) {
-      log("EXCEPTION OCCURRED: $e");
-      return Left("Exception occurred while fetching data");
+      if (e is DioException) {
+        if (e.response?.statusCode == 400) {
+          debugPrint("ERROR: ${e.response?.data}");
+          return Left("Erreur : ${e.response?.data}");
+        } else {
+          debugPrint("UNKNOWN ERROR: ${e.response?.data}");
+          return Left("Serveur indisponible, veuillez réessayer plus tard");
+        }
+      } else {
+        debugPrint("UNKNOWN ERROR: $e");
+      }
+      return Left("Erreur réseau ou serveur");
     }
   }
 

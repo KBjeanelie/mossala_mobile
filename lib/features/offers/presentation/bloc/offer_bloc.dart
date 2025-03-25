@@ -58,7 +58,9 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
 
   Future<void> _createOffer(OfferEventCreate event, Emitter<OfferState> emit) async {
     emit(OfferLoading());
-    final result = await createOfferUsecase(event.offer);
+    final result = await createOfferUsecase(
+      event.name, event.description, event.address, event.amount, event.uploadedImages
+    );
     result.fold(
       (error) => emit(OfferError(error)),
       (offer) => emit(OfferCreated(offer: offer)),

@@ -23,6 +23,7 @@ class ApiService {
     String method,
     String endpoint, {
     Map<String, dynamic>? data,
+    FormData? dataForm,
     Map<String, dynamic>? queryParams,
   }) async {
     try {
@@ -43,7 +44,7 @@ class ApiService {
       // Effectuer la requête
       final Response response = await dio.request(
         endpoint,
-        data: data,
+        data: dataForm ?? data,
         queryParameters: queryParams,
         options: options,
       );
@@ -66,6 +67,8 @@ class ApiService {
   Future<Response?> get(String endpoint, {Map<String, dynamic>? queryParams}) => request("GET", endpoint, queryParams: queryParams);
 
   Future<Response?> post(String endpoint, Map<String, dynamic> data) => request("POST", endpoint, data: data);
+
+  Future<Response?> postWithFile(String endpoint, FormData data) => request("POST", endpoint, dataForm: data);
 
   Future<Response?> put(String endpoint, Map<String, dynamic> data) => request("PUT", endpoint, data: data);
 

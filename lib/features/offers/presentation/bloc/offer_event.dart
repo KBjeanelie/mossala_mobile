@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 
@@ -43,10 +45,20 @@ class AssignedOfferToWorkerEvent extends OfferEvent {
 }
 
 class OfferEventCreate extends OfferEvent {
-  final ProjectEntity offer;
+  final String name;
+  final String description;
+  final String address;
+  final double amount;
+  final List<File> uploadedImages;
 
-  OfferEventCreate(this.offer);
+  OfferEventCreate(this.name, this.description, this.address, this.amount, this.uploadedImages);
   @override
-  List<Object?> get props => [offer];
+  List<Object?> get props => [
+    name,
+    description,
+    address,
+    amount,
+    uploadedImages,
+  ];
 }
 
