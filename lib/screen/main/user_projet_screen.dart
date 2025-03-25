@@ -3,7 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mossala_mobile/features/offers/presentation/bloc/offer_bloc.dart';
+import 'package:mossala_mobile/features/offers/presentation/bloc/offer_state.dart';
 import '../../core/theme/app_colors.dart';
+import '../../features/offers/presentation/bloc/offer_event.dart';
 import '../../features/profil/presentation/bloc/profil_bloc.dart';
 import '../../features/profil/presentation/bloc/profil_event.dart';
 import '../../features/profil/presentation/bloc/profil_state.dart';
@@ -26,6 +29,7 @@ class _UserProjetScreenState extends State<UserProjetScreen> {
     // Déclencher le chargement des réalisations
     Future.microtask(() {
       context.read<ProfilBloc>().add(ProfilEventCreatedProject());
+      context.read<OfferBloc>().add(OpenOffersEventFetch());
     });
   }
   @override
@@ -67,11 +71,55 @@ class TabViewOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-        ],
-      ),
+    return BlocConsumer<OfferBloc, OfferState>(
+      listener: (context, state) {
+        if (state is OfferLoading) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (_) => Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else {
+          // Fermer le dialogue quand le chargement est terminé
+          Navigator.of(context, rootNavigator: true).pop();
+        }
+
+        if (state is OfferError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.message)),
+          );
+        }
+      },
+      builder: (context, state) {
+        if (state is OfferLoading) {
+          return Center(child: CircularProgressIndicator());
+        }
+
+        if (state is OpenOffersLoaded) {
+          // Afficher les réalisations récupérées
+          return ListView(
+            children: [
+              // Vérifier si la liste est vide
+              if (state.offers.isEmpty) 
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Center(
+                    child: normalTextApp("Aucun projet en cours trouvée", context),
+                  ),
+                )
+              else 
+                ...state.offers.map((offer) => CardOfferView(offer: offer,)),
+
+              SizedBox(height: 15),
+            ],
+          );
+
+        }
+
+        return Center(child: normalTextApp("Aucun projet en cours trouvée", context));
+      },
     );
   }
 }

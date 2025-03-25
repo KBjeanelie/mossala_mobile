@@ -170,5 +170,25 @@ class OfferRepositoryImpl implements OfferRepository {
       return Left("Exception occurred while fetching data");
     }
   }
+  
+  @override
+  Future<Either<String, bool>> closedOffer(String id) async{
+    try {
+      final data = {
+        "id":id
+      };
+      final response = await apiService.post('/projects/$id/close/', data);
+      if (response?.statusCode == 201) {
+        return Right(true);
+
+      } else {
+        log("ERROR DELETING DATA");
+        return Left("Error deleting data");
+      } 
+    } catch (e) {
+      log("EXCEPTION OCCURRED: $e");
+      return Left("Exception occurred while fetching data");
+    }
+  }
 
 }

@@ -65,6 +65,15 @@ class OfferDeleted extends OfferState {
   List<Object?> get props => [deleted];
 }
 
+class OfferClosed extends OfferState {
+  final bool closed;
+
+  OfferClosed({required this.closed});
+
+  @override
+  List<Object?> get props => [closed];
+}
+
 class OfferAssignedToWorker extends OfferState {
   final ProjectEntity offer;
 

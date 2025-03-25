@@ -65,6 +65,16 @@ class DeleteOfferUsecase {
   }
 }
 
+class ClosedOfferUsecase {
+  final OfferRepository repository;
+
+  ClosedOfferUsecase(this.repository);
+
+  Future<Either<String, bool>> call(String id) async {
+    return await repository.closedOffer(id);
+  }
+}
+
 class AssignedOfferToWorker{
   final OfferRepository repository;
 

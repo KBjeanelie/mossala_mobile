@@ -103,7 +103,9 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
         double.parse(amountController.text),
         _selectedImages.map((image) => File(image.path)).toList(),
       ));
-      context.go('/');
+      Future.delayed(Duration(milliseconds: 500), () {
+        context.go('/');
+      });
     }
   }
 

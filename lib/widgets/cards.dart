@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
-import 'package:mossala_mobile/features/offers/presentation/pages/detail/single_offer_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 import '../core/utils/utils.dart';
@@ -163,9 +162,10 @@ class _CardOfferViewState extends State<CardOfferView> {
                   ),
                 ),
                 Row(
+                  spacing: 5,
                   children: [
-                    Icon(Icons.circle, size: 15, color: AppColors.open,),
-                    normalTextApp("Ouvert", context)
+                    Icon(Icons.circle, size: 15, color: widget.offer.isClosed ? AppColors.closed : AppColors.open,),
+                    normalTextApp(widget.offer.isClosed ? "Fermé" : "Ouvert", context)
                   ],
                 )
               ],
@@ -177,7 +177,7 @@ class _CardOfferViewState extends State<CardOfferView> {
               ? widget.offer.description.substring(0, 150)
               : widget.offer.description, context),
             SizedBox(height: 10),
-            if (widget.offer.images != null && widget.offer.images.isNotEmpty)
+            if (widget.offer.images.isNotEmpty)
               Wrap(
                 children: [
                   SizedBox(

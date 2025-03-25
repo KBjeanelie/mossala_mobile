@@ -17,5 +17,6 @@ abstract class OfferRepository {
     List<File> uploadedImages,
   );
   Future<Either<String, bool>> deleteOffer(String id);
+  Future<Either<String, bool>> closedOffer(String id);
   Future<Either<String, ProjectEntity>> assignedOfferToWorker(String projectId, String workerId);
 }

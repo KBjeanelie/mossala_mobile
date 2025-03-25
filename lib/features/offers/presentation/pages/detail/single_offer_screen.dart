@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,9 +56,16 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
   final TextEditingController controle = TextEditingController();
 
   void _deleteOffer(String id) {
-    print("Suppression de l'offre avec l'ID: $id");
     final offerBloc = BlocProvider.of<OfferBloc>(context);
     offerBloc.add(OfferDeletedEvent(id));
+    Future.delayed(Duration(milliseconds: 500), () {
+      context.go('/');
+    });
+  }
+
+  void _closedOffer(String id) {
+    final offerBloc = BlocProvider.of<OfferBloc>(context);
+    offerBloc.add(OfferClosedEvent(id));
     Future.delayed(Duration(milliseconds: 500), () {
       context.go('/');
     });
@@ -109,6 +118,11 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: normalTextApp("Votre projet à été supprimé !", context), backgroundColor: AppColors.closed),
           );
+        } else if (state is OfferClosed) {
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: normalTextApp("Votre projet à été fermé !", context), backgroundColor: AppColors.secondary),
+          );
         } else if (state is OfferSelected) {
           Navigator.of(context).pop();
         } else if (state is OfferError) {
@@ -131,10 +145,7 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                         context,
                         title: "Fermer le projet",
                         content: "Êtes-vous sûr de vouloir fermer ce projet ?",
-                        onConfirm: () {
-                          print("Projet fermé !");
-                          // Appelle ici la fonction pour fermer le projet
-                        },
+                        onConfirm: () => _closedOffer(widget.projectId.toString()),
                       );
                     } else if (value == "delete") {
                       _showConfirmationDialog(
@@ -146,14 +157,15 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                     }
                   },
                   itemBuilder: (BuildContext context) => [
-                    PopupMenuItem(
-                      value: "closed",
-                      child: ListTile(
-                        leading:
-                            Icon(EvaIcons.lock, color: AppColors.secondary),
-                        title: normalTextApp("Fermer le projet", context),
+                    if(!state.offer.isClosed)
+                      PopupMenuItem(
+                        value: "closed",
+                        child: ListTile(
+                          leading:
+                              Icon(EvaIcons.lock, color: AppColors.secondary),
+                          title: normalTextApp("Fermer le projet", context),
+                        ),
                       ),
-                    ),
                     PopupMenuItem(
                       value: "delete",
                       child: ListTile(
@@ -207,12 +219,8 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                             ),
                             Row(
                               children: [
-                                Icon(
-                                  Icons.circle,
-                                  size: 15,
-                                  color: AppColors.open,
-                                ),
-                                normalTextApp("Ouvert", context)
+                                Icon(Icons.circle, size: 15, color: state.offer.isClosed ? AppColors.closed : AppColors.open,),
+                                normalTextApp(state.offer.isClosed ? "Fermé" : "Ouvert", context)
                               ],
                             )
                           ],
@@ -271,13 +279,19 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                         Row(
                           spacing: 5,
                           children: [
-                            Expanded(
-                                child: mainButtonApp(context, () {
-                              _showCustomModal(context, controle);
-                            }, "Faire une offre", size: 0.5)),
-                            Expanded(child: mainOutlinedButtonApp(context, () {
-                              context.push("/project/${state.offer.id}/mores");
-                            }, "Voir plus", size: 0.3))
+                            if(state.offer.isClosed)...[
+                              Expanded(child: mainOutlinedButtonApp(context, () {
+                                context.push("/project/${state.offer.id}/mores");
+                              }, "Voir plus", size: 0.3))
+                            ] else ... [
+                              if (state.offer.owner != currentUser?.id)
+                                Expanded(child: mainButtonApp(context, () {
+                                  _showCustomModal(context, controle);
+                                }, "Faire une offre", size: 0.5)),
+                              Expanded(child: mainOutlinedButtonApp(context, () {
+                                context.push("/project/${state.offer.id}/mores");
+                              }, "Voir plus", size: 0.3))
+                            ]
                           ],
                         )
                       ],

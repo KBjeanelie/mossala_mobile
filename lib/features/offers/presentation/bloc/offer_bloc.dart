@@ -12,6 +12,7 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
   final DeleteOfferUsecase deleteOfferUsecase;
   final AssignedOfferToWorker assignedOfferToWorker;
   final GetOpenOffer getOpenOffer;
+  final ClosedOfferUsecase closedOfferUsecase;
   
   OfferBloc({
     required this.assignedOfferToWorker,
@@ -20,6 +21,7 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
     required this.getOfferByIdUsecase,
     required this.createOfferUsecase,
     required this.deleteOfferUsecase,
+    required this.closedOfferUsecase,
   }) : super(OfferInitial()) {
     on<OffersEventFetch>(_getOffers);
     on<SingleOfferEvent>(_getOfferById);
@@ -27,6 +29,7 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
     on<OfferDeletedEvent>(_deleteOffer);
     on<AssignedOfferToWorkerEvent>(_assignedOfferToWorker);
     on<OpenOffersEventFetch>(_openOffers);
+    on<OfferClosedEvent>(_closedOffer);
   }
 
   Future<void> _getOffers(OffersEventFetch event, Emitter<OfferState> emit) async {
@@ -40,7 +43,7 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
 
   Future<void> _openOffers(OpenOffersEventFetch event, Emitter<OfferState> emit) async {
     emit(OfferLoading());
-    final result = await getOfferUsecase();
+    final result = await getOpenOffer();
     result.fold(
       (error) => emit(OfferError(error)),
       (offers) => emit(OpenOffersLoaded(offers: offers)),
@@ -73,6 +76,15 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
     result.fold(
       (error) => emit(OfferError(error)),
       (deleted) => emit(OfferDeleted(deleted: deleted)),
+    );
+  }
+
+  Future<void> _closedOffer(OfferClosedEvent event, Emitter<OfferState> emit) async {
+    emit(OfferLoading());
+    final result = await closedOfferUsecase(event.projectId);
+    result.fold(
+      (error) => emit(OfferError(error)),
+      (closed) => emit(OfferClosed(closed: closed)),
     );
   }
 

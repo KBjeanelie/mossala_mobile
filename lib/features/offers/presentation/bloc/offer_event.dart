@@ -40,6 +40,13 @@ class OfferDeletedEvent extends OfferEvent {
   List<Object?> get props => [projectId];
 }
 
+class OfferClosedEvent extends OfferEvent {
+  final String projectId;
+  OfferClosedEvent(this.projectId);
+  @override
+  List<Object?> get props => [projectId];
+}
+
 class AssignedOfferToWorkerEvent extends OfferEvent {
   final String projectId;
   final String workerId;
