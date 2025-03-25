@@ -5,14 +5,14 @@ import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
-class CreateServiceScreen extends StatefulWidget {
-  const CreateServiceScreen({super.key});
+class CreateProjectScreen extends StatefulWidget {
+  const CreateProjectScreen({super.key});
 
   @override
-  _CreateServiceScreenState createState() => _CreateServiceScreenState();
+  _CreateProjectScreenState createState() => _CreateProjectScreenState();
 }
 
-class _CreateServiceScreenState extends State<CreateServiceScreen> {
+class _CreateProjectScreenState extends State<CreateProjectScreen> {
   final List<String> classes = ["CP1 A", "CP2 A", "CE1 A", "CE2 A", "CM1 A", "CM2 A"];
   final PageController _pageController = PageController();
   int _currentPage = 0;

@@ -56,7 +56,7 @@ Future<GoRouter> createRouter() async {
           GoRoute(
             path: '/create_project',
             builder: (context, state) {
-              return CreateServiceScreen();
+              return CreateProjectScreen();
             },
           ),
           GoRoute(
