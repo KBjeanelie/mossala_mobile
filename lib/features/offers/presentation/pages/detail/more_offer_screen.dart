@@ -85,12 +85,8 @@ class _MoreOfferScreenState extends State<MoreOfferScreen> {
                             ),
                             Row(
                               children: [
-                                Icon(
-                                  Icons.circle,
-                                  size: 15,
-                                  color: AppColors.open,
-                                ),
-                                normalTextApp("Ouvert", context)
+                                Icon(Icons.circle, size: 15, color: state.offer.isClosed ? AppColors.closed : AppColors.open,),
+                                normalTextApp(state.offer.isClosed ? "Fermé" : "Ouvert", context)
                               ],
                             )
                           ],
