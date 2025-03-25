@@ -70,13 +70,6 @@ class TabViewOne extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          CardOfferView(),
-          CardOfferView(),
-          CardOfferView(),
-          CardOfferView(),
-          CardOfferView(),
-          CardOfferView(),
-          CardOfferView(),
         ],
       ),
     );
@@ -127,7 +120,7 @@ class TabViewTwo extends StatelessWidget {
                   ),
                 )
               else 
-                ...state.createdProjects.map((realisation) => CardOfferView()),
+                ...state.createdProjects.map((offer) => CardOfferView(offer: offer,)),
 
               SizedBox(height: 15),
             ],

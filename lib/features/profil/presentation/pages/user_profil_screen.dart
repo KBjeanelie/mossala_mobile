@@ -251,7 +251,7 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
                   ),
                 )
               else 
-                ...state.assignedProjects.map((realisation) => CardOfferView()),
+                ...state.assignedProjects.map((offer) => CardOfferView(offer: offer,)),
 
               SizedBox(height: 15),
             ],
@@ -303,7 +303,7 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
                   ),
                 )
               else 
-                ...state.createdProjects.map((realisation) => CardOfferView()),
+                ...state.createdProjects.map((offer) => CardOfferView(offer: offer,)),
 
               SizedBox(height: 15),
             ],

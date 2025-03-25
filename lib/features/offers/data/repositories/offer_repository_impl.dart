@@ -19,6 +19,7 @@ class OfferRepositoryImpl implements OfferRepository {
   OfferRepositoryImpl(this.dio);
 
   
+  @override
   Future<Either<String, ProjectEntity>> createOffer(
     String name,
     String description,

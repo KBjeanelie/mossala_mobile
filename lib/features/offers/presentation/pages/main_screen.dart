@@ -66,9 +66,9 @@ class _MainScreenState extends State<MainScreen> {
             } else {
               return SingleChildScrollView(
                 child: Column(
-                    children: List.generate(
-                  50,
-                  (index) => CardOfferView(),
+                  children: List.generate(
+                  state.offers.length  ,
+                  (index) => CardOfferView(offer : state.offers[index]),
                 )),
               );
             }

@@ -4,9 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
+import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/detail/single_offer_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
+import '../core/utils/utils.dart';
 import '../features/auth/domain/entities/user_entity.dart';
 
 class WorkerCardView extends StatefulWidget {
@@ -122,7 +124,8 @@ class BadgeApp extends StatelessWidget {
 
 
 class CardOfferView extends StatefulWidget {
-  const CardOfferView({super.key});
+  final ProjectEntity offer;
+  const CardOfferView({super.key, required this.offer});
 
   @override
   State<CardOfferView> createState() => _CardOfferViewState();
@@ -139,7 +142,7 @@ class _CardOfferViewState extends State<CardOfferView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            mediumTextApp("Besoin d’artisant pour renovation de toiture", context),
+            mediumTextApp(widget.offer.name, context),
             SizedBox(height: 10),
             Row(
               children: [
@@ -147,7 +150,7 @@ class _CardOfferViewState extends State<CardOfferView> {
                   child: Row(
                     children: [
                       Icon(EvaIcons.creditCard, color: AppColors.secondary,),
-                      Expanded(child: normalTextApp("10 000F CFA", context))
+                      Expanded(child: normalTextApp("${widget.offer.amount.toString()}F CFA", context))
                     ],
                   ),
                 ),
@@ -155,7 +158,7 @@ class _CardOfferViewState extends State<CardOfferView> {
                   child: Row(
                     children: [
                       Icon(EvaIcons.pin,color: AppColors.secondary,),
-                      Expanded(child: normalTextApp("Moungali", context))
+                      Expanded(child: normalTextApp(widget.offer.address, context))
                     ],
                   ),
                 ),
@@ -170,15 +173,21 @@ class _CardOfferViewState extends State<CardOfferView> {
             SizedBox(height: 10),
             normalTextApp("6 dévis envoyés", context),
             SizedBox(height: 20),
-            normalTextApp("Details: Nous recherchons des artisans pour la renovation d’une toiture...", context),
+            normalTextApp(widget.offer.description.length > 150
+              ? widget.offer.description.substring(0, 150)
+              : widget.offer.description, context),
             SizedBox(height: 10),
-            Wrap(
-              children: [
-                SizedBox(
-                  child: Image.asset("assets/offre3.jpg"),
-                )
-              ],
-            )
+            if (widget.offer.images != null && widget.offer.images.isNotEmpty)
+              Wrap(
+                children: [
+                  SizedBox(
+                    child: Image.network(
+                      widget.offer.images[0]['image'],
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                ],
+              )
             ,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -191,13 +200,12 @@ class _CardOfferViewState extends State<CardOfferView> {
                     ],
                   ),
                 ),
-                Flexible(child: smallTextApp("Il y a 2 min", context))
+                Flexible(child: smallTextApp(timeAgo(widget.offer.createdAt.toString()), context))
               ],
             ),
             SizedBox(height: 20),
             mainButtonApp(context, (){
-              // Navigate to the chat screen here
-              Navigator.push(context, MaterialPageRoute(builder: (context) => SingleOfferScreen(projectId: 1,)));
+              context.push('/project/${widget.offer.id}');
             }, "Voir l'offre")
           ],
         ),

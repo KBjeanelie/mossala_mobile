@@ -6,32 +6,19 @@ part 'project_model.g.dart';
 @JsonSerializable()
 class ProjectModel extends ProjectEntity {
   const ProjectModel({
-    required int id,
-    required String name,
-    required String description,
-    required int amount,
-    required String address,
-    required bool isClosed,
-    required String createdAt,
-    required int owner,
-    required int assignedFreelancer,
-    required List<int> specialty,
-    required List<dynamic> images,
-    required List<dynamic> uploadedImages,
-  }) : super(
-    id: id,
-    name: name,
-    description: description,
-    amount: amount,
-    address: address,
-    isClosed: isClosed,
-    createdAt: createdAt,
-    owner: owner,
-    assignedFreelancer: assignedFreelancer,
-    specialty: specialty,
-    images: images,
-    uploadedImages: uploadedImages,
-  );
+    required super.id,
+    required super.name,
+    required super.description,
+    required super.amount,
+    required super.address,
+    required super.isClosed,
+    required super.createdAt,
+    required super.owner,
+    required super.assignedFreelancer,
+    required List<int> super.specialty,
+    required super.images,
+    required super.uploadedImages,
+  });
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) => _$ProjectModelFromJson(json);
 

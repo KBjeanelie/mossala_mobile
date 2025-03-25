@@ -309,7 +309,7 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
           } else {
             return ListView.builder(
               itemCount: state.assignedProjects.length,
-              itemBuilder: (context, index) => CardOfferView(),
+              itemBuilder: (context, index) => CardOfferView(offer: state.assignedProjects[index],),
             );
           }
         }
@@ -342,7 +342,7 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
           } else {
             return ListView.builder(
               itemCount: state.createdProjects.length,
-              itemBuilder: (context, index) => CardOfferView(),
+              itemBuilder: (context, index) => CardOfferView(offer: state.createdProjects[index],),
             );
           }
         }
@@ -372,10 +372,10 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
               ),
             );
           } else {
-            return ListView.builder(
-              itemCount: state.experiences.length,
-              itemBuilder: (context, index) => CardOfferView(),
-            );
+            // return ListView.builder(
+            //   itemCount: state.experiences.length,
+            //   itemBuilder: (context, index) => CardOfferView(offer: state.experiences[index],),
+            // );
           }
         }
         return Center(

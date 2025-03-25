@@ -27,11 +27,10 @@ class OpenOffersEventFetch extends OfferEvent {
 }
 
 class SingleOfferEvent extends OfferEvent {
-  final ProjectEntity offer;
-
-  SingleOfferEvent(this.offer);
+  final String projectId;
+  SingleOfferEvent(this.projectId);
   @override
-  List<Object?> get props => [offer];
+  List<Object?> get props => [projectId];
 }
 
 class OfferDeletedEvent extends OfferEvent {}

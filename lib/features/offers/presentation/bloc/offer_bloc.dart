@@ -49,10 +49,10 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
 
   Future<void> _getOfferById(SingleOfferEvent event, Emitter<OfferState> emit) async {
     emit(OfferLoading());
-    final result = await getOfferUsecase();
+    final result = await getOfferByIdUsecase(event.projectId);
     result.fold(
       (error) => emit(OfferError(error)),
-      (offers) => emit(OffersLoaded(offers: offers)),
+      (offer) => emit(OfferSelected(offer: offer)),
     );
   }
 
