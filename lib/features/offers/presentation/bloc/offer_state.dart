@@ -57,12 +57,12 @@ class OfferCreated extends OfferState {
 }
 
 class OfferDeleted extends OfferState {
-  final ProjectEntity offer;
+  final bool deleted;
 
-  OfferDeleted({required this.offer});
+  OfferDeleted({required this.deleted});
 
   @override
-  List<Object?> get props => [offer];
+  List<Object?> get props => [deleted];
 }
 
 class OfferAssignedToWorker extends OfferState {

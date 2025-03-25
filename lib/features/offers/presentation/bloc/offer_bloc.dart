@@ -69,10 +69,10 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
 
   Future<void> _deleteOffer(OfferDeletedEvent event, Emitter<OfferState> emit) async {
     emit(OfferLoading());
-    final result = await getOfferUsecase();
+    final result = await deleteOfferUsecase(event.projectId);
     result.fold(
       (error) => emit(OfferError(error)),
-      (offers) => emit(OffersLoaded(offers: offers)),
+      (deleted) => emit(OfferDeleted(deleted: deleted)),
     );
   }
 

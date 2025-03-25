@@ -16,6 +16,6 @@ abstract class OfferRepository {
     double amount,
     List<File> uploadedImages,
   );
-  Future<Either<String, ProjectEntity>> deleteOffer(String id);
+  Future<Either<String, bool>> deleteOffer(String id);
   Future<Either<String, ProjectEntity>> assignedOfferToWorker(String projectId, String workerId);
 }

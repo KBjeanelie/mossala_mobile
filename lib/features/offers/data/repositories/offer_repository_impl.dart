@@ -74,13 +74,13 @@ class OfferRepositoryImpl implements OfferRepository {
   }
 
   @override
-  Future<Either<String, ProjectEntity>> deleteOffer(String id) async{
+  Future<Either<String, bool>> deleteOffer(String id) async{
     log("FETCHING DATA FROM API FOR DELETING SINGLE PROJECT");
     try {
-      final response = await dio.delete('/projects/$id/');
-      if (response.statusCode == 204) {
+      final response = await apiService.delete('/projects/$id/');
+      if (response?.statusCode == 204) {
         log("DATA DELETED SUCCESSFULLY");
-        return Right(ProjectModel.fromJson(response.data));
+        return Right(true);
 
       } else {
         log("ERROR DELETING DATA");

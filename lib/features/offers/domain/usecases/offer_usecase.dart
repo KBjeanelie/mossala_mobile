@@ -60,7 +60,7 @@ class DeleteOfferUsecase {
 
   DeleteOfferUsecase(this.repository);
 
-  Future<Either<String, ProjectEntity>> call(String id) async {
+  Future<Either<String, bool>> call(String id) async {
     return await repository.deleteOffer(id);
   }
 }

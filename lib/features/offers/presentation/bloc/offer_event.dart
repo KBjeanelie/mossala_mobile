@@ -33,7 +33,12 @@ class SingleOfferEvent extends OfferEvent {
   List<Object?> get props => [projectId];
 }
 
-class OfferDeletedEvent extends OfferEvent {}
+class OfferDeletedEvent extends OfferEvent {
+  final String projectId;
+  OfferDeletedEvent(this.projectId);
+  @override
+  List<Object?> get props => [projectId];
+}
 
 class AssignedOfferToWorkerEvent extends OfferEvent {
   final String projectId;

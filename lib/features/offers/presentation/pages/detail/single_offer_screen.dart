@@ -31,35 +31,131 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
   }
 
   final TextEditingController controle = TextEditingController();
+
+  void _deleteOffer(String id) {
+    print("Suppression de l'offre avec l'ID: $id");
+    final offerBloc = BlocProvider.of<OfferBloc>(context);
+    offerBloc.add(OfferDeletedEvent(id));
+    Future.delayed(Duration(milliseconds: 500), () {
+      context.go('/');
+    });
+  }
+
+  void _showConfirmationDialog(
+    BuildContext context, {
+    required String title,
+    required String content,
+    required VoidCallback onConfirm,
+  }) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: mediumTextApp(title, context),
+          content: normalTextApp(content, context),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Fermer le modal
+              },
+              child: normalTextApp("Annuler", context),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                onConfirm();
+              },
+              child: normalTextApp("OK", context),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: BlocConsumer<OfferBloc, OfferState>(
-        listener: (context, state) {
-          if (state is OfferLoading) {
-            CircularProgressIndicator();
-          }
-          if (state is OfferError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: normalTextApp(state.message, context)),
-            );
-          }
-        },
-        builder: (context, state) {
-          if (state is OfferLoading) return Center(child: CircularProgressIndicator());
-          return ListView(
+    return BlocConsumer<OfferBloc, OfferState>(
+      listener: (context, state) {
+        if (state is OfferLoading) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) =>Center(child: CircularProgressIndicator()),
+          );
+        } else if (state is OfferDeleted) {
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: normalTextApp("Votre projet à été supprimé !", context), backgroundColor: AppColors.closed),
+          );
+        } else if (state is OfferSelected) {
+          Navigator.of(context).pop();
+        } else if (state is OfferError) {
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: normalTextApp(state.message, context),backgroundColor: Colors.red),
+          );
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            actions: [
+              PopupMenuButton<String>(
+                onSelected: (value) {
+                  if (value == "closed") {
+                    _showConfirmationDialog(
+                      context,
+                      title: "Fermer le projet",
+                      content: "Êtes-vous sûr de vouloir fermer ce projet ?",
+                      onConfirm: () {
+                        print("Projet fermé !");
+                        // Appelle ici la fonction pour fermer le projet
+                      },
+                    );
+                  } else if (value == "delete") {
+                    _showConfirmationDialog(
+                      context,
+                      title: "Supprimer le projet",
+                      content:"Êtes-vous sûr de vouloir supprimer ce projet ? Cette action est irréversible.",
+                      onConfirm: () =>_deleteOffer(widget.projectId.toString()),
+                    );
+                  }
+                },
+                itemBuilder: (BuildContext context) => [
+                  PopupMenuItem(
+                    value: "closed",
+                    child: ListTile(
+                      leading:
+                          Icon(EvaIcons.lock, color: AppColors.secondary),
+                      title: normalTextApp("Fermer le projet", context),
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: "delete",
+                    child: ListTile(
+                      leading: Icon(EvaIcons.trash2, color: Colors.red),
+                      title: normalTextApp("Supprimer le projet", context),
+                    ),
+                  ),
+                ],
+                icon: Icon(Icons.more_vert),
+              )
+            ],
+          ),
+          body:ListView(
             children: [
-              if(state is OfferSelected)
+              if (state is OfferLoading) Center(child: CircularProgressIndicator()),
+              if (state is OfferSelected)...[
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                   elevation: 2,
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    padding:EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        mediumTextApp(state.offer.name,context),
+                        mediumTextApp(state.offer.name, context),
                         SizedBox(height: 10),
                         Row(
                           children: [
@@ -70,7 +166,7 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                                     EvaIcons.creditCard,
                                     color: AppColors.secondary,
                                   ),
-                                  Expanded(child:normalTextApp("${state.offer.amount}F CFA", context))
+                                  Expanded(child: normalTextApp("${state.offer.amount}F CFA",context))
                                 ],
                               ),
                             ),
@@ -102,7 +198,7 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                         SizedBox(height: 20),
                         normalTextApp(state.offer.description.length > 150
                           ? state.offer.description.substring(0, 150)
-                          : state.offer.description, context),
+                          : state.offer.description,context),
                         SizedBox(height: 30),
                         Row(
                           spacing: 10,
@@ -138,7 +234,8 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                                 spacing: 5,
                                 runSpacing: 5,
                                 children: [
-                                  for (int i = 0; i < 2; i++) BadgeApp(i: i),
+                                  for (int i = 0; i < 2; i++)
+                                    BadgeApp(i: i),
                                 ],
                               ),
                             ),
@@ -154,9 +251,8 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                                 child: mainButtonApp(context, () {
                               _showCustomModal(context, controle);
                             }, "Faire une offre", size: 0.5)),
-                            Expanded(
-                                child: mainOutlinedButtonApp(context, () {
-                                context.push("/project/${state.offer.id}/mores");
+                            Expanded(child: mainOutlinedButtonApp(context, () {
+                              context.push("/project/${state.offer.id}/mores");
                             }, "Voir plus", size: 0.3))
                           ],
                         )
@@ -164,20 +260,21 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                     ),
                   ),
                 ),
-
+              ],
               Card(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 elevation: 2,
                 child: Padding(
                   padding: AppSizes.spaceHV,
-                  child: headingTextApp("Offres pour ce projet :", context),
-                )),
+                  child:headingTextApp("Offres pour ce projet :", context),
+                ) 
+              ),
               for (int i = 0; i < 5; i++) CardWorkerOffer(),
               SizedBox(height: 10)
             ],
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
