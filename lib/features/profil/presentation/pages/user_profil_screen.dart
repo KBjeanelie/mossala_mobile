@@ -316,59 +316,59 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
     );
   }
 
-  Widget _buildRealisationTab(BuildContext context) {
-    return BlocConsumer<ProfilBloc, ProfilState>(
-      listener: (context, state) {
-        if (state is ProfilLoading) {
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (_) => Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        } else {
-          // Fermer le dialogue quand le chargement est terminé
-          Navigator.of(context, rootNavigator: true).pop();
-        }
+  // Widget _buildRealisationTab(BuildContext context) {
+  //   return BlocConsumer<ProfilBloc, ProfilState>(
+  //     listener: (context, state) {
+  //       if (state is ProfilLoading) {
+  //         showDialog(
+  //           context: context,
+  //           barrierDismissible: false,
+  //           builder: (_) => Center(
+  //             child: CircularProgressIndicator(),
+  //           ),
+  //         );
+  //       } else {
+  //         // Fermer le dialogue quand le chargement est terminé
+  //         Navigator.of(context, rootNavigator: true).pop();
+  //       }
 
-        if (state is ProfilError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: normalTextApp(state.message, context)),
-          );
-        }
-      },
+  //       if (state is ProfilError) {
+  //         ScaffoldMessenger.of(context).showSnackBar(
+  //           SnackBar(content: normalTextApp(state.message, context)),
+  //         );
+  //       }
+  //     },
       
-      builder: (context, state) {
-        if (state is ProfilLoading) {
-          return Center(child: CircularProgressIndicator());
-        }
+  //     builder: (context, state) {
+  //       if (state is ProfilLoading) {
+  //         return Center(child: CircularProgressIndicator());
+  //       }
 
-        if (state is ProfilRealisationLoaded) {
-          // Afficher les réalisations récupérées
-          return ListView(
-            children: [
-              // Vérifier si la liste est vide
-              if (state.realisations.isEmpty) 
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Center(
-                    child: normalTextApp("Aucune réalisation trouvée", context),
-                  ),
-                )
-              else 
-                ...state.realisations.map((realisation) => CardRealisation()),
+  //       if (state is ProfilRealisationLoaded) {
+  //         // Afficher les réalisations récupérées
+  //         return ListView(
+  //           children: [
+  //             // Vérifier si la liste est vide
+  //             if (state.realisations.isEmpty) 
+  //               Padding(
+  //                 padding: const EdgeInsets.all(16.0),
+  //                 child: Center(
+  //                   child: normalTextApp("Aucune réalisation trouvée", context),
+  //                 ),
+  //               )
+  //             else 
+  //               ...state.realisations.map((realisation) => CardRealisation()),
 
-              SizedBox(height: 15),
-            ],
-          );
+  //             SizedBox(height: 15),
+  //           ],
+  //         );
 
-        }
+  //       }
 
-        return Center(child: normalTextApp("Aucune réalisation trouvée", context));
-      },
-    );
-  }
+  //       return Center(child: normalTextApp("Aucune réalisation trouvée", context));
+  //     },
+  //   );
+  // }
 
 
   @override
