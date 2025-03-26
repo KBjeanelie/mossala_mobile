@@ -7,4 +7,6 @@ abstract class ProfilRepository {
   Future<Either<String, List<ProjectEntity>>> getProjectCreatedOfCurrentUser();
   Future<Either<String, List<ProjectEntity>>> getProjectAssignedOfCurrentUser();
   Future<Either<String, List<RealisationEntity>>> getRealisationOfCurrentUser();
+  Future<Either<String, bool>> sendWarning(String warningMessage);
+  Future<Either<String, bool>> sendFeedback(String feedBackMessage);
 }

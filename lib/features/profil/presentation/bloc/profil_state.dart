@@ -46,3 +46,17 @@ class ProfilAssignedProjectLoaded extends ProfilState {
   @override
   List<Object?> get props => [assignedProjects];
 }
+
+class WarningSent extends ProfilState {
+  final bool sent;
+  WarningSent(this.sent);
+  @override
+  List<Object?> get props => [sent];
+}
+
+class FeedbackSent extends ProfilState {
+  final bool sent;
+  FeedbackSent(this.sent);
+  @override
+  List<Object?> get props => [sent];
+}

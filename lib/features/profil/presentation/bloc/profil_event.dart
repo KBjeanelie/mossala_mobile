@@ -32,3 +32,18 @@ class ProfilEventCreatedProject extends ProfilEvent {
   @override
   List<Object?> get props => [createdProjects];
 }
+
+class WarningSendEvent extends ProfilEvent {
+  final String message;
+  WarningSendEvent(this.message);
+  @override
+  List<Object?> get props => [message];
+}
+
+class FeedBackSendEvent extends ProfilEvent {
+  final String message;
+  FeedBackSendEvent(this.message);
+  @override
+  List<Object?> get props => [message];
+}
+

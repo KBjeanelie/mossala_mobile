@@ -78,6 +78,8 @@ class MyApp extends StatelessWidget {
             projetAssignedUsecase: ProjetAssignedUsecase(profilRepository),
             projetCreatedUsecase: ProjetCreatedUsecase(profilRepository),
             realisationUsecase: RealisationUsecase(profilRepository),
+            sendFeebBackUsecase: SendFeebBackUsecase(profilRepository), 
+            sendWarningUsecase: SendWarningUsecase(profilRepository),
           )
         ),
         BlocProvider(

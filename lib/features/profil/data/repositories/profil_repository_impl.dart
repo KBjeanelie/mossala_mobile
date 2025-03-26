@@ -82,4 +82,41 @@ class ProfileRepositoryImpl implements ProfilRepository {
       return Left("Exception occurred while fetching data");
     }
   }
+  
+  @override
+  Future<Either<String, bool>> sendFeedback(String feedBackMessage) async{
+    
+    try {
+      final data = {
+        "feedback_message": feedBackMessage
+      };
+      final response = await apiService.post('/feedbacks/',data);
+      if (response?.statusCode == 201) {
+        return Right(true);
+      } else {
+        return Left("Error sending feedback");
+      }
+    } catch (e) {
+      log("EXCEPTION OCCURRED: $e");
+      return Left("Exception occurred while sending feedback");
+    }
+  }
+  
+  @override
+  Future<Either<String, bool>> sendWarning(String warningMessage) async{
+    try {
+      final data = {
+        "warning_message": warningMessage
+      };
+      final response = await apiService.post('/warnings/',data);
+      if (response?.statusCode == 201) {
+        return Right(true);
+      } else {
+        return Left("Error sending warnings");
+      }
+    } catch (e) {
+      log("EXCEPTION OCCURRED: $e");
+      return Left("Exception occurred while sending feedback");
+    }
+  }
 }

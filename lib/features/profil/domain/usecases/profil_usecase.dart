@@ -32,3 +32,23 @@ class ProjetCreatedUsecase {
     return repository.getProjectCreatedOfCurrentUser();
   }
 }
+
+class SendFeebBackUsecase {
+  final ProfilRepository repository;
+
+  SendFeebBackUsecase(this.repository);
+
+  Future<Either<String, bool>> call(String feedBackMessage){
+    return repository.sendFeedback(feedBackMessage);
+  }
+}
+
+class SendWarningUsecase {
+  final ProfilRepository repository;
+
+  SendWarningUsecase(this.repository);
+
+  Future<Either<String, bool>> call(String warningMessage){
+    return repository.sendFeedback(warningMessage);
+  }
+}

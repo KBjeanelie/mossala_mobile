@@ -138,9 +138,9 @@ class OfferRepositoryImpl implements OfferRepository {
       final data =  {
         "freelancer_id": workerId
       };
-      final response = await dio.post('/projects/$projectId/assign_freelancer/', data: data);
-      if (response.statusCode == 201) {
-        return Right(ProjectModel.fromJson(response.data));
+      final response = await apiService.post('/projects/$projectId/assign_freelancer/', data);
+      if (response?.statusCode == 201) {
+        return Right(ProjectModel.fromJson(response?.data));
 
       } else {
         log("ERROR CREATING DATA");
