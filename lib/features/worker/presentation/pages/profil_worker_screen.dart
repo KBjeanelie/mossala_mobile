@@ -7,8 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/widgets/cards.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/services.dart';
+// import 'package:url_launcher/url_launcher.dart';
+// import 'package:flutter/services.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../bloc/worker_bloc.dart';
