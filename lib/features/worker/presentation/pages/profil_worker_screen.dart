@@ -41,14 +41,14 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
     });
   }
 
-  Future<void> _makePhoneCall(String number) async {
-    final Uri launchUri = Uri(scheme: 'tel', path: number);
-    if (await canLaunchUrl(launchUri)) {
-      await launchUrl(launchUri);
-    } else {
-      throw 'Impossible de passer l\'appel à $number';
-    }
-  }
+  // Future<void> _makePhoneCall(String number) async {
+  //   final Uri launchUri = Uri(scheme: 'tel', path: number);
+  //   if (await canLaunchUrl(launchUri)) {
+  //     await launchUrl(launchUri);
+  //   } else {
+  //     throw 'Impossible de passer l\'appel à $number';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +208,7 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
                           spacing: 8,
                           children: [
                             Icon(EvaIcons.phone, color: AppColors.secondary),
-                            normalTextApp(state.worker.tel ?? "", context)
+                            normalTextApp(state.worker.tel, context)
                           ],
                         ),
                         Row(
