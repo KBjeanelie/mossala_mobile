@@ -6,24 +6,24 @@ import 'package:mossala_mobile/features/profil/presentation/bloc/profil_state.da
 import '../../domain/usecases/profil_usecase.dart';
 
 class ProfilBloc extends Bloc<ProfilEvent, ProfilState> {
-  final ExperienceUsecase experienceUsecase;
+  final RealisationUsecase realisationUsecase;
   final ProjetAssignedUsecase projetAssignedUsecase;
   final ProjetCreatedUsecase projetCreatedUsecase;
 
-  ProfilBloc({required this.experienceUsecase, required this.projetAssignedUsecase, required this.projetCreatedUsecase}) : super(ProfilInitial()) {
-    on<ProfilEventExperience>(_profilExperience);
+  ProfilBloc({required this.realisationUsecase, required this.projetAssignedUsecase, required this.projetCreatedUsecase}) : super(ProfilInitial()) {
+    on<ProfilEventRealisation>(_profilRealisation);
     on<ProfilEventAssignedProject>(_profilProjectAssigned);
     on<ProfilEventCreatedProject>(_profilProjectCreated);
   }
 
-  Future<void> _profilExperience(
-      ProfilEventExperience event, Emitter<ProfilState> emit) async {
+  Future<void> _profilRealisation(
+      ProfilEventRealisation event, Emitter<ProfilState> emit) async {
       emit(ProfilLoading()); 
 
-    final result = await experienceUsecase();
+    final result = await realisationUsecase();
     result.fold(
       (error) => emit(ProfilError(error)),
-      (experiences) => emit(ProfilExperienceLoaded(experiences)),
+      (realisations) => emit(ProfilRealisationLoaded(realisations)),
     );
   }
 

@@ -25,7 +25,7 @@ class _RealisationScreenState extends State<RealisationScreen> {
     super.initState();
     // Déclencher le chargement des réalisations
     Future.microtask(() {
-      context.read<ProfilBloc>().add(ProfilEventExperience());
+      context.read<ProfilBloc>().add(ProfilEventRealisation());
     });
   }
 
@@ -62,7 +62,7 @@ class _RealisationScreenState extends State<RealisationScreen> {
             return Center(child: CircularProgressIndicator());
           }
 
-          if (state is ProfilExperienceLoaded) {
+          if (state is ProfilRealisationLoaded) {
             // Afficher les réalisations récupérées
             return ListView(
               children: [
@@ -81,7 +81,7 @@ class _RealisationScreenState extends State<RealisationScreen> {
                 ),
 
                 // Vérifier si la liste est vide
-                if (state.experiences.isEmpty) 
+                if (state.realisations.isEmpty) 
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Center(
@@ -89,7 +89,7 @@ class _RealisationScreenState extends State<RealisationScreen> {
                     ),
                   )
                 else 
-                  ...state.experiences.map((realisation) => CardRealisation()),
+                  ...state.realisations.map((realisation) => CardRealisation()),
 
                 SizedBox(height: 15),
               ],

@@ -1,7 +1,7 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:mossala_mobile/features/auth/domain/entities/user_entity.dart';
-import 'package:mossala_mobile/features/profil/domain/entities/experience.dart';
+import 'package:mossala_mobile/features/profil/domain/entities/realisation.dart';
 import '../../../offers/domain/entities/project.dart';
 import '../repositories/worker_repository.dart';
 
@@ -33,7 +33,7 @@ class ExperienceOfWorkerUsecase {
 
   ExperienceOfWorkerUsecase(this.repository);
 
-  Future<Either<String, List<ExperienceEntity>>> call(int userId){
+  Future<Either<String, List<RealisationEntity>>> call(int userId){
     return repository.getExperienceOfWorker(userId);
   }
 }

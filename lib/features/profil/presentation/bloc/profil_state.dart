@@ -1,7 +1,7 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
-import 'package:mossala_mobile/features/profil/domain/entities/experience.dart';
+import 'package:mossala_mobile/features/profil/domain/entities/realisation.dart';
 
 abstract class ProfilState extends Equatable {
   @override
@@ -20,13 +20,13 @@ class ProfilError extends ProfilState {
   List<Object?> get props => [message];
 }
 
-class ProfilExperienceLoaded extends ProfilState {
-  final List<ExperienceEntity> experiences;
+class ProfilRealisationLoaded extends ProfilState {
+  final List<RealisationEntity> realisations;
 
-  ProfilExperienceLoaded(this.experiences);
+  ProfilRealisationLoaded(this.realisations);
 
   @override
-  List<Object?> get props => [experiences];
+  List<Object?> get props => [realisations];
 }
 
 class ProfilCreatedProjectLoaded extends ProfilState {

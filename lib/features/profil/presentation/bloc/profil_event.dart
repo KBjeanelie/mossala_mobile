@@ -2,17 +2,17 @@
 import 'package:equatable/equatable.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 
-import '../../domain/entities/experience.dart';
+import '../../domain/entities/realisation.dart';
 
 abstract class ProfilEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-class ProfilEventExperience extends ProfilEvent {
-  final List<ExperienceEntity> experiences = [];
+class ProfilEventRealisation extends ProfilEvent {
+  final List<RealisationEntity> experiences = [];
 
-  ProfilEventExperience();
+  ProfilEventRealisation();
   @override
   List<Object?> get props => [experiences];
 }

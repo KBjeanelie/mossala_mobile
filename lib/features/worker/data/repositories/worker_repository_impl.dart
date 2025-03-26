@@ -5,8 +5,8 @@ import 'package:mossala_mobile/features/auth/data/models/user_model.dart';
 import 'package:mossala_mobile/features/auth/domain/entities/user_entity.dart';
 import 'package:mossala_mobile/features/offers/data/models/project_model.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
-import 'package:mossala_mobile/features/profil/data/models/experience_model.dart';
-import 'package:mossala_mobile/features/profil/domain/entities/experience.dart';
+import 'package:mossala_mobile/features/profil/data/models/realisation_model.dart';
+import 'package:mossala_mobile/features/profil/domain/entities/realisation.dart';
 import 'package:mossala_mobile/features/worker/domain/repositories/worker_repository.dart';
 import 'package:mossala_mobile/services/api_service.dart';
 
@@ -20,7 +20,7 @@ class WorkerRepositoryImpl implements WorkerRepository {
   WorkerRepositoryImpl(this.dio);
   
   @override
-  Future<Either<String, List<ExperienceEntity>>> getExperienceOfWorker(int userId) async{
+  Future<Either<String, List<RealisationEntity>>> getExperienceOfWorker(int userId) async{
     log("FETCHING DATA FROM API FOR EXPERIENCE OF WORKER");
     try {
       final response = await apiService.get('/worker-experiences/$userId/');
@@ -28,7 +28,7 @@ class WorkerRepositoryImpl implements WorkerRepository {
         log("DATA FETCHED SUCCESSFULLY");
         log("DATA: ${response.data}");
         final experiences = (response.data as List)
-            .map((e) => ExperienceModel.fromJson(e))
+            .map((e) => RealisationModel.fromJson(e))
             .toList();
         return Right(experiences);
       } else {

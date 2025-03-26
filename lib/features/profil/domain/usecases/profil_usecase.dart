@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:mossala_mobile/features/profil/domain/repositories/profil_repository.dart';
 import '../../../offers/domain/entities/project.dart';
-import '../entities/experience.dart';
+import '../entities/realisation.dart';
 
-class ExperienceUsecase {
+class RealisationUsecase {
   final ProfilRepository repository;
 
-  ExperienceUsecase(this.repository);
+  RealisationUsecase(this.repository);
 
-  Future<Either<String, List<ExperienceEntity>>> call(){
-    return repository.getExperienceOfCurrentUser();
+  Future<Either<String, List<RealisationEntity>>> call(){
+    return repository.getRealisationOfCurrentUser();
   }
 }
 

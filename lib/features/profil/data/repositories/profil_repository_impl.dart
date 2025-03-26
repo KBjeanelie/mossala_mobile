@@ -8,9 +8,9 @@ import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 import 'package:mossala_mobile/services/api_service.dart';
 
 import '../../../offers/data/models/project_model.dart';
-import '../../domain/entities/experience.dart';
+import '../../domain/entities/realisation.dart';
 import '../../domain/repositories/profil_repository.dart';
-import '../models/experience_model.dart';
+import '../models/realisation_model.dart';
 
 class ProfileRepositoryImpl implements ProfilRepository {
   final ApiService apiService = ApiService();
@@ -18,15 +18,15 @@ class ProfileRepositoryImpl implements ProfilRepository {
 
   ProfileRepositoryImpl(this.dio);
   @override
-  Future<Either<String, List<ExperienceEntity>>> getExperienceOfCurrentUser() async {
+  Future<Either<String, List<RealisationEntity>>> getRealisationOfCurrentUser() async {
     log("FETCHING DATA FROM API FOR EXPERIENCE OF CURRENT USER");
     try {
-      final response = await apiService.get('/user-experiences/');
+      final response = await apiService.get('/user-realisations/');
       if (response != null && response.data != null) {
         log("DATA FETCHED SUCCESSFULLY");
         log("DATA: ${response.data}");
         final experiences = (response.data as List)
-            .map((e) => ExperienceModel.fromJson(e))
+            .map((e) => RealisationModel.fromJson(e))
             .toList();
         return Right(experiences);
       } else {

@@ -77,7 +77,7 @@ class MyApp extends StatelessWidget {
           create: (context) => ProfilBloc(
             projetAssignedUsecase: ProjetAssignedUsecase(profilRepository),
             projetCreatedUsecase: ProjetCreatedUsecase(profilRepository),
-            experienceUsecase: ExperienceUsecase(profilRepository),
+            realisationUsecase: RealisationUsecase(profilRepository),
           )
         ),
         BlocProvider(

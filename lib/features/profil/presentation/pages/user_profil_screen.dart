@@ -32,7 +32,7 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
     Future.microtask(() {
       context.read<ProfilBloc>().add(ProfilEventAssignedProject());
       context.read<ProfilBloc>().add(ProfilEventCreatedProject());
-      context.read<ProfilBloc>().add(ProfilEventExperience());
+      context.read<ProfilBloc>().add(ProfilEventRealisation());
     });
   }
   @override
@@ -344,12 +344,12 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
           return Center(child: CircularProgressIndicator());
         }
 
-        if (state is ProfilExperienceLoaded) {
+        if (state is ProfilRealisationLoaded) {
           // Afficher les réalisations récupérées
           return ListView(
             children: [
               // Vérifier si la liste est vide
-              if (state.experiences.isEmpty) 
+              if (state.realisations.isEmpty) 
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Center(
@@ -357,7 +357,7 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
                   ),
                 )
               else 
-                ...state.experiences.map((realisation) => CardRealisation()),
+                ...state.realisations.map((realisation) => CardRealisation()),
 
               SizedBox(height: 15),
             ],

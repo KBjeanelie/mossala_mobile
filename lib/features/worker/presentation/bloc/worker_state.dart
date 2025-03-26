@@ -2,7 +2,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:mossala_mobile/features/auth/domain/entities/user_entity.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
-import 'package:mossala_mobile/features/profil/domain/entities/experience.dart';
+import 'package:mossala_mobile/features/profil/domain/entities/realisation.dart';
 
 abstract class WorkerState extends Equatable {
   @override
@@ -41,7 +41,7 @@ class WorkerCreatedProjectLoaded extends WorkerState {
 }
 
 class WorkerExperienceLoaded extends WorkerState {
-  final List<ExperienceEntity> experiences;
+  final List<RealisationEntity> experiences;
 
   WorkerExperienceLoaded(this.experiences);
 

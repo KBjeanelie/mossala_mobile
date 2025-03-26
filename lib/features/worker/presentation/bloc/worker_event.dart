@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:mossala_mobile/features/auth/domain/entities/user_entity.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
-import 'package:mossala_mobile/features/profil/domain/entities/experience.dart';
+import 'package:mossala_mobile/features/profil/domain/entities/realisation.dart';
 
 abstract class WorkerEvent extends Equatable {
   @override
@@ -10,7 +10,7 @@ abstract class WorkerEvent extends Equatable {
 
 
 class WorkerEventExperience extends WorkerEvent {
-  final List<ExperienceEntity> experiences = [];
+  final List<RealisationEntity> experiences = [];
   final int userId;
 
   WorkerEventExperience(this.userId);
