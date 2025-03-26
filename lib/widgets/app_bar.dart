@@ -32,10 +32,10 @@ List<Widget> customeAction(BuildContext context) {
         child: Icon(EvaIcons.plus, color: AppColors.secondary),
       ),
     ),
-    IconButton(
-      onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => ChatsScreen()));
-      },
-      icon: Icon(EvaIcons.paperPlane, color: AppColors.secondary)),
+    // IconButton(
+    //   onPressed: () {
+    //     Navigator.push(context, MaterialPageRoute(builder: (context) => ChatsScreen()));
+    //   },
+    //   icon: Icon(EvaIcons.paperPlane, color: AppColors.secondary)),
   ];
 }
