@@ -24,20 +24,22 @@ class WorkerError extends WorkerState {
 
 class WorkerAssignedProjectLoaded extends WorkerState {
   final List<ProjectEntity> assignedProjects;
+  final int assignedProjectsCount;
 
-  WorkerAssignedProjectLoaded(this.assignedProjects);
+  WorkerAssignedProjectLoaded(this.assignedProjects) : assignedProjectsCount = assignedProjects.length;
 
   @override
-  List<Object?> get props => [assignedProjects];
+  List<Object?> get props => [assignedProjects, assignedProjectsCount];
 }
 
 class WorkerCreatedProjectLoaded extends WorkerState {
   final List<ProjectEntity> createdProjects;
+  final int createdProjectsCount;
 
-  WorkerCreatedProjectLoaded(this.createdProjects);
+  WorkerCreatedProjectLoaded(this.createdProjects) : createdProjectsCount = createdProjects.length;
 
   @override
-  List<Object?> get props => [createdProjects];
+  List<Object?> get props => [createdProjects, createdProjectsCount];
 }
 
 class WorkerExperienceLoaded extends WorkerState {

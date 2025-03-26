@@ -257,9 +257,19 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
   }
 
   Widget _buildProfileCard(BuildContext context) {
+    final assignedProjectsCount = context.select<ProfilBloc, int?>((bloc) {
+      final state = bloc.state;
+      return state is ProfilAssignedProjectLoaded ? state.assignedProjectsCount : null;
+    });
+
+    final createdProjectsCount = context.select<ProfilBloc, int?>((bloc) {
+      final state = bloc.state;
+      return state is ProfilCreatedProjectLoaded ? state.createdProjectsCount : null;
+    });
+
     return Card(
       margin: EdgeInsets.only(top: 1),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0),),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
       child: Padding(
         padding: AppSizes.spaceHV,
         child: Row(
@@ -273,13 +283,13 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                mediumTextApp("10", context),
+                mediumTextApp("${assignedProjectsCount ?? '0'}", context),
                 normalTextApp("Projets réalisés", context),
               ],
             ),
             Column(
               children: [
-                mediumTextApp("5", context),
+                mediumTextApp("${createdProjectsCount ?? '0'}", context),
                 normalTextApp("Projets créés", context),
               ],
             )
@@ -288,6 +298,7 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
       ),
     );
   }
+
 
 
   Widget _buildProjectsDoneTab(BuildContext context) {

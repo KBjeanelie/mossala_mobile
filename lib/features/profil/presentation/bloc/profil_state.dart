@@ -31,20 +31,22 @@ class ProfilRealisationLoaded extends ProfilState {
 
 class ProfilCreatedProjectLoaded extends ProfilState {
   final List<ProjectEntity> createdProjects;
+  final int createdProjectsCount;
 
-  ProfilCreatedProjectLoaded(this.createdProjects);
+  ProfilCreatedProjectLoaded(this.createdProjects) : createdProjectsCount = createdProjects.length;
 
   @override
-  List<Object?> get props => [createdProjects];
+  List<Object?> get props => [createdProjects, createdProjectsCount];
 }
 
 class ProfilAssignedProjectLoaded extends ProfilState {
   final List<ProjectEntity> assignedProjects;
+  final int assignedProjectsCount;
 
-  ProfilAssignedProjectLoaded(this.assignedProjects);
+  ProfilAssignedProjectLoaded(this.assignedProjects) : assignedProjectsCount = assignedProjects.length;
 
   @override
-  List<Object?> get props => [assignedProjects];
+  List<Object?> get props => [assignedProjects, assignedProjectsCount];
 }
 
 class WarningSent extends ProfilState {
