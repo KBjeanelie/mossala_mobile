@@ -40,12 +40,13 @@ class _MenuScreenState extends State<MenuScreen> {
   Future<void> _loadUser() async {
     try {
       final user = await authLocalDataSource.getUser();
-      log("user : $user");
+      //log("user : $user");
       setState(() {
         currentUser = UserModel.fromJson(user!);
         isLoading = false;
       });
     } catch (e) {
+      log("ERROR : $e");
       setState(() {
         isLoading = false;
       });

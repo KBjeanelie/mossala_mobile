@@ -32,13 +32,15 @@ class AuthRepositoryImpl implements AuthRepository {
         ),
       );
       log("LOGIN SUCCESS....");
-      log("LOGIN RESPONSE : ${response.data}");
+      // log("LOGIN RESPONSE : ${response.data}");
       final accessToken = response.data['access'];
       final refreshToken = response.data['refresh'];
       await authLocalDataSource.saveAccessToken(accessToken);
       await authLocalDataSource.saveRefreshToken(refreshToken);
       final user = UserModel.fromJson(response.data['user']);
+      log("user : ${user.toJson()}");
       await authLocalDataSource.saveUser(user.toJson());
+      log("user local data : ${authLocalDataSource.getUser()}");
       return Right(user);
     } catch (e) {
       if (e is DioException) {

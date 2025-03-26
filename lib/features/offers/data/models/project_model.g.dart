@@ -7,20 +7,21 @@ part of 'project_model.dart';
 // **************************************************************************
 
 ProjectModel _$ProjectModelFromJson(Map<String, dynamic> json) => ProjectModel(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-      description: json['description'] as String,
-      amount: (json['amount'] as num).toInt(),
-      address: json['address'] as String,
-      isClosed: json['isClosed'] as bool,
-      createdAt: json['createdAt'] as String,
-      owner: (json['owner'] as num).toInt(),
-      assignedFreelancer: (json['assignedFreelancer'] as num).toInt(),
-      specialty: (json['specialty'] as List<dynamic>)
-          .map((e) => (e as num).toInt())
-          .toList(),
-      images: json['images'] as List<dynamic>,
-      uploadedImages: json['uploadedImages'] as List<dynamic>,
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      name: json['name'] is String ? json['name'] as String : "",
+      description: json['description'] is String ? json['description'] as String : "",
+      amount: (json['amount'] as num?)?.toInt() ?? 0,
+      address: json['adress'] is String ? json['adress'] as String : "",
+      isClosed: json['is_closed'] as bool? ?? false,
+      createdAt: json['create_at'] is String ? json['created_at'] as String : "",
+      owner: (json['owner'] as num?)?.toInt() ?? 0,
+      assignedFreelancer: (json['assigned_freelancer'] as num?)?.toInt() ?? 0,
+      specialty: (json['specialty'] as List<dynamic>?)
+          ?.map((e) => (e as num?)?.toInt() ?? 0)
+          .toList() ?? [],
+      images: json['images'] as List<dynamic>? ?? [],
+      uploadedImages: json['uploaded_images'] as List<dynamic>? ?? [],
+
     );
 
 Map<String, dynamic> _$ProjectModelToJson(ProjectModel instance) =>

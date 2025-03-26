@@ -65,7 +65,7 @@ class _WorkerScreenState extends State<WorkerScreen> {
               );
             }
           }
-          return Center(child: normalTextApp("Aucun prestataire trouvé", context));
+          return Center(child: normalTextApp("Something went wrong", context));
         },
       ),
     );
