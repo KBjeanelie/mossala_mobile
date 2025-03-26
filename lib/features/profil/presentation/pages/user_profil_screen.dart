@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/features/profil/presentation/pages/edit_account_screen.dart';
-import 'package:mossala_mobile/features/profil/presentation/pages/realisation_screen.dart';
 import 'package:mossala_mobile/widgets/cards.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
