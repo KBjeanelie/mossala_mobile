@@ -1,6 +1,7 @@
 
 
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -117,6 +118,28 @@ class ProfileRepositoryImpl implements ProfilRepository {
     } catch (e) {
       log("EXCEPTION OCCURRED: $e");
       return Left("Exception occurred while sending feedback");
+    }
+  }
+  
+  @override
+  Future<Either<String, bool>> addUserRealisation(String name, String description, String date, int userId, File image,) async{
+    try {
+      FormData formData = FormData.fromMap({
+        "realisation_name": name,
+        "description": description,
+        "date": date,
+        "user": userId,
+        //"image": image.readAsBytesSync().toList(),
+      });
+      final response = await apiService.postWithFile('/user-realisations/', formData);
+      if (response?.statusCode == 201) {
+        return Right(true);
+      } else {
+        return Left("Error adding realisation");
+      }
+    } catch (e) {
+      log("EXCEPTION OCCURRED: $e");
+      return Left("Exception occurred while adding realisation");
     }
   }
 }

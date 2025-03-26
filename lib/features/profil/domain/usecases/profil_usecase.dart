@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:mossala_mobile/features/profil/domain/repositories/profil_repository.dart';
 import '../../../offers/domain/entities/project.dart';
@@ -50,5 +52,21 @@ class SendWarningUsecase {
 
   Future<Either<String, bool>> call(String warningMessage){
     return repository.sendFeedback(warningMessage);
+  }
+}
+
+class AddUserRealisationUsecase {
+  final ProfilRepository repository;
+
+  AddUserRealisationUsecase(this.repository);
+
+  Future<Either<String, bool>> call(
+    String name,
+    String description,
+    String date,
+    int userId,
+    File image,
+  ){
+    return repository.addUserRealisation(name, description, date, userId, image);
   }
 }

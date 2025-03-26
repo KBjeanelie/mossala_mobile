@@ -29,7 +29,7 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
     Future.microtask(() {
       final workerBloc = context.read<WorkerBloc>();
       workerBloc.add(WorkerEventCreatedProject(widget.workerId));
@@ -75,7 +75,6 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
               borderRadius: BorderRadius.circular(0),
             ),
             child: TabBar(
-              isScrollable: true,
               controller: _tabController,
               dividerHeight: 0.0,
               indicatorColor: AppColors.secondary,
@@ -87,7 +86,7 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
                 Tab(text: "À propos"),
                 Tab(text: "Projets remportés"),
                 Tab(text: "Projets créés"),
-                Tab(text: "Réalisations"),
+                //Tab(text: "Réalisations"),
               ],
             ),
           ),
@@ -98,7 +97,7 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
                 _buildAboutCard(context),
                 _buildProjectsDoneTab(context),
                 _buildProjectsCreateTab(context),
-                _buildRealisationTab(context),
+                //_buildRealisationTab(context),
               ],
             ),
           ),

@@ -60,3 +60,10 @@ class FeedbackSent extends ProfilState {
   @override
   List<Object?> get props => [sent];
 }
+
+class ProfilRealisationCreated extends ProfilState {
+  final bool created;
+  ProfilRealisationCreated(this.created);
+  @override
+  List<Object?> get props => [created];
+}

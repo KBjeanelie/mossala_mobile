@@ -104,36 +104,21 @@ class _MenuScreenState extends State<MenuScreen> {
             SizedBox(height: 15),
             Container(
               margin: AppSizes.spaceHorizontal,
-              child: Column(
+              child: Wrap(
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                            onTap: () => context.push('/realisations'),
-                            child: CardMenu(
-                              icon: EvaIcons.checkmarkSquare,
-                              title: "Réalisations",
-                            ))),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () => context.push('/project_create'),
-                          child: CardMenu(
-                            icon: EvaIcons.edit2,
-                            title: "Projets créés",
-                          ))),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      GestureDetector(
-                          onTap: () => context.push('/project_assigned'),
-                          child: CardMenu(
-                            icon: EvaIcons.award,
-                            title: "Projets remportés",
-                          )),
-                    ],
-                  ),
+                  GestureDetector(
+                  onTap: () => context.push('/project_create'),
+                  child: CardMenu(
+                    icon: EvaIcons.edit2,
+                    title: "Projets créés",
+                  )),
+                  GestureDetector(
+                  onTap: () => context.push('/project_assigned'),
+                  child: CardMenu(
+                    icon: EvaIcons.award,
+                    title: "Projets remportés",
+                  )),
+                  
                 ],
               ),
             ),
@@ -208,7 +193,7 @@ class CardMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.5,
+        width: MediaQuery.of(context).size.width * 0.45,
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 3),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

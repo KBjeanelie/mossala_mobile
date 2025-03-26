@@ -28,7 +28,7 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
     Future.microtask(() {
       context.read<ProfilBloc>().add(ProfilEventAssignedProject());
       context.read<ProfilBloc>().add(ProfilEventCreatedProject());
@@ -60,7 +60,7 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
                 Tab(text: "À propos"),
                 Tab(text: "Projets réalisés"),
                 Tab(text: "Projets créés"),
-                Tab(text: "Réalisations"),
+                //Tab(text: "Réalisations"),
               ],
             ),
           ),
@@ -71,7 +71,7 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
                 _buildAboutCard(context),
                 _buildProjectsDoneTab(context),
                 _buildProjectsCreateTab(context),
-                _buildRealisationTab(context),
+                //_buildRealisationTab(context),
               ],
             ),
           ),

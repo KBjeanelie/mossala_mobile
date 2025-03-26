@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 
@@ -45,5 +47,30 @@ class FeedBackSendEvent extends ProfilEvent {
   FeedBackSendEvent(this.message);
   @override
   List<Object?> get props => [message];
+}
+
+class ProfilRealisationEvent extends ProfilEvent {
+  final String name;
+  final String description;
+  final String date;
+  final int userId;
+  final File image;
+
+  ProfilRealisationEvent(
+    this.name,
+    this.description,
+    this.date,
+    this.userId,
+    this.image,
+  );
+  @override
+  List<Object?> get props => [
+    name,
+    description,
+    date,
+    userId,
+    image,
+  ];
+
 }
 
