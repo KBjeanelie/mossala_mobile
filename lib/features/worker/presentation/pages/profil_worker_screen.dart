@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/widgets/cards.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../bloc/worker_bloc.dart';
@@ -37,6 +39,15 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
       workerBloc.add(WorkerEventExperience(widget.workerId));
       workerBloc.add(FetchSingleWorkerEvent(widget.workerId));
     });
+  }
+
+  Future<void> _makePhoneCall(String number) async {
+    final Uri launchUri = Uri(scheme: 'tel', path: number);
+    if (await canLaunchUrl(launchUri)) {
+      await launchUrl(launchUri);
+    } else {
+      throw 'Impossible de passer l\'appel à $number';
+    }
   }
 
   @override
@@ -103,15 +114,15 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: (){
-      //     Navigator.push(context, MaterialPageRoute(builder: (context) => SingleChatScreen()));
-      //   },
-      //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-      //     backgroundColor: AppColors.secondary,
-      //     mini: true,
-      //     child: Icon(EvaIcons.messageCircleOutline, color: AppColors.darkText),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //_makePhoneCall("064838870")
+        },
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+        backgroundColor: AppColors.lightBorder,
+        mini: true,
+        child: Icon(EvaIcons.phone, color: AppColors.secondary),
+      ),
     );
   }
 
