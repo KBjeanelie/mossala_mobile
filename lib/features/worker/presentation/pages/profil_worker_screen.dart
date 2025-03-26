@@ -351,37 +351,37 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
     );
   }
 
-  Widget _buildRealisationTab(BuildContext context) {
-    return BlocConsumer<WorkerBloc, WorkerState>(
-      listener: (context, state) {
-        if (state is WorkerLoading) {
-          CircularProgressIndicator();
-        }
-      },
-      builder: (context, state) {
-        if (state is WorkerLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        if (state is WorkerExperienceLoaded) {
-          if (state.experiences.isEmpty) {
-            return Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Center(
-                child: normalTextApp("Aucune réalisation trouvé", context),
-              ),
-            );
-          } else {
-            // return ListView.builder(
-            //   itemCount: state.experiences.length,
-            //   itemBuilder: (context, index) => CardOfferView(offer: state.experiences[index],),
-            // );
-          }
-        }
-        return Center(
-            child: normalTextApp("Aucune réalisation trouvé", context));
-      },
-    );
-  }
+  // Widget _buildRealisationTab(BuildContext context) {
+  //   return BlocConsumer<WorkerBloc, WorkerState>(
+  //     listener: (context, state) {
+  //       if (state is WorkerLoading) {
+  //         CircularProgressIndicator();
+  //       }
+  //     },
+  //     builder: (context, state) {
+  //       if (state is WorkerLoading) {
+  //         return const Center(child: CircularProgressIndicator());
+  //       }
+  //       if (state is WorkerExperienceLoaded) {
+  //         if (state.experiences.isEmpty) {
+  //           return Padding(
+  //             padding: EdgeInsets.all(16.0),
+  //             child: Center(
+  //               child: normalTextApp("Aucune réalisation trouvé", context),
+  //             ),
+  //           );
+  //         } else {
+  //           // return ListView.builder(
+  //           //   itemCount: state.experiences.length,
+  //           //   itemBuilder: (context, index) => CardOfferView(offer: state.experiences[index],),
+  //           // );
+  //         }
+  //       }
+  //       return Center(
+  //           child: normalTextApp("Aucune réalisation trouvé", context));
+  //     },
+  //   );
+  // }
 
   @override
   void dispose() {
