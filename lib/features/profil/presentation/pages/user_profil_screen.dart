@@ -1,10 +1,16 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:developer';
+
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
+import 'package:mossala_mobile/features/auth/data/datasources/auth_local_datasource.dart';
+import 'package:mossala_mobile/features/auth/data/models/user_model.dart';
+import 'package:mossala_mobile/features/auth/domain/entities/user_entity.dart';
 import 'package:mossala_mobile/features/profil/presentation/pages/edit_account_screen.dart';
 import 'package:mossala_mobile/widgets/cards.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
@@ -23,6 +29,9 @@ class UserProfilScreen extends StatefulWidget {
 
 class _UserProfilScreenState extends State<UserProfilScreen> with TickerProviderStateMixin {
   late TabController _tabController;
+  final AuthLocalDataSource authLocalDataSource = AuthLocalDataSource(secureStorage: FlutterSecureStorage());
+  User? currentUser;
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -32,13 +41,32 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
       context.read<ProfilBloc>().add(ProfilEventAssignedProject());
       context.read<ProfilBloc>().add(ProfilEventCreatedProject());
       context.read<ProfilBloc>().add(ProfilEventRealisation());
+      _loadUser();
     });
+  }
+  Future<void> _loadUser() async {
+    try {
+      final user = await authLocalDataSource.getUser();
+      //log("user : $user");
+      setState(() {
+        currentUser = UserModel.fromJson(user!);
+        isLoading = false;
+      });
+    } catch (e) {
+      log("ERROR : $e");
+      setState(() {
+        isLoading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: normalTextApp("Erreur lors du chargement des informations.", context), backgroundColor: AppColors.closed,),
+      );
+    }
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: mediumTextApp("KUBEMBULA Jean-Élie", context),
+        title: mediumTextApp("${currentUser?.lastname} ${currentUser?.firstname}", context),
       ),
       body: Column(
         children: [
@@ -96,77 +124,129 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
               padding: AppSizes.spaceHV,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 8,
+                spacing: 15,
                 children: [
-                  mediumTextApp("KUBEMBULA Jean-Élie", context),
+                  mediumTextApp("${currentUser?.lastname} ${currentUser?.firstname}", context),
+                  Row(
+                    spacing: 8,
+                    children: [
+                      Icon(EvaIcons.at, color: AppColors.secondary),
+                      if(currentUser?.username == null || currentUser?.username == "")...[
+                        normalTextApp("Nom utilisateur non renseignée", context)
+                      ]else...[
+                        normalTextApp(currentUser!.username ?? "", context)
+                      ]
+                    ],
+                  ),
+                  Row(
+                    spacing: 8,
+                    children: [
+                      Icon(EvaIcons.globe, color: AppColors.secondary),
+                      if(currentUser?.nickname == null || currentUser?.nickname == "")...[
+                        normalTextApp("Surnon non renseignée", context)
+                      ]else...[
+                        normalTextApp(currentUser!.nickname ?? "", context)
+                      ]
+                    ],
+                  ),
+                  Row(
+                    spacing: 8,
+                    children: [
+                      Icon(EvaIcons.personAdd, color: AppColors.secondary),
+                      if(currentUser?.gender == null || currentUser?.gender == "")...[
+                        normalTextApp("Genre non renseignée", context)
+                      ]else...[
+                        normalTextApp(currentUser!.gender ?? "", context)
+                      ]
+                    ],
+                  ),
                   Row(
                     spacing: 8,
                     children: [
                       Icon(EvaIcons.pin, color: AppColors.secondary),
-                      normalTextApp("50 rue nkouma, Moungali", context)
+                      if(currentUser?.address == null || currentUser?.address == "")...[
+                        normalTextApp("Adresse non renseignée", context)
+                      ]else...[
+                        normalTextApp(currentUser!.address ?? "", context)
+                      ]
                     ],
                   ),
                   Row(
                     spacing: 8,
                     children: [
                       Icon(EvaIcons.email, color: AppColors.secondary),
-                      normalTextApp("contact@example.com", context)
-                    ],
-                  ),
-                  Row(
-                    spacing: 8,
-                    children: [
-                      Icon(EvaIcons.briefcase, color: AppColors.secondary),
-                      normalTextApp("Ingénieur Logiciel", context)
+                      if(currentUser?.email == null || currentUser?.email == "")...[
+                        normalTextApp("Email non renseignée", context)
+                      ]else...[
+                        normalTextApp(currentUser!.email ?? "", context)
+                      ]
                     ],
                   ),
                   Row(
                     spacing: 8,
                     children: [
                       Icon(EvaIcons.phone, color: AppColors.secondary),
-                      normalTextApp("06 12 34 56 78", context)
+                      normalTextApp(currentUser?.tel ?? "", context)
                     ],
                   ),
                   Row(
                     spacing: 8,
                     children: [
-                      Icon(Icons.map, color: AppColors.secondary),
-                      normalTextApp("Brazzaville", context)
+                      Icon(EvaIcons.calendar, color: AppColors.secondary),
+                      if(currentUser?.dateOfBirth == null || currentUser?.dateOfBirth == "")...[
+                        normalTextApp("Date de naissance non renseignée", context)
+                      ]else...[
+                        normalTextApp(currentUser!.dateOfBirth ?? "", context)
+                      ]
                     ],
                   ),
-              
                   Row(
                     spacing: 8,
                     children: [
                       Icon(EvaIcons.facebook, color: AppColors.secondary),
-                      normalTextApp("Facebook", context)
-                    ],
-                  ),
-                  Row(
-                    spacing: 8,
-                    children: [
-                      Icon(EvaIcons.linkedin, color: AppColors.secondary),
-                      normalTextApp("Brazzaville", context)
+                      if(currentUser?.facebook == null || currentUser?.facebook == "")...[
+                        normalTextApp("Compte facebook non renseignée", context)
+                      ]else...[
+                        normalTextApp(currentUser!.facebook ?? "", context)
+                      ]
                     ],
                   ),
                   Row(
                     spacing: 8,
                     children: [
                       Icon(EvaIcons.alertCircle, color: AppColors.secondary),
-                      normalTextApp("Congolaise", context)
+                      if(currentUser?.nationality == null || currentUser?.nationality == "")...[
+                        normalTextApp("Nationnalité non renseignée", context)
+                      ]else...[
+                        normalTextApp(currentUser!.nationality ?? "", context)
+                      ]
+                    ],
+                  ),
+                  Row(
+                    spacing: 8,
+                    children: [
+                      Icon(EvaIcons.briefcase, color: AppColors.secondary),
+                      if(currentUser?.nationality == null || currentUser?.nationality == "")...[
+                        normalTextApp("Metier non renseignée", context)
+                      ]else...[
+                        normalTextApp(currentUser!.nationality ?? "", context)
+                      ]
                     ],
                   ),
                   Wrap(
                     spacing: 8,
                     children: [
-                      normalTextApp("Compétence : ", context),
+                      mediumTextApp("Compétence : ", context),
                       BadgeApp(i: 1), BadgeApp(i: 1), BadgeApp(i: 1), BadgeApp(i: 1), BadgeApp(i: 1)
                     ],
                   ),
                   SizedBox(height: 10,),
-                  mediumTextApp("Description: ", context),
-                  normalTextApp("Elijah Walter est un ingénieur logiciel spécialisé dans le développement d'applications mobiles pour les entreprises. Il a travaillé dans le secteur de l'informatique pendant plus de 15 ans et a obtenu un diplôme de l'Université de Brazzaville en 2019.", context)
-              
+                  mediumTextApp("Bio: ", context),
+                  if(currentUser?.nationality == null || currentUser?.nationality == "")...[
+                    normalTextApp("Salut, je suis un prestataire sur Mosala et je suis disponible à l'instant si tu as besoin de mes services. \nMerci!", context),
+                  ]else...[
+                    normalTextApp(currentUser!.nationality ?? "", context)
+                  ]
                 ],
               ),
             ),

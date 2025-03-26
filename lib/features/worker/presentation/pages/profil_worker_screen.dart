@@ -135,107 +135,129 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
                     padding: AppSizes.spaceHV,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: 8,
+                      spacing: 15,
                       children: [
-                        mediumTextApp(
-                            "${state.worker.lastname} ${state.worker.firstname}",
-                            context),
+                        mediumTextApp("${state.worker.lastname} ${state.worker.firstname}", context),
+                        Row(
+                          spacing: 8,
+                          children: [
+                            Icon(EvaIcons.at, color: AppColors.secondary),
+                            if(state.worker.username == null || state.worker.username == "")...[
+                              normalTextApp("Nom utilisateur non renseignée", context)
+                            ]else...[
+                              normalTextApp(state.worker.username ?? "", context)
+                            ]
+                          ],
+                        ),
+                        Row(
+                          spacing: 8,
+                          children: [
+                            Icon(EvaIcons.globe, color: AppColors.secondary),
+                            if(state.worker.nickname == null || state.worker.nickname == "")...[
+                              normalTextApp("Surnon non renseignée", context)
+                            ]else...[
+                              normalTextApp(state.worker.nickname ?? "", context)
+                            ]
+                          ],
+                        ),
+                        Row(
+                          spacing: 8,
+                          children: [
+                            Icon(EvaIcons.personAdd, color: AppColors.secondary),
+                            if(state.worker.gender == null || state.worker.gender == "")...[
+                              normalTextApp("Genre non renseignée", context)
+                            ]else...[
+                              normalTextApp(state.worker.gender ?? "", context)
+                            ]
+                          ],
+                        ),
                         Row(
                           spacing: 8,
                           children: [
                             Icon(EvaIcons.pin, color: AppColors.secondary),
-                            normalTextApp(
-                                (state.worker.address == null ||
-                                        state.worker.address!.isEmpty)
-                                    ? 'Adresse non renseignée'
-                                    : state.worker.address!,
-                                context)
+                            if(state.worker.address == null || state.worker.address == "")...[
+                              normalTextApp("Adresse non renseignée", context)
+                            ]else...[
+                              normalTextApp(state.worker.address ?? "", context)
+                            ]
                           ],
                         ),
                         Row(
                           spacing: 8,
                           children: [
                             Icon(EvaIcons.email, color: AppColors.secondary),
-                            normalTextApp(
-                                (state.worker.email == null ||
-                                        state.worker.email!.isEmpty)
-                                    ? 'Email non renseignée'
-                                    : state.worker.email!,
-                                context)
-                          ],
-                        ),
-                        Row(
-                          spacing: 8,
-                          children: [
-                            Icon(EvaIcons.briefcase,
-                                color: AppColors.secondary),
-                            normalTextApp("Ingénieur Logiciel", context)
+                            if(state.worker.email == null || state.worker.email == "")...[
+                              normalTextApp("Email non renseignée", context)
+                            ]else...[
+                              normalTextApp(state.worker.email ?? "", context)
+                            ]
                           ],
                         ),
                         Row(
                           spacing: 8,
                           children: [
                             Icon(EvaIcons.phone, color: AppColors.secondary),
-                            normalTextApp(state.worker.tel, context)
+                            normalTextApp(state.worker.tel ?? "", context)
                           ],
                         ),
                         Row(
                           spacing: 8,
                           children: [
-                            Icon(Icons.map, color: AppColors.secondary),
-                            normalTextApp("Brazzaville", context)
+                            Icon(EvaIcons.calendar, color: AppColors.secondary),
+                            if(state.worker.dateOfBirth == null || state.worker.dateOfBirth == "")...[
+                              normalTextApp("Date de naissance non renseignée", context)
+                            ]else...[
+                              normalTextApp(state.worker.dateOfBirth ?? "", context)
+                            ]
                           ],
                         ),
                         Row(
                           spacing: 8,
                           children: [
                             Icon(EvaIcons.facebook, color: AppColors.secondary),
-                            normalTextApp(
-                                (state.worker.facebook == null ||
-                                        state.worker.facebook!.isEmpty)
-                                    ? 'Facebook non renseignée'
-                                    : state.worker.facebook!,
-                                context)
+                            if(state.worker.facebook == null || state.worker.facebook == "")...[
+                              normalTextApp("Compte facebook non renseignée", context)
+                            ]else...[
+                              normalTextApp(state.worker.facebook ?? "", context)
+                            ]
                           ],
                         ),
                         Row(
                           spacing: 8,
                           children: [
-                            Icon(EvaIcons.linkedin, color: AppColors.secondary),
-                            normalTextApp(
-                                (state.worker.linkedin == null ||
-                                        state.worker.linkedin!.isEmpty)
-                                    ? 'Linkdin non renseignée'
-                                    : state.worker.linkedin!,
-                                context)
+                            Icon(EvaIcons.alertCircle, color: AppColors.secondary),
+                            if(state.worker.nationality == null || state.worker.nationality == "")...[
+                              normalTextApp("Nationnalité non renseignée", context)
+                            ]else...[
+                              normalTextApp(state.worker.nationality ?? "", context)
+                            ]
                           ],
                         ),
                         Row(
                           spacing: 8,
                           children: [
-                            Icon(EvaIcons.alertCircle,
-                                color: AppColors.secondary),
-                            normalTextApp("Congolaise", context)
+                            Icon(EvaIcons.briefcase, color: AppColors.secondary),
+                            if(state.worker.nationality == null || state.worker.nationality == "")...[
+                              normalTextApp("Metier non renseignée", context)
+                            ]else...[
+                              normalTextApp(state.worker.nationality ?? "", context)
+                            ]
                           ],
                         ),
                         Wrap(
                           spacing: 8,
                           children: [
-                            normalTextApp("Compétence : ", context),
-                            BadgeApp(i: 1),
-                            BadgeApp(i: 1),
-                            BadgeApp(i: 1),
-                            BadgeApp(i: 1),
-                            BadgeApp(i: 1)
+                            mediumTextApp("Compétence : ", context),
+                            BadgeApp(i: 1), BadgeApp(i: 1), BadgeApp(i: 1), BadgeApp(i: 1), BadgeApp(i: 1)
                           ],
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        mediumTextApp("Description: ", context),
-                        normalTextApp(
-                            "Elijah Walter est un ingénieur logiciel spécialisé dans le développement d'applications mobiles pour les entreprises. Il a travaillé dans le secteur de l'informatique pendant plus de 15 ans et a obtenu un diplôme de l'Université de Brazzaville en 2019.",
-                            context)
+                        SizedBox(height: 10,),
+                        mediumTextApp("Bio: ", context),
+                        if(state.worker.nationality == null || state.worker.nationality == "")...[
+                          normalTextApp("Salut, je suis un prestataire sur Mosala et je suis disponible à l'instant si tu as besoin de mes services. \nMerci!", context),
+                        ]else...[
+                          normalTextApp(state.worker.nationality ?? "", context)
+                        ]
                       ],
                     ),
                   ),
