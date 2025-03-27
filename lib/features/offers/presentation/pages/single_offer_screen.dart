@@ -21,7 +21,7 @@ class SingleOfferScreen extends StatelessWidget {
         children: [
           CardProjectDetail(currentUserId: 1, projectId: projectId,),
           SizedBox(height: 10,),
-          CardAppyOffer(projectId: projectId.toString())
+          //CardAppyOffer(projectId: projectId.toString())
         ],
       ),
     );

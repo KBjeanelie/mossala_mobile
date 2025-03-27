@@ -12,6 +12,7 @@ import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_bloc.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_state.dart';
+import 'package:mossala_mobile/screen/main/home_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 import '../bloc/offer_event.dart';
@@ -103,9 +104,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
         double.parse(amountController.text),
         _selectedImages.map((image) => File(image.path)).toList(),
       ));
-      Future.delayed(Duration(milliseconds: 500), () {
-        context.go('/');
-      });
+      
     }
   }
 
@@ -121,9 +120,11 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
           );
         } else if (state is OfferCreated) {
           Navigator.of(context).pop();
+          Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: normalTextApp("Votre projet à été publier !", context), backgroundColor: AppColors.open),
           );
+          //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
         } else if (state is OfferError) {
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(

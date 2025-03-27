@@ -6,6 +6,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/features/auth/data/datasources/auth_local_datasource.dart';
@@ -105,9 +106,7 @@ class _UserProfilScreenState extends State<UserProfilScreen> with TickerProvider
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => EditAccountScreen()));
-        },
+        onPressed: ()=> context.push('/edit-profil'),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           backgroundColor: AppColors.secondary,
           mini: true,

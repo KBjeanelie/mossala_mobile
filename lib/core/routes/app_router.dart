@@ -5,6 +5,7 @@ import 'package:mossala_mobile/features/auth/presentation/pages/register_screen.
 import 'package:mossala_mobile/features/offers/presentation/pages/create_service_screen.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/detail/more_offer_screen.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/single_offer_screen.dart';
+import 'package:mossala_mobile/features/profil/presentation/pages/edit_account_screen.dart';
 import 'package:mossala_mobile/features/profil/presentation/pages/menu/about_app_screen.dart';
 import 'package:mossala_mobile/features/profil/presentation/pages/menu/feedback_screen.dart';
 import 'package:mossala_mobile/features/profil/presentation/pages/menu/notifications_screen.dart';
@@ -86,6 +87,10 @@ Future<GoRouter> createRouter() async {
           GoRoute(
             path: '/profil',
             builder: (context, state) => UserProfilScreen(),
+          ),
+          GoRoute(
+            path: '/edit-profil',
+            builder: (context, state) => EditAccountScreen(),
           ),
           GoRoute(
             path: '/realisations',
