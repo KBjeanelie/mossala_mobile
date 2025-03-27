@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:mossala_mobile/features/offers/domain/entities/offer.dart';
 
 import '../entities/project.dart';
 import '../repositories/offer_repository.dart';
@@ -82,5 +83,51 @@ class AssignedOfferToWorker{
 
   Future<Either<String, ProjectEntity>> call(String projectId, String workerId) async {
     return await repository.assignedOfferToWorker(projectId, workerId);
+  }
+}
+
+
+class GetAppliesOffersUsecase {
+  final OfferRepository repository;
+
+  GetAppliesOffersUsecase(this.repository);
+
+  Future<Either<String, List<OfferEntity>>> call(String projectId) async {
+    return await repository.getAppliesOffers(projectId);
+  }
+}
+
+class GetApplyOfferByIdUsercase {
+  final OfferRepository repository;
+
+  GetApplyOfferByIdUsercase(this.repository);
+
+  Future<Either<String, OfferEntity>> call(String id) async {
+    return await repository.getApplyOfferById(id);
+  }
+}
+
+class ApplyOfferUsecase {
+  final OfferRepository repository;
+  ApplyOfferUsecase(this.repository);
+
+  Future<Either<String, bool>> call(
+    double amount,
+    String duration,
+    String description,
+    int userId,
+    int projectId,
+  ) async {
+    return await repository.applyOffer(amount, duration, description, userId, projectId);
+  }
+}
+
+class CancelApplyOfferUsecase {
+  final OfferRepository repository;
+
+  CancelApplyOfferUsecase(this.repository);
+  
+  Future<Either<String, bool>> call(String id) async {
+    return await repository.cancelApplyOffer(id);
   }
 }

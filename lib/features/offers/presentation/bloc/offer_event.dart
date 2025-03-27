@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
+import 'package:mossala_mobile/features/offers/domain/entities/offer.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 
 abstract class OfferEvent extends Equatable {
@@ -73,3 +74,40 @@ class OfferEventCreate extends OfferEvent {
   ];
 }
 
+
+class GetAppliesOffersEvent extends OfferEvent {
+  final String projectId;
+  
+  final List<OfferEntity> appliesOffers = [];
+
+  GetAppliesOffersEvent(this.projectId);
+  
+  @override
+  List<Object?> get props => [projectId, appliesOffers];
+}
+
+class GetSingleApplyOfferEvent extends OfferEvent {
+  final String applyOfferId;
+  GetSingleApplyOfferEvent(this.applyOfferId);
+  @override
+  List<Object?> get props => [applyOfferId];
+}
+
+class DeleteApplyOfferEvent extends OfferEvent {
+  final String applyOfferId;
+  DeleteApplyOfferEvent(this.applyOfferId);
+  @override
+  List<Object?> get props => [applyOfferId];
+}
+
+class ApplyOfferEvent extends OfferEvent {
+  final double amount;
+  final String duration;
+  final String description;
+  final int userId;
+  final int projectId;
+
+  ApplyOfferEvent(this.amount, this.duration, this.description, this.userId, this.projectId);
+  @override
+  List<Object?> get props => [amount, duration, description, userId, projectId];
+}

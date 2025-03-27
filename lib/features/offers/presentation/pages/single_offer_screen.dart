@@ -14,10 +14,10 @@ import 'package:mossala_mobile/features/auth/domain/entities/user_entity.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_state.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
-import '../../../../../core/theme/app_colors.dart';
-import '../../../../../widgets/cards.dart';
-import '../../bloc/offer_bloc.dart';
-import '../../bloc/offer_event.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../widgets/cards.dart';
+import '../bloc/offer_bloc.dart';
+import '../bloc/offer_event.dart';
 
 class SingleOfferScreen extends StatefulWidget {
   final int projectId;
@@ -30,11 +30,14 @@ class SingleOfferScreen extends StatefulWidget {
 class _SingleOfferScreenState extends State<SingleOfferScreen> {
   final AuthLocalDataSource authLocalDataSource = AuthLocalDataSource(secureStorage: FlutterSecureStorage());
   User? currentUser;
-  
+  final TextEditingController amountController = TextEditingController();
+  final TextEditingController durationController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
   @override
   void initState() {
     super.initState();
     Future.microtask(() {
+      //context.read<OfferBloc>().add(GetAppliesOffersEvent(widget.projectId.toString()));
       _loadUser();
       context.read<OfferBloc>().add(SingleOfferEvent(widget.projectId.toString()));
     });
@@ -53,7 +56,7 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
     }
   }
 
-  final TextEditingController controle = TextEditingController();
+  
 
   void _deleteOffer(String id) {
     final offerBloc = BlocProvider.of<OfferBloc>(context);
@@ -108,11 +111,7 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
     return BlocConsumer<OfferBloc, OfferState>(
       listener: (context, state) {
         if (state is OfferLoading) {
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) =>Center(child: CircularProgressIndicator()),
-          );
+          CircularProgressIndicator();
         } else if (state is OfferDeleted) {
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
@@ -123,9 +122,11 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: normalTextApp("Votre projet à été fermé !", context), backgroundColor: AppColors.secondary),
           );
-        } else if (state is OfferSelected) {
-          Navigator.of(context).pop();
-        } else if (state is OfferError) {
+        } else if (state is CreatedApplyOffer) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: normalTextApp("Dévis envoyé !", context), backgroundColor: AppColors.open),
+          );
+        }else if (state is OfferError) {
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: normalTextApp(state.message, context),backgroundColor: Colors.red),
@@ -286,7 +287,7 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                             ] else ... [
                               if (state.offer.owner != currentUser?.id)
                                 Expanded(child: mainButtonApp(context, () {
-                                  _showCustomModal(context, controle);
+                                  _showCustomModal(context, amountController, durationController, descriptionController, currentUser!.id, state.offer.id);
                                 }, "Faire une offre", size: 0.5)),
                               Expanded(child: mainOutlinedButtonApp(context, () {
                                 context.push("/project/${state.offer.id}/mores");
@@ -317,7 +318,13 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
   }
 }
 
-void _showCustomModal(BuildContext context, controler) {
+void _showCustomModal(BuildContext context,
+  TextEditingController amountController,
+  TextEditingController durationController,
+  TextEditingController descriptionController,
+  int userId,
+  int projectId,
+) {
   showDialog(
     context: context,
     barrierDismissible: false,
@@ -337,16 +344,13 @@ void _showCustomModal(BuildContext context, controler) {
               Divider(),
               SizedBox(height: 20),
               normalTextApp("Montant", context),
-              inputForm("", controler, Validators.validateInput,
-                  type: TextInputType.number),
+              inputForm("", amountController, Validators.validateInput,type: TextInputType.number),
               SizedBox(height: 10),
               normalTextApp("Durée de travail", context),
-              inputForm("", controler, Validators.validateInput,
-                  type: TextInputType.number),
+              inputForm("", durationController, Validators.validateInput,type: TextInputType.number),
               SizedBox(height: 10),
               normalTextApp("Laisser un petit commentaire", context),
-              inputForm("", controler, Validators.validateInput,
-                  lines: 5, length: 700),
+              inputForm("", descriptionController, Validators.validateInput,lines: 5, length: 700),
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -357,7 +361,14 @@ void _showCustomModal(BuildContext context, controler) {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      // Action à exécuter
+                      final offerBloc = BlocProvider.of<OfferBloc>(context);
+                      offerBloc.add(ApplyOfferEvent(
+                        double.parse(amountController.text),
+                        durationController.text,
+                        descriptionController.text,
+                        userId,
+                        projectId,
+                      ));
                       Navigator.pop(context);
                     },
                     child: Text("OK"),

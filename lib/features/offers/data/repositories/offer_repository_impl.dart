@@ -5,6 +5,8 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:mossala_mobile/features/offers/data/models/offer_model.dart';
+import 'package:mossala_mobile/features/offers/domain/entities/offer.dart';
 
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 import 'package:mossala_mobile/services/api_service.dart';
@@ -185,6 +187,85 @@ class OfferRepositoryImpl implements OfferRepository {
         log("ERROR DELETING DATA");
         return Left("Error deleting data");
       } 
+    } catch (e) {
+      log("EXCEPTION OCCURRED: $e");
+      return Left("Exception occurred while fetching data");
+    }
+  }
+
+
+
+  @override
+  Future<Either<String, bool>> cancelApplyOffer(String id) async{
+    try {
+      final response = await apiService.delete("/apply-projects/$id/");
+      if (response?.statusCode == 204) {
+        return Right(true);
+
+      } else {
+        log("ERROR DELETING DATA");
+        return Left("Error deleting data");
+      } 
+    } catch (e) {
+      log("EXCEPTION OCCURRED: $e");
+      return Left("Exception occurred while fetching data");
+    }
+  }
+
+  @override
+  Future<Either<String, List<OfferEntity>>> getAppliesOffers(String projectId) async{
+    log("FETCHING DATA FOR APPLY PROJECT FROM API");
+
+    try {
+      final response = await apiService.get('/apply-projects/?project_id=$projectId');
+      if (response?.statusCode == 200) {
+        final offers = (response?.data as List)
+            .map((e) => OfferModel.fromJson(e))
+            .toList();
+        return Right(offers);
+      }else {
+        log("ERROR FETCHING DATA");
+        return Left("Error fetching data");
+      }
+    } catch (e) {
+      log("EXCEPTION OCCURRED: $e");
+      return Left("Exception occurred while fetching data");
+    }
+  }
+
+  @override
+  Future<Either<String, OfferEntity>> getApplyOfferById(String id) async{
+    try {
+      final response = await apiService.get('/apply-projects/$id/');
+      if (response?.statusCode == 200) {
+        return Right(OfferModel.fromJson(response?.data));
+      } else {
+        log("ERROR FETCHING DATA");
+        return Left("Error fetching data");
+      }
+    } catch (e) {
+      log("EXCEPTION OCCURRED: $e");
+      return Left("Exception occurred while fetching data");
+    }
+  }
+  
+  @override
+  Future<Either<String, bool>> applyOffer(double amount, String duration, String description, int userId, int projectId) async{
+    try {
+      final data = {
+        "amount": amount,
+        "duration": duration,
+        "description": description,
+        "user": userId,
+        "project": projectId
+      };
+      final response = await apiService.post('/apply-projects/', data);
+      if (response?.statusCode == 201) {
+        return Right(true);
+      } else {
+        log("ERROR CREATING DATA");
+        return Left("Error creating data");
+      }
     } catch (e) {
       log("EXCEPTION OCCURRED: $e");
       return Left("Exception occurred while fetching data");

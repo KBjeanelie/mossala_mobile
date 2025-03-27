@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:mossala_mobile/features/offers/domain/entities/offer.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 
 abstract class OfferState extends Equatable {
@@ -81,4 +82,34 @@ class OfferAssignedToWorker extends OfferState {
 
   @override
   List<Object?> get props => [offer];
+}
+
+class GetAppliedOffers extends OfferState {
+  final List<OfferEntity> appliesOffers;
+
+  GetAppliedOffers(this.appliesOffers);
+  @override
+  List<Object?> get props => [appliesOffers];
+}
+
+class GetApplyOffer extends OfferState {
+  final OfferEntity applyOffer;
+
+  GetApplyOffer({required this.applyOffer});
+  @override
+  List<Object?> get props => [applyOffer];
+}
+
+class CreatedApplyOffer extends OfferState {
+  final bool created;
+  CreatedApplyOffer({required this.created});
+  @override
+  List<Object?> get props => [created];
+}
+
+class DeletedApplyOffer extends OfferState {
+  final bool deleted;
+  DeletedApplyOffer({required this.deleted});
+  @override
+  List<Object?> get props => [deleted];
 }

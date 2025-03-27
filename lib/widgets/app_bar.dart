@@ -1,6 +1,5 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:mossala_mobile/features/chats/presentation/pages/chats_screen.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/create_service_screen.dart';
 import 'package:mossala_mobile/features/profil/presentation/pages/menu/notifications_screen.dart';
 import '../core/theme/app_colors.dart';

@@ -13,6 +13,10 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
   final AssignedOfferToWorker assignedOfferToWorker;
   final GetOpenOffer getOpenOffer;
   final ClosedOfferUsecase closedOfferUsecase;
+  final GetAppliesOffersUsecase getAppliesOffersUsecase;
+  final GetApplyOfferByIdUsercase getApplyOfferByIdUsercase;
+  final ApplyOfferUsecase applyOfferUsecase;
+  final CancelApplyOfferUsecase cancelApplyOfferUsecase;
   
   OfferBloc({
     required this.assignedOfferToWorker,
@@ -22,6 +26,10 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
     required this.createOfferUsecase,
     required this.deleteOfferUsecase,
     required this.closedOfferUsecase,
+    required this.getAppliesOffersUsecase,
+    required this.getApplyOfferByIdUsercase,
+    required this.applyOfferUsecase,
+    required this.cancelApplyOfferUsecase,
   }) : super(OfferInitial()) {
     on<OffersEventFetch>(_getOffers);
     on<SingleOfferEvent>(_getOfferById);
@@ -30,6 +38,52 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
     on<AssignedOfferToWorkerEvent>(_assignedOfferToWorker);
     on<OpenOffersEventFetch>(_openOffers);
     on<OfferClosedEvent>(_closedOffer);
+    on<GetAppliesOffersEvent>(_appliesOffer);
+    on<GetSingleApplyOfferEvent>(_singleApplyOffer);
+    on<ApplyOfferEvent>(_applyOffer);
+    on<DeleteApplyOfferEvent>(_deleteApplyOffer);
+  }
+
+  Future<void> _appliesOffer(GetAppliesOffersEvent event, Emitter<OfferState> emit) async {
+    emit(OfferLoading());
+    final result = await getAppliesOffersUsecase(event.projectId);
+    result.fold(
+      (error) => emit(OfferError(error)),
+      (appliesOffers) => emit(GetAppliedOffers(appliesOffers)),
+    );
+  }
+
+  Future<void> _singleApplyOffer(GetSingleApplyOfferEvent event, Emitter<OfferState> emit) async {
+    emit(OfferLoading());
+    final result = await getApplyOfferByIdUsercase(event.applyOfferId);
+    result.fold(
+      (error) => emit(OfferError(error)),
+      (applyOffer) => emit(GetApplyOffer(applyOffer: applyOffer)),
+    );
+  }
+
+  Future<void> _applyOffer(ApplyOfferEvent event, Emitter<OfferState> emit) async {
+    emit(OfferLoading());
+    final result = await applyOfferUsecase(
+      event.amount,
+      event.duration,
+      event.description,
+      event.userId,
+      event.projectId
+    );
+    result.fold(
+      (error) => emit(OfferError(error)),
+      (_) => emit(CreatedApplyOffer(created: true)),
+    );
+  }
+
+  Future<void> _deleteApplyOffer(DeleteApplyOfferEvent event, Emitter<OfferState> emit) async {
+    emit(OfferLoading());
+    final result = await cancelApplyOfferUsecase(event.applyOfferId);
+    result.fold(
+      (error) => emit(OfferError(error)),
+      (_) => emit(DeletedApplyOffer(deleted: true)),
+    );
   }
 
   Future<void> _getOffers(OffersEventFetch event, Emitter<OfferState> emit) async {

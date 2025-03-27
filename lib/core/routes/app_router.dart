@@ -4,7 +4,7 @@ import 'package:mossala_mobile/features/auth/presentation/pages/login_screen.dar
 import 'package:mossala_mobile/features/auth/presentation/pages/register_screen.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/create_service_screen.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/detail/more_offer_screen.dart';
-import 'package:mossala_mobile/features/offers/presentation/pages/detail/single_offer_screen.dart';
+import 'package:mossala_mobile/features/offers/presentation/pages/single_offer_screen.dart';
 import 'package:mossala_mobile/features/profil/presentation/pages/menu/about_app_screen.dart';
 import 'package:mossala_mobile/features/profil/presentation/pages/menu/feedback_screen.dart';
 import 'package:mossala_mobile/features/profil/presentation/pages/menu/notifications_screen.dart';
