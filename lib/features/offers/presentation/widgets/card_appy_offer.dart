@@ -10,7 +10,6 @@ import 'package:mossala_mobile/features/offers/domain/entities/offer.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_bloc.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_event.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_state.dart';
-import 'package:mossala_mobile/features/offers/presentation/pages/single_offer_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 class CardAppyOffer extends StatefulWidget {

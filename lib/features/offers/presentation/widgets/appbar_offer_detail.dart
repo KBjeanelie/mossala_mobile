@@ -3,12 +3,8 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
-import 'package:mossala_mobile/features/auth/data/datasources/auth_local_datasource.dart';
-import 'package:mossala_mobile/features/auth/data/models/user_model.dart';
-import 'package:mossala_mobile/features/auth/domain/entities/user_entity.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_bloc.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_event.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_state.dart';
@@ -19,10 +15,10 @@ class AppBarOfferDetail extends StatelessWidget implements PreferredSizeWidget {
   final int curentUserId;
 
   const AppBarOfferDetail({
-    Key? key,
+    super.key,
     required this.projectId,
     required this.curentUserId,
-  }) : super(key: key);
+  });
 
   void _deleteOffer(BuildContext context, String id) {
     final offerBloc = BlocProvider.of<OfferBloc>(context);

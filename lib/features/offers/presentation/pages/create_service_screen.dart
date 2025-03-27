@@ -6,13 +6,11 @@ import 'dart:io';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_bloc.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_state.dart';
-import 'package:mossala_mobile/screen/main/home_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 import '../bloc/offer_event.dart';
