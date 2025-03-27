@@ -12,7 +12,6 @@ import 'package:mossala_mobile/core/theme/app_sizes.dart';
 import 'package:mossala_mobile/features/auth/data/datasources/auth_local_datasource.dart';
 import 'package:mossala_mobile/features/auth/data/models/user_model.dart';
 import 'package:mossala_mobile/features/auth/domain/entities/user_entity.dart';
-import 'package:mossala_mobile/features/profil/presentation/pages/edit_account_screen.dart';
 import 'package:mossala_mobile/widgets/cards.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
