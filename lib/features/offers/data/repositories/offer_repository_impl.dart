@@ -222,6 +222,7 @@ class OfferRepositoryImpl implements OfferRepository {
         final offers = (response?.data as List)
             .map((e) => OfferModel.fromJson(e))
             .toList();
+        log("data: ${response?.data}");
         return Right(offers);
       }else {
         log("ERROR FETCHING DATA");

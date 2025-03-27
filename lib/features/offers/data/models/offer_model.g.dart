@@ -9,9 +9,9 @@ part of 'offer_model.dart';
 OfferModel _$OfferModelFromJson(Map<String, dynamic> json) => OfferModel(
       id: (json['id'] as num).toInt(),
       amount: (json['amount'] as num).toDouble(),
-      duration: json['duration'] as String,
-      description: json['description'] as String,
-      applicationDate: DateTime.parse(json['applicationDate'] as String),
+      duration: json['duration'] as String? ?? "",
+      description: json['description'] as String? ?? "",
+      applicationDate: DateTime.parse(json['application_date'] as String),
       user: (json['user'] as num).toInt(),
       project: (json['project'] as num).toInt(),
     );
