@@ -9,7 +9,6 @@ import 'package:mossala_mobile/widgets/widgets.dart';
 
 import '../bloc/worker_event.dart';
 import '../bloc/worker_state.dart';
-
 class WorkerScreen extends StatefulWidget {
   const WorkerScreen({super.key});
 
@@ -21,7 +20,7 @@ class _WorkerScreenState extends State<WorkerScreen> {
   @override
   void initState() {
     super.initState();
-    // Déclencher le chargement des réalisations
+    // Déclencher le chargement des prestataires
     Future.microtask(() {
       context.read<WorkerBloc>().add(FetchWorkersEvent());
     });
@@ -33,10 +32,7 @@ class _WorkerScreenState extends State<WorkerScreen> {
       appBar: appBarWidget("Prestataire", context),
       body: BlocConsumer<WorkerBloc, WorkerState>(
         listener: (context, state) {
-          if (state is WorkerLoading) {
-            CircularProgressIndicator();
-          }
-
+          debugPrint("Current WorkerBloc state: $state");
           if (state is WorkerError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: normalTextApp(state.message, context)),
@@ -44,28 +40,35 @@ class _WorkerScreenState extends State<WorkerScreen> {
           }
         },
         builder: (context, state) {
+          print("Current state: $state"); // Debugging
+          if (state is WorkerInitial) {
+            // Si l'état est initial, relancer le fetch
+            context.read<WorkerBloc>().add(FetchWorkersEvent());
+            return Center(child: CircularProgressIndicator());
+          }
 
-          if (state is WorkerLoading) return Center(child: CircularProgressIndicator());
+          if (state is WorkerLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-          if (state is FetchWorkersLoaded){
-
+          if (state is FetchWorkersLoaded) {
             if (state.workers.isEmpty) {
               return Center(
                 child: normalTextApp("Aucun prestataire trouvé", context),
               );
             } else {
-              return SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                child: Column(
-                  children: List.generate(
-                    state.workers.length,
-                    (index) => WorkerCardView(user: state.workers[index]),
-                  ),
-                ),
+              return ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                itemCount: state.workers.length,
+                itemBuilder: (context, index) {
+                  return WorkerCardView(user: state.workers[index]);
+                },
               );
             }
           }
-          return Center(child: normalTextApp("Something went wrong", context));
+          debugPrint("Current WorkerBloc state: $state");
+
+          return Center(child: normalTextApp("Une erreur est survenue", context));
         },
       ),
     );
