@@ -1,6 +1,5 @@
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mossala_mobile/features/auth/data/models/user_model.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/offer.dart';
 
 part 'offer_model.g.dart';
