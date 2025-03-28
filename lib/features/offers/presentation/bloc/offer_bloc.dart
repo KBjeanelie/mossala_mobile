@@ -17,6 +17,7 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
   final GetApplyOfferByIdUsercase getApplyOfferByIdUsercase;
   final ApplyOfferUsecase applyOfferUsecase;
   final CancelApplyOfferUsecase cancelApplyOfferUsecase;
+  final GetProjectWithApplicationUsecase getProjectWithApplicationUsecase;
   
   OfferBloc({
     required this.assignedOfferToWorker,
@@ -30,9 +31,11 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
     required this.getApplyOfferByIdUsercase,
     required this.applyOfferUsecase,
     required this.cancelApplyOfferUsecase,
+    required this.getProjectWithApplicationUsecase,
   }) : super(OfferInitial()) {
     on<OffersEventFetch>(_getOffers);
     on<SingleOfferEvent>(_getOfferById);
+    on<SingleOfferWithApplicationEvent>(_getOfferWithApplication);
     on<OfferEventCreate>(_createOffer);
     on<OfferDeletedEvent>(_deleteOffer);
     on<AssignedOfferToWorkerEvent>(_assignedOfferToWorker);
@@ -110,6 +113,15 @@ class OfferBloc extends Bloc<OfferEvent, OfferState> {
     result.fold(
       (error) => emit(OfferError(error)),
       (offer) => emit(OfferSelected(offer: offer)),
+    );
+  }
+
+  Future<void> _getOfferWithApplication(SingleOfferWithApplicationEvent event, Emitter<OfferState> emit) async {
+    emit(OfferLoading());
+    final result = await getProjectWithApplicationUsecase(event.projectId);
+    result.fold(
+      (error) => emit(OfferError(error)),
+      (project) => emit(GetOfferWithApplicationSuccess(singleProject: project)),
     );
   }
 

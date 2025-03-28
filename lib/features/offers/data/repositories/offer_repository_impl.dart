@@ -6,6 +6,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:mossala_mobile/features/offers/data/models/offer_model.dart';
+import 'package:mossala_mobile/features/offers/domain/entities/application.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/offer.dart';
 
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
@@ -266,6 +267,24 @@ class OfferRepositoryImpl implements OfferRepository {
       } else {
         log("ERROR CREATING DATA");
         return Left("Error creating data");
+      }
+    } catch (e) {
+      log("EXCEPTION OCCURRED: $e");
+      return Left("Exception occurred while fetching data");
+    }
+  }
+
+  @override
+  Future<Either<String, ProjectWithApplicationsEntity>> getProjectWithApplication(String projectId) async{
+    try {
+      final response = await apiService.get('/projects/$projectId/applications/');
+      if (response?.statusCode == 200) {
+        log("data : ${response?.data}");
+        final projectWithApplications = ProjectWithApplicationsEntity.fromJson(response?.data);
+        return Right(projectWithApplications);
+      } else {
+      log("ERROR FETCHING DATA");
+      return Left("Error fetching data");
       }
     } catch (e) {
       log("EXCEPTION OCCURRED: $e");

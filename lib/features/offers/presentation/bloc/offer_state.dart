@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:mossala_mobile/features/offers/domain/entities/application.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/offer.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 
@@ -46,6 +47,15 @@ class OfferSelected extends OfferState {
 
   @override
   List<Object?> get props => [offer];
+}
+
+class GetOfferWithApplicationSuccess extends OfferState {
+  final ProjectWithApplicationsEntity singleProject;
+
+  GetOfferWithApplicationSuccess({required this.singleProject});
+
+  @override
+  List<Object?> get props => [singleProject];
 }
 
 class OfferCreated extends OfferState {

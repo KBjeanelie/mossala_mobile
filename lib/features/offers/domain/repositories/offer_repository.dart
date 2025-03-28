@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:mossala_mobile/features/offers/domain/entities/application.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/offer.dart';
 
 import '../entities/project.dart';
@@ -10,6 +11,7 @@ abstract class OfferRepository {
   Future<Either<String, List<ProjectEntity>>> getOffers();
   Future<Either<String, List<ProjectEntity>>> getOpenOffer();
   Future<Either<String, ProjectEntity>> getOfferById(String id);
+  Future<Either<String, ProjectWithApplicationsEntity>> getProjectWithApplication(String projectId);
   Future<Either<String, ProjectEntity>> createOffer(
     String name,
     String description,

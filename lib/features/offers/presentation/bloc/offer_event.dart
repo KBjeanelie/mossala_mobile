@@ -34,6 +34,13 @@ class SingleOfferEvent extends OfferEvent {
   List<Object?> get props => [projectId];
 }
 
+class SingleOfferWithApplicationEvent extends OfferEvent {
+  final String projectId;
+  SingleOfferWithApplicationEvent(this.projectId);
+  @override
+  List<Object?> get props => [projectId];
+}
+
 class OfferDeletedEvent extends OfferEvent {
   final String projectId;
   OfferDeletedEvent(this.projectId);

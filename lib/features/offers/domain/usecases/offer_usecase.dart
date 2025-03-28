@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:mossala_mobile/features/offers/domain/entities/application.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/offer.dart';
 
 import '../entities/project.dart';
@@ -94,6 +95,16 @@ class GetAppliesOffersUsecase {
 
   Future<Either<String, List<OfferEntity>>> call(String projectId) async {
     return await repository.getAppliesOffers(projectId);
+  }
+}
+
+class GetProjectWithApplicationUsecase {
+  final OfferRepository repository;
+
+  GetProjectWithApplicationUsecase(this.repository);
+
+  Future<Either<String, ProjectWithApplicationsEntity>> call(String projectId) async {
+    return await repository.getProjectWithApplication(projectId);
   }
 }
 

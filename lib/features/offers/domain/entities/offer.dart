@@ -7,7 +7,7 @@ class OfferEntity extends Equatable {
   final String duration;
   final String description;
   final DateTime applicationDate;
-  final int user;
+  final dynamic user;
   final int project;
 
   const OfferEntity({

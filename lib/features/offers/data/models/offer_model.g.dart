@@ -12,7 +12,7 @@ OfferModel _$OfferModelFromJson(Map<String, dynamic> json) => OfferModel(
       duration: json['duration'] as String? ?? "",
       description: json['description'] as String? ?? "",
       applicationDate: DateTime.parse(json['application_date'] as String),
-      user: (json['user'] as num).toInt(),
+      user: (json['user']) as dynamic,
       project: (json['project'] as num).toInt(),
     );
 

@@ -1,10 +1,16 @@
 class Validators {
   static String? validateInput(String? value) {
-    if (value == null || value.isEmpty || value.length < 5) return "Le champs est requis";
-    // ignore: valid_regexps
-    if (!RegExp(r'^[A-Za-zÀ-ÖØ-öø-ÿ ]+$').hasMatch(value)) return "Champs invalide";
+    if (value == null || value.trim().isEmpty) return "Le champ est requis";
+    if (value.trim().length < 5) return "Le champ doit contenir au moins 5 caractères";
+
+    // Accepte lettres, accents, chiffres, espaces, apostrophes et tirets
+    // if (!RegExp(r"^[A-Za-zÀ-ÖØ-öø-ÿ0-9'’\- ]+$").hasMatch(value)) {
+    //   return "Champ invalide";
+    // }
+
     return null;
   }
+
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) return "L'email est requis";
     if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) return "Email invalide";
@@ -36,11 +42,15 @@ class Validators {
 
 
   static String? validateName(String? value) {
-    if (value == null || value.isEmpty) return "Le nom est requis";
-    // ignore: valid_regexps
-    if (!RegExp(r'^[A-Za-zÀ-ÖØ-öø-ÿ ]+$').hasMatch(value)) return "Nom invalide";
+    if (value == null || value.trim().isEmpty) return "Le nom est requis";
+
+    if (!RegExp(r"^[A-Za-zÀ-ÖØ-öø-ÿ]+([ '-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$").hasMatch(value)) {
+      return "Nom invalide";
+    }
+
     return null;
   }
+
 
   static String? validateFirstName(String? value) {
     if (value == null || value.isEmpty) return "Le prénom est requis";
