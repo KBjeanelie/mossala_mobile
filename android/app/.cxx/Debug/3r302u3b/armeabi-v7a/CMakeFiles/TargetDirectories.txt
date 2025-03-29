@@ -1,0 +1,2 @@
+/home/walter/Applications/FlutterProjects/mossala_mobile/android/app/.cxx/Debug/3r302u3b/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/walter/Applications/FlutterProjects/mossala_mobile/android/app/.cxx/Debug/3r302u3b/armeabi-v7a/CMakeFiles/rebuild_cache.dir

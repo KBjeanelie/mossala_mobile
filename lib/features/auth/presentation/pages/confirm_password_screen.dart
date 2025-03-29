@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/core/utils/validators.dart';
 import 'package:mossala_mobile/features/auth/presentation/pages/otp_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
@@ -33,7 +32,6 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundLogin,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
         child: Form(
@@ -42,7 +40,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.35),
-              normalTextApp("Securisez votre compte avec un mot de passe", color: AppColors.textDark,),
+              normalTextApp("Securisez votre compte avec un mot de passe", context),
               SizedBox(height: 20),
               inputForm("Mot de passe", passwordControler, Validators.validatePassword,type: TextInputType.phone),
               SizedBox(height: 20),

@@ -1,0 +1,1 @@
+/home/walter/Applications/FlutterProjects/mossala_mobile/build/app/intermediates/cxx/RelWithDebInfo/2bg62523/obj/x86_64
