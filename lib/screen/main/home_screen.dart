@@ -39,22 +39,22 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             activeIcon: Icon(EvaIcons.home),
             icon: Icon(EvaIcons.homeOutline),
-            label: ''
+            label: 'Accueil'
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(EvaIcons.people),
             icon: Icon(EvaIcons.peopleOutline),
-            label: ''
+            label: 'Prestataire'
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(EvaIcons.briefcase),
             icon: Icon(EvaIcons.briefcaseOutline),
-            label: ''
+            label: 'Mes Projets'
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(EvaIcons.menu2),
-            icon: Icon(EvaIcons.menu2Outline),
-            label: ''
+            icon: Icon(EvaIcons.menu),
+            label: 'Menu'
           )
         ],
       )

@@ -95,7 +95,7 @@ class _ProfilWorkerScreenState extends State<ProfilWorkerScreen>
                   fontWeight: FontWeight.w600),
               tabs: [
                 Tab(text: "À propos"),
-                Tab(text: "Projets remportés"),
+                Tab(text: "Projets réalisés"),
                 Tab(text: "Projets créés"),
                 //Tab(text: "Réalisations"),
               ],

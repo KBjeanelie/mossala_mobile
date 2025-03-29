@@ -2,6 +2,8 @@ import 'package:go_router/go_router.dart';
 import 'package:mossala_mobile/features/auth/presentation/pages/forgetpassword_screen.dart';
 import 'package:mossala_mobile/features/auth/presentation/pages/login_screen.dart';
 import 'package:mossala_mobile/features/auth/presentation/pages/register_screen.dart';
+import 'package:mossala_mobile/features/offers/presentation/pages/chats/chats_project_screen.dart';
+import 'package:mossala_mobile/features/offers/presentation/pages/chats/singe_chat_project_screen.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/create_service_screen.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/detail/more_offer_screen.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/single_offer_screen.dart';

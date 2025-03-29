@@ -2,9 +2,12 @@ TÂCHE QUI RESTE À FAIRE :
 # CONNEXION API AVEC ECRAN DE MISE À JOUR PROFIL
 # CONNEXION API AVEC ECRAN AJOUTER REALISATION
 # RECUPERATION DU NOMBRE DES PROJETS RÉALISÉS ET CRÉÉS POUR WORKER
-
-
-
+# Revoir l'affichage de la date de publication de l'offre
+# Regler le beug de l'affichage de deux fois l'image
+# Ajouter interface de mise à jour du projet
+# ajout la possiblilité de reouvrir le projet
+# Système de notification
+# Système de messagerie par rapport au projet
 
 # RECUPERATION DES OFFRES POUR UN PROJETS (Done)
 # REVOIR LA VALIDATION DU CHAMP ADRESS DE L'INSCRIPTION (Done)
