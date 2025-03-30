@@ -12,6 +12,7 @@ class ProfilBloc extends Bloc<ProfilEvent, ProfilState> {
   final SendFeebBackUsecase sendFeebBackUsecase;
   final SendWarningUsecase sendWarningUsecase;
   final AddUserRealisationUsecase addUserRealisationUsecase;
+  final UpdateUserProfileUsecase updateUserProfileUsecase;
 
   ProfilBloc({
     required this.realisationUsecase, 
@@ -20,6 +21,7 @@ class ProfilBloc extends Bloc<ProfilEvent, ProfilState> {
     required this.sendFeebBackUsecase, 
     required this.sendWarningUsecase,
     required this.addUserRealisationUsecase,
+    required this.updateUserProfileUsecase,
   }) : super(ProfilInitial()) {
     on<ProfilEventRealisation>(_profilRealisation);
     on<ProfilEventAssignedProject>(_profilProjectAssigned);
@@ -27,6 +29,16 @@ class ProfilBloc extends Bloc<ProfilEvent, ProfilState> {
     on<FeedBackSendEvent>(_profilSendFeedback);
     on<WarningSendEvent>(_profilSendWarning);
     on<ProfilRealisationEvent>(_profilAddUserRealisation);
+    on<UserUpdateProfilEvent>(_userProfilUpdate);
+  }
+
+  Future<void> _userProfilUpdate(UserUpdateProfilEvent event, Emitter<ProfilState> emit) async {
+    emit(ProfilLoading()); 
+    final result = await updateUserProfileUsecase(event.userProfil);
+    result.fold(
+      (error) => emit(ProfilError(error)),
+      (_) => emit(UpdatedUserProfil(true)),
+    );
   }
 
   Future<void> _profilAddUserRealisation(ProfilRealisationEvent event, Emitter<ProfilState> emit) async {

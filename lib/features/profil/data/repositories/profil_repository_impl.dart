@@ -5,6 +5,8 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:mossala_mobile/features/auth/data/models/user_model.dart';
+import 'package:mossala_mobile/features/auth/domain/entities/user_entity.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 import 'package:mossala_mobile/services/api_service.dart';
 
@@ -140,6 +142,27 @@ class ProfileRepositoryImpl implements ProfilRepository {
     } catch (e) {
       log("EXCEPTION OCCURRED: $e");
       return Left("Exception occurred while adding realisation");
+    }
+  }
+
+  @override
+  Future<Either<String, User>> updateUserProfile(UserModel userProfil) async{
+    try {
+      final data = userProfil.toJson();
+      log("Données envoyées à l'API : $data");
+      final response = await apiService.patch('/update-current-user/', userProfil.toJson());
+      if (response?.statusCode == 200) {
+        return Right(UserModel.fromJson(response?.data));
+      } else if (response?.statusCode == 400) {
+        log("Erreur 400 : ${response?.data}");
+        return Left("Requête invalide : ${response?.data['message'] ?? 'Erreur inconnue'}");
+      } else {
+        log("Erreur API : ${response?.toString()}");
+        return Left("Erreur lors de la mise à jour du profil utilisateur");
+      }
+    } catch (e) {
+      log("EXCEPTION OCCURRED: $e");
+      return Left("Exception occurred while updating user profile");
     }
   }
 }

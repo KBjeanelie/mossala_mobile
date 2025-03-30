@@ -1,12 +1,13 @@
 TÂCHE QUI RESTE À FAIRE :
 # CONNEXION API AVEC ECRAN DE MISE À JOUR PROFIL
 # RECUPERATION DU NOMBRE DES PROJETS RÉALISÉS ET CRÉÉS POUR WORKER
-
 # Regler le beug de l'affichage de deux fois l'image
-# Ajouter interface de mise à jour du projet
-# ajout la possiblilité de reouvrir le projet
-# Système de notification
 # Système de messagerie par rapport au projet
+
+#=== TÂCHE À FAIRE À PARTIR DU MERCREDI ===
+#Ajouter interface de mise à jour du projet
+#ajout la possiblilité de reouvrir le projet
+#Système de notification
 
 # Revoir l'affichage de la date de publication de l'offre (done)
 # RECUPERATION DES OFFRES POUR UN PROJETS (Done)

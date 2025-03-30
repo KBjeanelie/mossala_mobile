@@ -69,3 +69,10 @@ class ProfilRealisationCreated extends ProfilState {
   @override
   List<Object?> get props => [created];
 }
+
+class UpdatedUserProfil extends ProfilState {
+  final bool updated;
+  UpdatedUserProfil(this.updated);
+  @override
+  List<Object?> get props => [updated];
+}

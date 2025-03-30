@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
+import 'package:mossala_mobile/features/auth/data/models/user_model.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/project.dart';
 
 import '../../domain/entities/realisation.dart';
@@ -74,3 +75,9 @@ class ProfilRealisationEvent extends ProfilEvent {
 
 }
 
+class UserUpdateProfilEvent extends ProfilEvent {
+  final UserModel userProfil;
+  UserUpdateProfilEvent(this.userProfil);
+  @override
+  List<Object?> get props => [userProfil];
+}

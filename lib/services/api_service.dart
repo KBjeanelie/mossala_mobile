@@ -9,7 +9,7 @@ class ApiService {
   final Dio dio = Dio();
   final AuthLocalDataSource authLocalDataSource = AuthLocalDataSource(secureStorage: FlutterSecureStorage());
 
-  final String baseUrlLocal = "http://192.168.1.65:8000/api";
+  final String baseUrlLocal = "https://api-mosala.eneogroup.com/api";
 
   ApiService() {
     dio.options.baseUrl = baseUrlLocal;
