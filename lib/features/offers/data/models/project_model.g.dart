@@ -13,7 +13,7 @@ ProjectModel _$ProjectModelFromJson(Map<String, dynamic> json) => ProjectModel(
       amount: (json['amount'] as num?)?.toInt() ?? 0,
       address: json['adress'] is String ? json['adress'] as String : "",
       isClosed: json['is_closed'] as bool? ?? false,
-      createdAt: json['create_at'] is String ? json['created_at'] as String : "",
+      createdAt: json['created_at'] is String ? json['created_at'] as String : "",
       owner: (json['owner'] as num?)?.toInt() ?? 0,
       assignedFreelancer: (json['assigned_freelancer'] as num?)?.toInt() ?? 0,
       specialty: (json['specialty'] as List<dynamic>?)

@@ -9,13 +9,17 @@ DateTime parseDate(String dateString) {
     return DateTime.now(); // Par exemple, renvoyer la date actuelle en cas d'erreur
   }
 }
-
 String timeAgo(String dateString) {
+  DateTime? createdAt = DateTime.tryParse(dateString);
+  
+  if (createdAt == null) return "Date invalide";
+
   final DateTime now = DateTime.now();
-  final DateTime createdAt = parseDate(dateString); 
   final Duration difference = now.difference(createdAt);
 
-  if (difference.inSeconds < 60) {
+  if (difference.inSeconds < 1) {
+    return "À l'instant";
+  } else if (difference.inSeconds < 60) {
     return "Il y a ${difference.inSeconds} seconde${difference.inSeconds > 1 ? 's' : ''}";
   } else if (difference.inMinutes < 60) {
     return "Il y a ${difference.inMinutes} minute${difference.inMinutes > 1 ? 's' : ''}";
@@ -24,9 +28,12 @@ String timeAgo(String dateString) {
   } else if (difference.inDays < 30) {
     return "Il y a ${difference.inDays} jour${difference.inDays > 1 ? 's' : ''}";
   } else if (difference.inDays < 365) {
-    return "Il y a ${difference.inDays ~/ 30} mois";
+    int months = difference.inDays ~/ 30;
+    return "Il y a $months mois";
   } else {
-    return "Il y a ${difference.inDays ~/ 365} an${difference.inDays ~/ 365 > 1 ? 's' : ''}";
+    int years = difference.inDays ~/ 365;
+    return "Il y a $years an${years > 1 ? 's' : ''}";
   }
 }
+
 
