@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:mossala_mobile/features/offers/presentation/pages/chats/chats_project_screen.dart';
 import 'package:mossala_mobile/features/offers/presentation/pages/main_screen.dart';
 import 'package:mossala_mobile/screen/main/menu_screen.dart';
 import 'package:mossala_mobile/screen/main/user_projet_screen.dart';
@@ -19,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     MainScreen(),
     WorkerScreen(),
     UserProjetScreen(),
+    ChatsProjectScreen(),
     MenuScreen()
   ];
   @override
@@ -49,10 +51,15 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             activeIcon: Icon(EvaIcons.briefcase),
             icon: Icon(EvaIcons.briefcaseOutline),
-            label: 'Mes Projets'
+            label: 'Projets'
           ),
           BottomNavigationBarItem(
-            activeIcon: Icon(EvaIcons.menu2),
+            activeIcon: Icon(EvaIcons.messageCircle),
+            icon: Icon(EvaIcons.messageCircleOutline),
+            label: 'Messages'
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(EvaIcons.menu),
             icon: Icon(EvaIcons.menu),
             label: 'Menu'
           )

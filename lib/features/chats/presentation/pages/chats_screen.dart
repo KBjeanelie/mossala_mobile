@@ -4,7 +4,6 @@ import 'package:mossala_mobile/core/theme/app_colors.dart';
 import 'package:mossala_mobile/widgets/app_bar.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
-import 'single_chat_screen.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});
@@ -23,7 +22,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: List.generate(
             20,
-            (index) => CardItemChats(),
+            (index) => CardItemChats(onPressed: (){},),
           ),
         ),
       ),
@@ -32,15 +31,16 @@ class _ChatsScreenState extends State<ChatsScreen> {
 }
 
 class CardItemChats extends StatelessWidget {
+  final VoidCallback onPressed;
   const CardItemChats({
-    super.key,
+    super.key, required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.symmetric(vertical: 2),
-      elevation: 0,
+      elevation: 0.5,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0),
       ),
@@ -63,14 +63,7 @@ class CardItemChats extends StatelessWidget {
             )
           ],
         ),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SingleChatScreen(),
-            ),
-          );
-        },
+        onTap: onPressed,
       ),
     );
   }
