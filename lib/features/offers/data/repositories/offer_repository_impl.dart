@@ -102,8 +102,8 @@ class OfferRepositoryImpl implements OfferRepository {
     try {
       final response = await apiService.get('/projects/$id/');
       if (response != null && response.data != null) {
-        // log("DATA FETCHED SUCCESSFULLY");
-        // log("DATA: ${response.data}");
+        log("DATA FETCHED SUCCESSFULLY");
+        log("DATA: ${response.data}");
         return Right(ProjectModel.fromJson(response.data));
 
       } else {

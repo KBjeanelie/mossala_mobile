@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 DateTime parseDate(String dateString) {
   try {
@@ -37,3 +38,8 @@ String timeAgo(String dateString) {
 }
 
 
+
+String formatDate(DateTime date) {
+  initializeDateFormatting('fr_FR', null);
+  return DateFormat("d MMMM yyyy", "fr_FR").format(date);
+}

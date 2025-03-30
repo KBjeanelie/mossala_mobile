@@ -12,6 +12,38 @@ class SingleChatProjectScreen extends StatefulWidget {
 
 class _SingleChatProjectScreenState extends State<SingleChatProjectScreen> {
   @override
+
+  void _showConfirmationDialog(
+    BuildContext context, {
+    required String title,
+    required String content,
+    required VoidCallback onConfirm,
+  }) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: mediumTextApp(title, context),
+          content: normalTextApp(content, context),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Fermer le modal
+              },
+              child: normalTextApp("Annuler", context),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                onConfirm();
+              },
+              child: normalTextApp("OK", context),
+            ),
+          ],
+        );
+      },
+    );
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -31,7 +63,14 @@ class _SingleChatProjectScreenState extends State<SingleChatProjectScreen> {
               child: Row(
                 children: [
                   Expanded(child: normalTextApp("Donner le projet à ce prestataire", context)),
-                  mainButtonApp(context, (){}, "OK", size: 0.05)
+                  mainButtonApp(context, (){
+                    _showConfirmationDialog(
+                        context,
+                        title: "Donner le projet",
+                        content: "Êtes-vous sûr de vouloir donner ce projet à ce prestataire ?",
+                        onConfirm: () {},
+                      );
+                  }, "OK", size: 0.05)
                 ],
               ),
             ),

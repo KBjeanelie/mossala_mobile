@@ -13,6 +13,7 @@ import 'package:mossala_mobile/features/auth/data/models/user_model.dart';
 import 'package:mossala_mobile/features/auth/domain/entities/user_entity.dart';
 import 'package:mossala_mobile/features/offers/domain/entities/offer.dart';
 import 'package:mossala_mobile/features/offers/presentation/bloc/offer_state.dart';
+import 'package:mossala_mobile/features/offers/presentation/pages/chats/singe_chat_project_screen.dart';
 import 'package:mossala_mobile/widgets/widgets.dart';
 
 import '../../../../core/theme/app_colors.dart';
@@ -252,30 +253,30 @@ class _SingleOfferScreenState extends State<SingleOfferScreen> {
                                         fontSize: 15))),
                           ],
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          spacing: 5,
-                          children: [
-                            CircleAvatar(
-                                child: Icon(
-                              EvaIcons.people,
-                              color: AppColors.secondary,
-                            )),
-                            normalTextApp("Profil : ", context),
-                            Expanded(
-                              child: Wrap(
-                                spacing: 5,
-                                runSpacing: 5,
-                                children: [
-                                  for (int i = 0; i < 2; i++)
-                                    BadgeApp(i: i),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                        // SizedBox(
+                        //   height: 10,
+                        // ),
+                        // Row(
+                        //   spacing: 5,
+                        //   children: [
+                        //     CircleAvatar(
+                        //         child: Icon(
+                        //       EvaIcons.people,
+                        //       color: AppColors.secondary,
+                        //     )),
+                        //     normalTextApp("Profil : ", context),
+                        //     Expanded(
+                        //       child: Wrap(
+                        //         spacing: 5,
+                        //         runSpacing: 5,
+                        //         children: [
+                        //           for (int i = 0; i < 2; i++)
+                        //             BadgeApp(i: i),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         SizedBox(
                           height: 10,
                         ),
@@ -396,6 +397,8 @@ class CardWorkerOffer extends StatelessWidget {
     super.key, required this.offer,
   });
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -403,7 +406,9 @@ class CardWorkerOffer extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 2, bottom: 2),
         child: ListTile(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => SingleChatProjectScreen()));
+          },
           leading: CircleAvatar(
             radius: 40,
             backgroundImage: AssetImage("assets/user.jpg"),

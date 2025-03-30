@@ -115,32 +115,34 @@ class _MoreOfferScreenState extends State<MoreOfferScreen> {
                                         fontSize: 15))),
                           ],
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          spacing: 5,
-                          children: [
-                            CircleAvatar(
-                                child: Icon(
-                              EvaIcons.people,
-                              color: AppColors.secondary,
-                            )),
-                            normalTextApp("Profil : ", context),
-                            Expanded(
-                              child: Wrap(
-                                spacing: 5,
-                                runSpacing: 5,
-                                children: [
-                                  for (int i = 0; i < 2; i++) BadgeApp(i: i),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                        // SizedBox(
+                        //   height: 10,
+                        // ),
+                        // Row(
+                        //   spacing: 5,
+                        //   children: [
+                        //     CircleAvatar(
+                        //         child: Icon(
+                        //       EvaIcons.people,
+                        //       color: AppColors.secondary,
+                        //     )),
+                        //     normalTextApp("Profil : ", context),
+                        //     Expanded(
+                        //       child: Wrap(
+                        //         spacing: 5,
+                        //         runSpacing: 5,
+                        //         children: [
+                        //           for (int i = 0; i < 2; i++) BadgeApp(i: i),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         SizedBox(
                           height: 20,
                         ),
+                        //normalTextApp(state.offer.images.length.toString(), context),
+                        
                         for(int i = 0; i < state.offer.images.length; i++)
                           Container(
                             margin: EdgeInsets.symmetric(vertical: 10),
